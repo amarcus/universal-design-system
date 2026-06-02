@@ -1,0 +1,100 @@
+:host {
+    display: inline-block;
+    box-sizing: border-box;
+    height: fit-content;
+    width: 300px;
+    line-height: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+.segment {
+    display: flex;
+    width: 100%;
+}
+
+.segment ::slotted(uds-button) {
+    flex: 1 1 0;
+    min-width: 0;
+    --uds-button-width: 100%;
+    --uds-button-radius: 0;
+}
+
+.segment ::slotted(uds-button[segment-first]) {
+    margin-left: 0;
+}
+
+.segment ::slotted(uds-button:not([segment-first])) {
+    margin-left: -1px;
+}
+
+
+/* Sizes */
+
+.segment--small {
+    border-radius: var(--radius-small);
+    height: var(--height-small);
+}
+
+.segment--medium {
+    border-radius: var(--radius-medium);
+    height: var(--height-medium);
+}
+
+.segment--large {
+    border-radius: var(--radius-large);
+    height: var(--height-large);
+}
+
+
+/* Edge and central buttons */
+
+.segment--small ::slotted(uds-button[segment-first]) {
+    --uds-button-radius: var(--radius-small) 0 0 var(--radius-small);
+}
+
+.segment--medium ::slotted(uds-button[segment-first]) {
+    --uds-button-radius: var(--radius-medium) 0 0 var(--radius-medium);
+}
+
+.segment--large ::slotted(uds-button[segment-first]) {
+    --uds-button-radius: var(--radius-large) 0 0 var(--radius-large);
+}
+
+.segment--small ::slotted(uds-button[segment-last]) {
+    --uds-button-radius: 0 var(--radius-small) var(--radius-small) 0;
+}
+
+.segment--medium ::slotted(uds-button[segment-last]) {
+    --uds-button-radius: 0 var(--radius-medium) var(--radius-medium) 0;
+}
+
+.segment--large ::slotted(uds-button[segment-last]) {
+    --uds-button-radius: 0 var(--radius-large) var(--radius-large) 0;
+}
+
+
+/* Round */
+
+.segment--small.segment--round ::slotted(uds-button[segment-first]) {
+    --uds-button-radius: 999px 0 0 999px;
+}
+
+.segment--small.segment--round ::slotted(uds-button[segment-last]) {
+    --uds-button-radius: 0 999px 999px 0;
+}
+
+.segment--medium.segment--round ::slotted(uds-button[segment-first]) {
+    --uds-button-radius: 999px 0 0 999px;
+}
+
+.segment--medium.segment--round ::slotted(uds-button[segment-last]) {
+    --uds-button-radius: 0 999px 999px 0;
+}
+
+.segment--large.segment--round ::slotted(uds-button[segment-first]) {
+    --uds-button-radius: 999px 0 0 999px;
+}
+
+.segment--large.segment--round ::slotted(uds-button[segment-last]) {
+    --uds-button-radius: 0 999px 999px 0;
+}

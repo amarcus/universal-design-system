@@ -1,0 +1,57 @@
+:host {
+    display: block;
+    box-sizing: border-box;
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.header {
+    display: flex;
+    height: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.title {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: var(--general-text-main);
+}
+
+.description {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.2;
+    color: var(--general-text-light);
+    opacity: 0.75;
+}
+
+.title ::slotted(*) {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+}
+
+.description ::slotted(*) {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+}
+
+.fields {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.title:empty,
+.description:empty {
+    display: none;
+}

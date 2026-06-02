@@ -1,0 +1,17 @@
+.checkbox-group {
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.checkbox-group.horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+:host(:not([horizontal])) ::slotted(uds-checkbox) {
+    display: block;
+    width: 100%;
+}

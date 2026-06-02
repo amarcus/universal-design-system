@@ -1,0 +1,20 @@
+<div part="radio-container" class="radio-container">
+    <input part="radio" type="radio" class="input">
+    <span part="radiomark" class="radiomark"></span>
+
+    <div part="content" class="content">
+        <label part="label-wrapper">
+            <span part="label" class="label">
+                <slot></slot>
+            </span>
+
+            <span part="counter" class="counter"></span>
+
+            <span part="icon-right" class="icon-right">
+                <slot name="icon-right"></slot>
+            </span>
+        </label>
+
+        <div part="description" class="description"></div>
+    </div>
+</div>

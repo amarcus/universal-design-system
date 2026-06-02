@@ -1,0 +1,29 @@
+:host {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+.menu {
+    display: flex;
+    min-width: 220px;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 8px;
+    border-radius: 12px;
+    background: var(--general-backs-light);
+    box-shadow: 0 14px 20px 0 rgba(0, 0, 0, 0.20);
+}
+
+:host([submenu]) {
+    position: absolute;
+    top: 0;
+    left: calc(100% + 4px);
+    z-index: 1000;
+    display: none;
+}
+
+:host([submenu][open]) {
+    display: block;
+}

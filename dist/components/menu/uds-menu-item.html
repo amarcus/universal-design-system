@@ -1,0 +1,31 @@
+<button part="menu-item" class="menu-item" type="button" role="menuitem">
+    <div part="left-side" class="left-side">
+        <span part="checkmark" class="checkmark">
+            <slot name="checkmark"></slot>
+        </span>
+
+        <span part="icon" class="icon">
+            <slot name="icon"></slot>
+        </span>
+
+        <div part="content" class="content">
+            <span part="label" class="label">
+                <slot></slot>
+            </span>
+
+            <span part="description" class="description"></span>
+        </div>
+    </div>
+
+    <div part="right-side" class="right-side">
+        <span part="note" class="note"></span>
+
+        <span part="icon-right" class="icon-right">
+            <slot name="icon-right"></slot>
+        </span>
+
+        <span part="chevron" class="chevron">
+            <slot name="chevron"></slot>
+        </span>
+    </div>
+</button>

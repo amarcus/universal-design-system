@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Form</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/index.css">
+
+<script src="js/lucide.js"></script>
+<script type="module" src="dist/components/button/uds-button.js"></script>
+<script type="module" src="dist/components/toggle-button/uds-toggle-button.js"></script>
+<script type="module" src="dist/components/checkbox/uds-checkbox.js"></script>
+<script type="module" src="dist/components/checkbox/uds-checkbox-group.js"></script>
+<script type="module" src="dist/components/radio/uds-radio.js"></script>
+<script type="module" src="dist/components/radio/uds-radio-group.js"></script>
+<script type="module" src="dist/components/input/uds-input.js"></script>
+<script type="module" src="dist/components/segment/uds-segment.js"></script>
+<script type="module" src="dist/components/split-button/uds-split-button.js"></script>
+<script type="module" src="dist/components/toggle/uds-toggle.js"></script>
+<script type="module" src="dist/components/menu/uds-menu-item.js"></script>
+<script type="module" src="dist/components/menu/uds-menu-section.js"></script>
+<script type="module" src="dist/components/menu/uds-menu.js"></script>
+<script type="module" src="dist/components/list/uds-list-item.js"></script>
+<script type="module" src="dist/components/list/uds-list-section.js"></script>
+<script type="module" src="dist/components/list/uds-list.js"></script>
+<script type="module" src="dist/components/tabs/uds-tabs.js"></script>
+
+<script type="module" src="dist/components/form/uds-form.js"></script>
+
+<link rel="stylesheet" href="plugins/coloris/coloris.min.css">
+<script defer src="plugins/coloris/coloris.min.js"></script>
+
+<script defer src="js/form-schema.js"></script>
+<script defer src="js/index.js"></script>
+
+<style>
+    body {
+        padding: 32px;
+    }
+    
+    .window {
+        position: relative;
+        width: 640px;
+        padding: 16px 20px 24px 20px;
+        border-radius: 12px;
+        background: var(--general-backs-main);
+        box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .window-header {
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .window-body uds-tabs {
+        margin-bottom: 16px;
+    }
+
+    .window h1 {
+        margin: 0;
+        font-size: 24px;
+    }
+
+    .window-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+    }
+
+    .window-close::part(button) {
+        border-radius: 100px;
+    }
+
+    .window-body {
+        padding: 16px 0 32px 0;
+    }
+
+    .window-bottom {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .color-select {
+        position: relative;
+        width: 100%;
+    }
+
+    .color-select uds-toggle-button {
+        width: 100%;
+    }
+
+    .color-select-input {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        pointer-events: none;
+    }
+</style>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        Coloris({
+            onChange: (color, inputEl) => {
+                const button = document.getElementById('color-select-button');
+
+                if (button && inputEl?.id === 'color-select-input') {
+                    button.label = color;
+                }
+            }
+        });
+
+        const button = document.getElementById('color-select-button');
+        const input = document.getElementById('color-select-input');
+
+        if (!button || !input) return;
+
+        button.label = input.value;
+
+        button.addEventListener('click', () => {
+            if (button.active) {
+                input.click();
+            }
+        });
+    });
+</script>
+
+</head>
+
+<body>
+    <div class="window">
+        <div class="window-header">
+            <h1>Window title</h1>
+            <uds-button class="window-close" type="secondary" size="small">
+                <i slot="icon" data-lucide="x"></i>
+            </uds-button>
+        </div>
+
+        <div class="window-body">
+            <uds-tabs level="2" value="tab1">
+                <uds-tab value="tab1">
+                    First tab
+                </uds-tab>
+                <uds-tab value="tab2">
+                    Second tab
+                </uds-tab>
+                <uds-tab value="tab3">
+                    Third tab
+                </uds-tab>
+            </uds-tabs>
+
+            <uds-form>
+                <uds-form-group>
+                    <h2 slot="title">Group title</h2>
+                    <p slot="description">Group description</p>
+
+                    <uds-field>
+                        <label slot="label">Input field</label>
+                        <i slot="label-icon" data-lucide="info"></i>
+                        <uds-input placeholder="Placeholder"></uds-input>
+                    </uds-field>
+
+                    <uds-field label="Option name">
+                        <label slot="label">Checkbox group</label>
+                        <i slot="label-icon" data-lucide="info"></i>
+                        <uds-checkbox-group>
+                            <uds-checkbox type="secondary" variant="text">Checkbox</uds-checkbox>
+                            <uds-checkbox type="secondary" variant="text">Checkbox</uds-checkbox>
+                            <uds-checkbox type="secondary" variant="text">Checkbox</uds-checkbox>
+                        </uds-checkbox-group>
+                    </uds-field>
+
+                    <uds-field label="Option name">
+                        <label slot="label">Radio group</label>
+                        <i slot="label-icon" data-lucide="info"></i>
+                        <uds-radio-group>
+                            <uds-radio type="secondary" variant="text" checked>Option</uds-radio>
+                            <uds-radio type="secondary" variant="text">Option</uds-radio>
+                            <uds-radio type="secondary" variant="text">Option</uds-radio>
+                            <uds-radio type="secondary" variant="text">Option</uds-radio>
+                        </uds-radio-group>
+                    </uds-field>
+
+                    <uds-field label="Option name">
+                        <label slot="label">Dropdown list</label>
+                        <i slot="label-icon" data-lucide="info"></i>
+                        <uds-toggle-button type="secondary" size="medium" variant="filled">
+                            Not selected
+                            <i slot="icon-right" data-lucide="chevrons-up-down"></i>
+
+                            <uds-list slot="dropdown" variant="filled" value="1">
+                                <uds-list-section>
+                                    <uds-list-item value="1" selected>Option 1</uds-list-item>
+                                    <uds-list-item value="2">Option 2</uds-list-item>
+                                    <uds-list-item value="3">Option 3</uds-list-item>
+                                    <uds-list-item value="4">Option 4</uds-list-item>
+                                    <uds-list-item value="5">Option 5</uds-list-item>
+                                </uds-list-section>
+                            </uds-list>
+                        </uds-toggle-button>
+                    </uds-field>
+
+                    <uds-field label="Option name">
+                        <label slot="label">Segmented button</label>
+                        <i slot="label-icon" data-lucide="info"></i>
+                        <uds-segment type="secondary" size="medium" variant="filled" value="day">
+                            <uds-button value="day">Day</uds-button>
+                            <uds-button value="week">Week</uds-button>
+                            <uds-button value="month">Month</uds-button>
+                        </uds-segment>
+                    </uds-field>
+
+                    <uds-field label="Option name">
+                        <label slot="label">Toggle</label>
+                        <i slot="label-icon" data-lucide="info"></i>
+                        <uds-toggle></uds-toggle>
+                    </uds-field>
+
+                    <uds-field label="Option name">
+                        <label slot="label">Color select</label>
+                        <i slot="label-icon" data-lucide="info"></i>
+
+                        <div class="color-select">
+                            <uds-toggle-button type="secondary" size="medium" variant="filled" id="color-select-button">
+                                Action
+                                <i slot="icon-right" data-lucide="chevron-down"></i>
+                            </uds-toggle-button>
+
+                            <input id="color-select-input" class="color-select-input" data-coloris value="#4f46e5">
+                        </div>
+                    </uds-field>
+                </uds-form-group>
+            </uds-form>
+        </div>
+
+        <div class="window-bottom">
+            <uds-button type="secondary">Cancel</uds-button>
+            <uds-button>Save</uds-button>
+        </div>
+    </div>
+</body>
+</html>

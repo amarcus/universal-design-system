@@ -1,0 +1,468 @@
+:host {
+    display: inline-block;
+    box-sizing: border-box;
+    height: fit-content;
+    line-height: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+.tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    gap: 0;
+    line-height: 1.2;
+    font-family: var(--font-sans);
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    width: var(--uds-tab-width, auto);
+    background-color: transparent;
+}
+
+.tab.active {
+    cursor: default;
+}
+
+.tab:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 1px;
+}
+
+
+/* Guts */
+
+.wrapper,
+.content {
+    transition: background-color 0.2s, transform 0.12s, opacity 0.2s;
+    box-sizing: border-box;
+}
+
+.label {
+    padding: 0 4px;
+}
+
+.counter {
+    opacity: 0.75;
+    margin-right: 4px;
+}
+
+.delimiter {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    background-color: var(--tabs-backs-secondary-pressed);
+    border-radius: var(--radius-medium);
+    pointer-events: none;
+}
+
+:host([delimiters]) .delimiter {
+    display: block;
+}
+
+:host([fill]) {
+    display: block;
+}
+
+:host([fill]) .tab {
+    width: 100%;
+}
+
+:host([fill]) .cell {
+    display: flex;
+    width: 100%;
+}
+
+:host([fill]) .wrapper {
+    display: flex;
+    width: 100%;
+}
+
+:host([fill]) .content {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+
+/* Disabled */
+
+.tab:not(.active)[disabled] {
+    cursor: not-allowed;
+}
+
+
+/* Icons */
+
+.icon-top {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+}
+
+::slotted([slot="icon-top"]) {
+    stroke-width: 1.2px;
+}
+
+.icon, 
+.icon-right {
+    padding: 2px;
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+::slotted(uds-button[slot="button"]) {
+    --uds-button-padding-x: 0;
+    --uds-button-padding-y: 0;
+    --uds-button-icon-padding: 2px;
+
+    --button-text-primary-opaque-default: currentColor;
+    --button-text-primary-opaque-hover: currentColor;
+    --button-text-primary-opaque-pressed: currentColor;
+    --button-text-primary-opaque-disabled: currentColor;
+
+    --button-text-secondary-opaque-default: currentColor;
+    --button-text-secondary-opaque-hover: currentColor;
+    --button-text-secondary-opaque-pressed: currentColor;
+    --button-text-secondary-opaque-disabled: currentColor;
+
+    --button-text-danger-opaque-default: currentColor;
+    --button-text-danger-opaque-hover: currentColor;
+    --button-text-danger-opaque-pressed: currentColor;
+    --button-text-danger-opaque-disabled: currentColor;
+}
+
+
+/* Level 1 - Browser-like tab */
+
+.tab--l1 {
+    font-size: var(--font-size-medium);
+    overflow: visible;
+}
+
+.tab--l1 .cell {
+    display: inline-flex;
+}
+
+.tab--l1 .wrapper {
+    padding: var(--paddings-small) var(--paddings-medium);
+    border-radius: var(--radius-small) var(--radius-small) 0 0;
+    background-color: transparent;
+    color: var(--tabs-text-secondary-default);
+}
+
+.tab--l1 .delimiter {
+    height: 16px;
+}
+
+.tab--l1::before {
+    display: none;
+    position: absolute;
+    left: -8px;
+    bottom: 0;
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--general-backs-main);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cpath d='M0 8H8V0C8 4.41828 4.41828 8 0 8Z'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+.tab--l1::after {
+    display: none;
+    position: absolute;
+    right: -8px;
+    bottom: 0;
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--general-backs-main);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cpath d='M8 8H0V0C0 4.41828 3.58172 8 8 8Z'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+.tab--l1 .content {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--paddings-small);
+    height: var(--height-small);
+    border-radius: var(--radius-small);
+    box-sizing: border-box;
+}
+
+.tab--l1 .icon, 
+.tab--l1 .icon-right,
+.tab--l1 .button {
+    width: 20px;
+    height: 20px;
+}
+
+:host([fill]) .tab--l1 .label {
+    width: 100%;
+    text-align: left;
+}
+
+.tab--l1 ::slotted(uds-button[slot="button"]) {
+    --uds-button-width: 20px;
+    --uds-button-height: 20px;
+    --uds-button-icon-size: 20px;
+}
+
+.tab--l1:hover .content {
+    background-color: var(--tabs-backs-secondary-pressed);
+    color: var(--tabs-text-secondary-hover);
+}
+
+.tab--l1:active .content {
+    background-color: var(--tabs-backs-secondary-pressed);
+    color: var(--tabs-text-secondary-pressed);
+}
+
+.tab--l1.active .content {
+    background-color: transparent;
+    color: var(--tabs-text-secondary-default);
+}
+
+.tab--l1.active .wrapper {
+    background-color: var(--general-backs-main);
+    color: var(--tabs-text-secondary-active);
+}
+
+.tab--l1.active::before,
+.tab--l1.active::after {
+    display: inline-block;
+}
+
+.tab--l1:not(.active)[disabled] .wrapper {
+    background-color: transparent;
+    color: var(--tabs-text-secondary-disabled);
+}
+
+.tab--l1:not(.active)[disabled] .content {
+    background-color: var(--tabs-backs-secondary-default);
+    color: var(--tabs-text-secondary-disabled);
+}
+
+.tab--l1.active[disabled] .wrapper {
+    background-color: var(--general-backs-main);
+    color: var(--tabs-text-secondary-active);
+}
+
+
+
+/* Level 2 - Body tab */
+
+.tab--l2 {
+    font-size: var(--font-size-medium);
+    padding: 0;
+    color: var(--tabs-text-secondary-default);
+    background-color: transparent;
+}
+
+.tab--l2 .cell {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.tab--l2 .wrapper {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 8px;
+    border-radius: var(--radius-medium);
+}
+
+.tab--l2 .delimiter {
+    height: 32px;
+}
+
+.tab--l2 .content {
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+}
+
+.tab--l2 .icon, 
+.tab--l2 .icon-right,
+.tab--l2 .button {
+    width: 20px;
+    height: 20px;
+}
+
+.tab--l2 ::slotted(uds-button[slot="button"]) {
+    --uds-button-width: 20px;
+    --uds-button-height: 20px;
+    --uds-button-icon-size: 20px;
+}
+
+.tab--l2:hover {
+    color: var(--tabs-text-secondary-pressed);
+}
+
+.tab--l2:hover .wrapper {
+    background-color: var(--tabs-backs-secondary-pressed);
+}
+
+.tab--l2:active,
+.tab--l2.active {
+    color: var(--tabs-text-secondary-pressed);
+}
+
+.tab--l2:active .wrapper,
+.tab--l2.active .wrapper {
+    background-color: var(--tabs-backs-secondary-pressed);
+}
+
+.tab--l2:not(.active)[disabled] {
+    color: var(--tabs-text-secondary-disabled);
+}
+
+.tab--l2:not(.active)[disabled] .wrapper {
+    background-color: transparent;
+}
+
+
+/* Level 3 - Section tab */
+
+.tab--l3 {
+    font-size: 14px;
+    height: var(--height-small);
+    color: var(--tabs-text-secondary-default);
+}
+
+.tab--l3 .cell {
+    display: inline-flex;
+}
+
+.tab--l3 .wrapper {
+    display: inline-flex;
+    gap: 4px;
+    height: stretch;
+    align-items: center;
+    padding: 2px 6px;
+    border-radius: var(--radius-small);
+}
+
+.tab--l3 .content {
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+}
+
+.tab--l3 .delimiter {
+    height: 8px;
+}
+
+.tab--l3 .icon, 
+.tab--l3 .icon-right,
+.tab--l3 .button {
+    width: 16px;
+    height: 16px;
+}
+
+.tab--l3 ::slotted(uds-button[slot="button"]) {
+    --uds-button-width: 16px;
+    --uds-button-height: 16px;
+    --uds-button-icon-size: 16px;
+}
+
+
+.tab--l3:hover {
+    color: var(--tabs-text-secondary-hover);
+}
+
+.tab--l3:hover .wrapper {
+    background-color: var(--tabs-backs-secondary-hover);
+}
+
+.tab--l3:active,
+.tab--l3.active {
+    color: var(--tabs-text-secondary-pressed);
+}
+
+.tab--l3:active .wrapper,
+.tab--l3.active .wrapper {
+    background-color: var(--tabs-backs-secondary-pressed);
+}
+
+.tab--l3:not(.active)[disabled] {
+    color: var(--tabs-text-secondary-disabled);
+}
+
+.tab--l3:not(.active)[disabled] .wrapper {
+    background-color: transparent;
+}
+
+
+
+/* Level 4 - Panel tab */
+
+.tab--l4 {
+    font-size: 12px;
+    border-radius: 0;
+    padding: 0;
+    color: var(--tabs-text-secondary-default);
+}
+
+.tab--l4 .cell {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tab--l4 .wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+}
+
+.tab--l4 .content {
+    display: inline-flex;
+    gap: 0;
+    align-items: center;
+}
+
+.tab--l4 .delimiter {
+    width: 2px;
+    height: 2px;
+}
+
+.tab--l4 .icon, 
+.tab--l4 .icon-right,
+.tab--l4 .button {
+    width: 16px;
+    height: 16px;
+}
+
+.tab--l4 ::slotted(uds-button[slot="button"]) {
+    --uds-button-width: 16px;
+    --uds-button-height: 16px;
+    --uds-button-icon-size: 16px;
+}
+
+.tab--l4:hover {
+    color: var(--tabs-text-secondary-hover);
+}
+
+.tab--l4:active,
+.tab--l4.active {
+    color: var(--tabs-text-secondary-pressed);
+}
+
+.tab--l4:not(.active)[disabled] {
+    color: var(--tabs-text-secondary-disabled);
+}

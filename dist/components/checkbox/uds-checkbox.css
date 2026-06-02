@@ -1,0 +1,849 @@
+:host {
+    display: inline-block;
+    box-sizing: border-box;
+    height: fit-content;
+    line-height: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+.checkbox-container {
+    display: inline-flex;
+    align-items: flex-start;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    line-height: 1.2;
+    font-family: var(--font-sans);
+    pointer-events: auto;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    transition: background-color 0.2s, transform 0.12s, opacity 0.2s;
+    overflow: hidden;
+    user-select: none;
+    gap: 2px;
+}
+
+.checkbox-container:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 1px;
+}
+
+
+/* Guts */
+
+.content {
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: flex-start;
+    white-space: nowrap;
+    gap: 2px;
+    flex-direction: column;
+}
+
+.input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    pointer-events: none;
+}
+
+.counter {
+    opacity: 0.75;
+}
+
+.icon-right {
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+label {
+    height: 20px;
+    cursor: inherit;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+:host:has(.description:not(:empty)) {
+    height: auto;
+    align-items: flex-start;
+}
+
+.description {
+    white-space: normal;
+    max-width: 100%;
+    font-size: 12px;
+}
+
+.description:empty {
+    display: none;
+}
+
+:host-context(uds-checkbox-group:not([horizontal])) {
+    display: block;
+    width: 100%;
+}
+
+:host-context(uds-checkbox-group:not([horizontal])) .checkbox-container {
+    width: 100%;
+}
+
+
+/* Sizes */
+
+.checkbox-container.checkbox--small {
+    font-size: var(--font-size-small);
+    min-height: var(--height-small);
+    border-radius: var(--radius-small);
+    padding: var(--paddings-small) calc(var(--paddings-small) - 1px);
+}
+
+.checkbox-container.checkbox--medium {
+    font-size: var(--font-size-medium);
+    min-height: var(--height-medium);
+    border-radius: var(--radius-medium);
+    padding: var(--paddings-medium) calc(var(--paddings-medium) - 1px);
+}
+
+.checkbox-container.checkbox--large {
+    font-size: var(--font-size-large);
+    min-height: var(--height-large);
+    border-radius: var(--radius-large);
+    padding: var(--paddings-large) calc(var(--paddings-large) - 1px);
+}
+
+.checkbox-container.checkbox--text {
+    min-height: unset;
+    border-radius: 0;
+    border-width: 0;
+    padding: 0;
+}
+
+.checkbox-container.checkbox--small .label,
+:host:has(.checkbox--small) .description {
+    padding: 0 2px;
+}
+
+.checkbox-container.checkbox--medium .label,
+:host:has(.checkbox--medium) .description {
+    padding: 0 4px;
+}
+
+.checkbox-container.checkbox--large .label,
+:host:has(.checkbox--large) .description {
+    padding: 0 4px;
+}
+
+.checkbox-container.checkbox--small .counter {
+    margin-right: 2px;
+}
+
+.checkbox-container.checkbox--medium .counter {
+    margin-right: 4px;
+}
+
+.checkbox-container.checkbox--large .counter {
+    margin-right: 4px;
+}
+
+
+/* Specials */
+
+.checkbox-container[disabled] {
+    cursor: not-allowed;
+}
+
+.checkbox-container:active:not(.checkbox--scale),
+.checkbox-container.active:not(.checkbox--scale) {
+    transform: none;
+}
+
+.checkbox-container.checkbox--scale:active,
+.checkbox-container.checkbox--scale.active {
+    transform: scale(0.98);
+}
+
+.checkbox--round {
+    border-radius: 100px !important;
+}
+
+.checkbox--round .checkmark {
+    border-radius: 100px !important;
+}
+
+
+/* 
+
+    == Types ==
+    
+*/
+
+/* Filled - Primary */
+
+.checkbox--primary.checkbox--filled {
+    background-color: var(--button-backs-primary-default);
+    color: var(--button-text-primary-default);
+}
+
+.checkbox--primary.checkbox--filled:hover {
+    background-color: var(--button-backs-primary-hover);
+    color: var(--button-text-primary-hover);
+}
+
+.checkbox--primary.checkbox--filled:active,
+.checkbox--primary.checkbox--filled.active {
+    background-color: var(--button-backs-primary-pressed);
+    color: var(--button-text-primary-pressed);
+}
+
+.checkbox--primary.checkbox--filled[disabled] {
+    background-color: var(--button-backs-primary-disabled);
+    color: var(--button-text-primary-disabled);
+}
+
+/* Filled - Secondary */
+
+.checkbox--secondary.checkbox--filled {
+    background-color: var(--button-backs-secondary-default);
+    color: var(--button-text-secondary-default);
+}
+
+.checkbox--secondary.checkbox--filled:hover {
+    background-color: var(--button-backs-secondary-hover);
+    color: var(--button-text-secondary-hover);
+}
+
+.checkbox--secondary.checkbox--filled:active,
+.checkbox--secondary.checkbox--filled.active {
+    background-color: var(--button-backs-secondary-pressed);
+    color: var(--button-text-secondary-pressed);
+}
+
+.checkbox--secondary.checkbox--filled[disabled] {
+    background-color: var(--button-backs-secondary-disabled);
+    color: var(--button-text-secondary-disabled);
+}
+
+/* Filled - Danger */
+
+.checkbox--danger.checkbox--filled {
+    background-color: var(--button-backs-danger-default);
+    color: var(--button-text-danger-default);
+}
+
+.checkbox--danger.checkbox--filled:hover {
+    background-color: var(--button-backs-danger-hover);
+    color: var(--button-text-danger-hover);
+}
+
+.checkbox--danger.checkbox--filled:active,
+.checkbox--danger.checkbox--filled.active {
+    background-color: var(--button-backs-danger-pressed);
+    color: var(--button-text-danger-pressed);
+}
+
+.checkbox--danger.checkbox--filled[disabled] {
+    background-color: var(--button-backs-danger-disabled);
+    color: var(--button-text-danger-disabled);
+}
+
+/* Outline - Common */
+
+.checkbox--outline {
+    border: 1px solid;
+}
+
+/* Outline - Primary */
+
+.checkbox--primary.checkbox--outline {
+    border-color: var(--button-borders-primary-default);
+    color: var(--button-text-primary-opaque-default);
+}
+
+.checkbox--primary.checkbox--outline:hover {
+    background-color: var(--button-backs-primary-opaque-hover);
+    color: var(--button-text-primary-opaque-hover);
+}
+
+.checkbox--primary.checkbox--outline:active,
+.checkbox--primary.checkbox--outline.active {
+    background-color: var(--button-backs-primary-opaque-pressed);
+    color: var(--button-text-primary-opaque-pressed);
+}
+
+.checkbox--primary.checkbox--outline[disabled] {
+    background-color: transparent;
+    border-color: var(--button-borders-primary-disabled);
+    color: var(--button-text-primary-opaque-disabled);
+}
+
+/* Outline - Secondary */
+
+.checkbox--secondary.checkbox--outline {
+    border-color: var(--button-borders-secondary-default);
+    color: var(--button-text-secondary-opaque-default);
+}
+
+.checkbox--secondary.checkbox--outline:hover {
+    background-color: var(--button-backs-secondary-opaque-hover);
+    color: var(--button-text-secondary-opaque-hover);
+}
+
+.checkbox--secondary.checkbox--outline:active,
+.checkbox--secondary.checkbox--outline.active {
+    background-color: var(--button-backs-secondary-opaque-pressed);
+    color: var(--button-text-secondary-opaque-pressed);
+}
+
+.checkbox--secondary.checkbox--outline[disabled] {
+    background-color: transparent;
+    border-color: var(--button-borders-secondary-disabled);
+    color: var(--button-text-secondary-opaque-disabled);
+}
+
+/* Outline - Danger */
+
+.checkbox--danger.checkbox--outline {
+    border-color: var(--button-borders-danger-default);
+    color: var(--button-text-danger-opaque-default);
+}
+
+.checkbox--danger.checkbox--outline:hover {
+    background-color: var(--button-backs-danger-opaque-hover);
+    color: var(--button-text-danger-opaque-hover);
+}
+
+.checkbox--danger.checkbox--outline:active,
+.checkbox--danger.checkbox--outline.active {
+    background-color: var(--button-backs-danger-opaque-pressed);
+    color: var(--button-text-danger-opaque-pressed);
+}
+
+.checkbox--danger.checkbox--outline[disabled] {
+    background-color: transparent;
+    border-color: var(--button-borders-danger-disabled);
+    color: var(--button-text-danger-opaque-disabled);
+}
+
+/* Ghost - Primary */
+
+.checkbox--primary.checkbox--ghost {
+    color: var(--button-text-primary-opaque-default);
+}
+
+.checkbox--primary.checkbox--ghost:hover {
+    background-color: var(--button-backs-primary-opaque-hover);
+    color: var(--button-text-primary-opaque-hover);
+}
+
+.checkbox--primary.checkbox--ghost:active,
+.checkbox--primary.checkbox--ghost.active {
+    background-color: var(--button-backs-primary-opaque-pressed);
+    color: var(--button-text-primary-opaque-pressed);
+}
+
+.checkbox--primary.checkbox--ghost[disabled] {
+    background-color: transparent;
+    color: var(--button-text-primary-opaque-disabled);
+}
+
+/* Ghost - Secondary */
+
+.checkbox--secondary.checkbox--ghost {
+    color: var(--button-text-secondary-opaque-default);
+}
+
+.checkbox--secondary.checkbox--ghost:hover {
+    background-color: var(--button-backs-secondary-opaque-hover);
+    color: var(--button-text-secondary-opaque-hover);
+}
+
+.checkbox--secondary.checkbox--ghost:active,
+.checkbox--secondary.checkbox--ghost.active {
+    background-color: var(--button-backs-secondary-opaque-pressed);
+    color: var(--button-text-secondary-opaque-pressed);
+}
+
+.checkbox--secondary.checkbox--ghost[disabled] {
+    background-color: transparent;
+    color: var(--button-text-secondary-opaque-disabled);
+}
+
+/* Ghost - Danger */
+
+.checkbox--danger.checkbox--ghost {
+    color: var(--button-text-danger-opaque-default);
+}
+
+.checkbox--danger.checkbox--ghost:hover {
+    background-color: var(--button-backs-danger-opaque-hover);
+    color: var(--button-text-danger-opaque-hover);
+}
+
+.checkbox--danger.checkbox--ghost:active,
+.checkbox--danger.checkbox--ghost.active {
+    background-color: var(--button-backs-danger-opaque-pressed);
+    color: var(--button-text-danger-opaque-pressed);
+}
+
+.checkbox--danger.checkbox--ghost[disabled] {
+    background-color: transparent;
+    color: var(--button-text-danger-opaque-disabled);
+}
+
+/* Text - Primary */
+
+.checkbox--primary.checkbox--text {
+    color: var(--button-text-secondary-opaque-default);
+}
+
+.checkbox--primary.checkbox--text:hover {
+    color: var(--button-text-secondary-opaque-hover);
+}
+
+.checkbox--primary.checkbox--text:active,
+.checkbox--primary.checkbox--text.active {
+    color: var(--button-text-secondary-opaque-pressed);
+}
+
+.checkbox--primary.checkbox--text[disabled] {
+    color: var(--button-text-secondary-opaque-disabled);
+}
+
+/* Text - Secondary */
+
+.checkbox--secondary.checkbox--text {
+    color: var(--button-text-secondary-opaque-default);
+}
+
+.checkbox--secondary.checkbox--text:hover {
+    color: var(--button-text-secondary-opaque-hover);
+}
+
+.checkbox--secondary.checkbox--text:active,
+.checkbox--secondary.checkbox--text.active {
+    color: var(--button-text-secondary-opaque-pressed);
+}
+
+.checkbox--secondary.checkbox--text[disabled] {
+    color: var(--button-text-secondary-opaque-disabled);
+}
+
+/* Text - Danger */
+
+.checkbox--danger.checkbox--text {
+    color: var(--button-text-danger-opaque-default);
+}
+
+.checkbox--danger.checkbox--text:hover {
+    color: var(--button-text-danger-opaque-hover);
+}
+
+.checkbox--danger.checkbox--text:active,
+.checkbox--danger.checkbox--text.active {
+    color: var(--button-text-danger-opaque-pressed);
+}
+
+.checkbox--danger.checkbox--text[disabled] {
+    color: var(--button-text-danger-opaque-disabled);
+}
+
+
+/* 
+
+    == Checkmark Styles ==
+
+*/
+
+.checkmark {
+    position: relative;
+    height: 18px;
+    width: 18px;
+    flex-shrink: 0;
+    background-color: transparent;
+    border: 1px solid;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+}
+
+.checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 3px;
+    top: 3px;
+    width: 12px;
+    height: 12px;
+    background-color: black;
+}
+
+.input:checked ~ .checkmark::after {
+    display: block;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M4.68039 12C4.27736 12 3.9415 11.8337 3.67281 11.5011L0.318527 7.28764C0.201517 7.14831 0.119177 7.01348 0.071506 6.88315C0.0238353 6.75281 0 6.61798 0 6.47865C0 6.15955 0.101842 5.89663 0.305525 5.68989C0.513543 5.47865 0.773564 5.37303 1.08559 5.37303C1.43229 5.37303 1.72048 5.5191 1.95016 5.81124L4.65439 9.28315L9.96533 0.579775C10.0997 0.368539 10.2384 0.220225 10.3814 0.134831C10.5287 0.0449438 10.7086 0 10.9209 0C11.2329 0 11.4908 0.103371 11.6945 0.310112C11.8982 0.516854 12 0.777528 12 1.09213C12 1.20899 11.9805 1.33034 11.9415 1.45618C11.9025 1.58202 11.8418 1.71236 11.7595 1.84719L5.70748 11.4539C5.46912 11.818 5.12676 12 4.68039 12Z'/></svg>") center / contain no-repeat;
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M4.68039 12C4.27736 12 3.9415 11.8337 3.67281 11.5011L0.318527 7.28764C0.201517 7.14831 0.119177 7.01348 0.071506 6.88315C0.0238353 6.75281 0 6.61798 0 6.47865C0 6.15955 0.101842 5.89663 0.305525 5.68989C0.513543 5.47865 0.773564 5.37303 1.08559 5.37303C1.43229 5.37303 1.72048 5.5191 1.95016 5.81124L4.65439 9.28315L9.96533 0.579775C10.0997 0.368539 10.2384 0.220225 10.3814 0.134831C10.5287 0.0449438 10.7086 0 10.9209 0C11.2329 0 11.4908 0.103371 11.6945 0.310112C11.8982 0.516854 12 0.777528 12 1.09213C12 1.20899 11.9805 1.33034 11.9415 1.45618C11.9025 1.58202 11.8418 1.71236 11.7595 1.84719L5.70748 11.4539C5.46912 11.818 5.12676 12 4.68039 12Z'/></svg>") center / contain no-repeat;
+}
+
+.input:indeterminate ~ .checkmark::after {
+    display: block;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 3'><rect width='10' height='2.5' rx='1.25'/></svg>") center / contain no-repeat;
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 3'><rect width='10' height='2.5' rx='1.25'/></svg>") center / contain no-repeat;
+}
+
+
+/* 
+
+    == Checkmark Types ==
+
+*/
+
+/* Filled - Primary */
+
+.checkbox--primary.checkbox--filled .checkmark {
+    border-color: var(--checks-borders-white-border-default);
+}
+
+.checkbox--primary.checkbox--filled:hover .checkmark {
+    background-color: var(--checks-backs-blue-opaque-hover);
+}
+
+.checkbox--primary.checkbox--filled:active .checkmark,
+.checkbox--primary.checkbox--filled.active .checkmark {
+    background-color: var(--checks-backs-blue-opaque-pressed);
+}
+
+.checkbox--primary.checkbox--filled[disabled] .checkmark {
+    border-color: var(--checks-borders-white-border-disabled);
+    background-color: transparent;
+}
+
+.checkbox--primary.checkbox--filled .input:checked ~ .checkmark,
+.checkbox--primary.checkbox--filled .input:indeterminate ~ .checkmark {
+    background-color: var(--checks-backs-white-default);
+}
+
+.checkbox--primary.checkbox--filled:hover .input:checked ~ .checkmark,
+.checkbox--primary.checkbox--filled:hover .input:indeterminate ~ .checkmark {
+    background-color: var(--checks-backs-white-hover);
+}
+
+.checkbox--primary.checkbox--filled:active .input:checked ~ .checkmark,
+.checkbox--primary.checkbox--filled:active .input:indeterminate ~ .checkmark,
+.checkbox--primary.checkbox--filled.active .input:checked ~ .checkmark,
+.checkbox--primary.checkbox--filled.active .input:indeterminate ~ .checkmark {
+    background-color: var(--checks-backs-white-pressed);
+}
+
+.checkbox--primary.checkbox--filled[disabled] .input:checked ~ .checkmark,
+.checkbox--primary.checkbox--filled[disabled] .input:indeterminate ~ .checkmark {
+    background-color: var(--checks-backs-white-disabled);
+}
+
+.checkbox--primary.checkbox--filled .input:checked ~ .checkmark::after,
+.checkbox--primary.checkbox--filled .input:indeterminate ~ .checkmark::after {
+    background-color: var(--checks-marks-blue-default);
+}
+
+.checkbox--primary.checkbox--filled:hover .input:checked ~ .checkmark::after,
+.checkbox--primary.checkbox--filled:hover .input:indeterminate ~ .checkmark::after {
+    background-color: var(--checks-marks-blue-hover);
+}
+
+.checkbox--primary.checkbox--filled:active .input:checked ~ .checkmark::after,
+.checkbox--primary.checkbox--filled:active .input:indeterminate ~ .checkmark::after,
+.checkbox--primary.checkbox--filled.active .input:checked ~ .checkmark::after,
+.checkbox--primary.checkbox--filled.active .input:indeterminate ~ .checkmark::after {
+    background-color: var(--checks-marks-blue-pressed);
+}
+
+.checkbox--primary.checkbox--filled[disabled] .input:checked ~ .checkmark::after,
+.checkbox--primary.checkbox--filled[disabled] .input:indeterminate ~ .checkmark::after {
+    background-color: var(--checks-marks-blue-disabled);
+}
+
+/* Filled - Secondary */
+
+.checkbox--secondary.checkbox--filled .checkmark {
+    border-color: var(--checks-borders-gray-default);
+}
+
+.checkbox--secondary.checkbox--filled:hover .checkmark {
+    background-color: var(--checks-backs-gray-opaque-hover);
+}
+
+.checkbox--secondary.checkbox--filled:active .checkmark,
+.checkbox--secondary.checkbox--filled.active .checkmark {
+    background-color: var(--checks-backs-gray-opaque-pressed);
+}
+
+.checkbox--secondary.checkbox--filled[disabled] .checkmark {
+    border-color: var(--checks-borders-gray-disabled);
+    background-color: transparent;
+}
+
+.checkbox--secondary.checkbox--filled .input:checked ~ .checkmark,
+.checkbox--secondary.checkbox--filled .input:indeterminate ~ .checkmark {
+    border-color: transparent;
+    background-color: var(--checks-backs-white-default);
+}
+
+.checkbox--secondary.checkbox--filled:hover .input:checked ~ .checkmark,
+.checkbox--secondary.checkbox--filled:hover .input:indeterminate ~ .checkmark {
+    background-color: var(--checks-backs-white-hover);
+}
+
+.checkbox--secondary.checkbox--filled:active .input:checked ~ .checkmark,
+.checkbox--secondary.checkbox--filled:active .input:indeterminate ~ .checkmark,
+.checkbox--secondary.checkbox--filled.active .input:checked ~ .checkmark,
+.checkbox--secondary.checkbox--filled.active .input:indeterminate ~ .checkmark {
+    background-color: var(--checks-backs-white-pressed);
+}
+
+.checkbox--secondary.checkbox--filled[disabled] .input:checked ~ .checkmark,
+.checkbox--secondary.checkbox--filled[disabled] .input:indeterminate ~ .checkmark {
+    background-color: var(--checks-backs-white-disabled);
+}
+
+.checkbox--secondary.checkbox--filled .input:checked ~ .checkmark::after,
+.checkbox--secondary.checkbox--filled .input:indeterminate ~ .checkmark::after {
+    background-color: var(--checks-marks-gray-default);
+}
+
+.checkbox--secondary.checkbox--filled:hover .input:checked ~ .checkmark::after,
+.checkbox--secondary.checkbox--filled:hover .input:indeterminate ~ .checkmark::after {
+    background-color: var(--checks-marks-gray-hover);
+}
+
+.checkbox--secondary.checkbox--filled:active .input:checked ~ .checkmark::after,
+.checkbox--secondary.checkbox--filled:active .input:indeterminate ~ .checkmark::after,
+.checkbox--secondary.checkbox--filled.active .input:checked ~ .checkmark::after,
+.checkbox--secondary.checkbox--filled.active .input:indeterminate ~ .checkmark::after {
+    background-color: var(--checks-marks-gray-pressed);
+}
+
+.checkbox--secondary.checkbox--filled[disabled] .input:checked ~ .checkmark::after,
+.checkbox--secondary.checkbox--filled[disabled] .input:indeterminate ~ .checkmark::after {
+    background-color: var(--checks-marks-gray-disabled);
+}
+
+/* Filled - Danger */
+
+.checkbox--danger.checkbox--filled .checkmark {
+    border-color: var(--checks-borders-white-border-default);
+}
+
+.checkbox--danger.checkbox--filled:hover .checkmark {
+    background-color: var(--checks-backs-red-opaque-hover);
+}
+
+.checkbox--danger.checkbox--filled:active .checkmark,
+.checkbox--danger.checkbox--filled.active .checkmark {
+    background-color: var(--checks-backs-red-opaque-pressed);
+}
+
+.checkbox--danger.checkbox--filled[disabled] .checkmark {
+    border-color: var(--checks-borders-white-border-disabled);
+    background-color: transparent;
+}
+
+.checkbox--danger.checkbox--filled .input:checked ~ .checkmark,
+.checkbox--danger.checkbox--filled .input:indeterminate ~ .checkmark {
+    background-color: var(--checks-backs-white-default);
+}
+
+.checkbox--danger.checkbox--filled:hover .input:checked ~ .checkmark,
+.checkbox--danger.checkbox--filled:hover .input:indeterminate ~ .checkmark {
+    background-color: var(--checks-backs-white-hover);
+}
+
+.checkbox--danger.checkbox--filled:active .input:checked ~ .checkmark,
+.checkbox--danger.checkbox--filled:active .input:indeterminate ~ .checkmark,
+.checkbox--danger.checkbox--filled.active .input:checked ~ .checkmark,
+.checkbox--danger.checkbox--filled.active .input:indeterminate ~ .checkmark {
+    background-color: var(--checks-backs-white-pressed);
+}
+
+.checkbox--danger.checkbox--filled[disabled] .input:checked ~ .checkmark,
+.checkbox--danger.checkbox--filled[disabled] .input:indeterminate ~ .checkmark {
+    background-color: var(--checks-backs-white-disabled);
+}
+
+.checkbox--danger.checkbox--filled .input:checked ~ .checkmark::after,
+.checkbox--danger.checkbox--filled .input:indeterminate ~ .checkmark::after {
+    background-color: var(--checks-marks-red-default);
+}
+
+.checkbox--danger.checkbox--filled:hover .input:checked ~ .checkmark::after,
+.checkbox--danger.checkbox--filled:hover .input:indeterminate ~ .checkmark::after {
+    background-color: var(--checks-marks-red-hover);
+}
+
+.checkbox--danger.checkbox--filled:active .input:checked ~ .checkmark::after,
+.checkbox--danger.checkbox--filled:active .input:indeterminate ~ .checkmark::after,
+.checkbox--danger.checkbox--filled.active .input:checked ~ .checkmark::after,
+.checkbox--danger.checkbox--filled.active .input:indeterminate ~ .checkmark::after {
+    background-color: var(--checks-marks-red-pressed);
+}
+
+.checkbox--danger.checkbox--filled[disabled] .input:checked ~ .checkmark::after,
+.checkbox--danger.checkbox--filled[disabled] .input:indeterminate ~ .checkmark::after {
+    background-color: var(--checks-marks-red-disabled);
+}
+
+/* Outline, Ghost, Text - Primary */
+
+.checkbox--primary.checkbox--outline .checkmark,
+.checkbox--primary.checkbox--ghost .checkmark,
+.checkbox--primary.checkbox--text .checkmark {
+    border-color: var(--button-text-primary-opaque-default);
+    background-color: transparent;
+}
+
+.checkbox--primary.checkbox--outline:hover .checkmark,
+.checkbox--primary.checkbox--ghost:hover .checkmark,
+.checkbox--primary.checkbox--text:hover .checkmark {
+    border-color: var(--button-text-primary-opaque-hover);
+    background-color: var(--checks-backs-blue-opaque-hover);
+}
+
+.checkbox--primary.checkbox--outline:active .checkmark,
+.checkbox--primary.checkbox--ghost:active .checkmark,
+.checkbox--primary.checkbox--text:active .checkmark,
+.checkbox--primary.checkbox--outline.active .checkmark,
+.checkbox--primary.checkbox--ghost.active .checkmark,
+.checkbox--primary.checkbox--text.active .checkmark {
+    border-color: var(--button-text-primary-opaque-pressed);
+    background-color: var(--checks-backs-blue-opaque-pressed);
+}
+
+.checkbox--primary.checkbox--outline .input:checked ~ .checkmark::after,
+.checkbox--primary.checkbox--outline .input:indeterminate ~ .checkmark::after,
+.checkbox--primary.checkbox--ghost .input:checked ~ .checkmark::after,
+.checkbox--primary.checkbox--ghost .input:indeterminate ~ .checkmark::after,
+.checkbox--primary.checkbox--text .input:checked ~ .checkmark::after,
+.checkbox--primary.checkbox--text .input:indeterminate ~ .checkmark::after {
+    background-color: var(--checks-marks-blue-default);
+}
+
+.checkbox--primary.checkbox--outline[disabled] .checkmark,
+.checkbox--primary.checkbox--ghost[disabled] .checkmark,
+.checkbox--primary.checkbox--text[disabled] .checkmark {
+    border-color: var(--button-text-primary-opaque-disabled);
+    background-color: transparent;
+}
+
+.checkbox--primary.checkbox--outline[disabled] .input:checked ~ .checkmark::after,
+.checkbox--primary.checkbox--outline[disabled] .input:indeterminate ~ .checkmark::after,
+.checkbox--primary.checkbox--ghost[disabled] .input:checked ~ .checkmark::after,
+.checkbox--primary.checkbox--ghost[disabled] .input:indeterminate ~ .checkmark::after,
+.checkbox--primary.checkbox--text[disabled] .input:checked ~ .checkmark::after,
+.checkbox--primary.checkbox--text[disabled] .input:indeterminate ~ .checkmark::after {
+    background-color: var(--checks-marks-blue-disabled);
+}
+
+/* Outline, Ghost, Text - Secondary */
+
+.checkbox--secondary.checkbox--outline .checkmark,
+.checkbox--secondary.checkbox--ghost .checkmark,
+.checkbox--secondary.checkbox--text .checkmark {
+    border-color: var(--button-borders-secondary-default);
+    background-color: transparent;
+}
+
+.checkbox--secondary.checkbox--outline:hover .checkmark,
+.checkbox--secondary.checkbox--ghost:hover .checkmark,
+.checkbox--secondary.checkbox--text:hover .checkmark {
+    border-color: var(--button-borders-secondary-default);
+    background-color: var(--checks-backs-gray-opaque-hover);
+}
+
+.checkbox--secondary.checkbox--outline:active .checkmark,
+.checkbox--secondary.checkbox--ghost:active .checkmark,
+.checkbox--secondary.checkbox--text:active .checkmark,
+.checkbox--secondary.checkbox--outline.active .checkmark,
+.checkbox--secondary.checkbox--ghost.active .checkmark,
+.checkbox--secondary.checkbox--text.active .checkmark {
+    border-color: var(--button-borders-secondary-default);
+    background-color: var(--checks-backs-gray-opaque-pressed);
+}
+
+.checkbox--secondary.checkbox--outline .input:checked ~ .checkmark::after,
+.checkbox--secondary.checkbox--outline .input:indeterminate ~ .checkmark::after,
+.checkbox--secondary.checkbox--ghost .input:checked ~ .checkmark::after,
+.checkbox--secondary.checkbox--ghost .input:indeterminate ~ .checkmark::after,
+.checkbox--secondary.checkbox--text .input:checked ~ .checkmark::after,
+.checkbox--secondary.checkbox--text .input:indeterminate ~ .checkmark::after {
+    background-color: var(--checks-marks-gray-default);
+}
+
+.checkbox--secondary.checkbox--outline[disabled] .checkmark,
+.checkbox--secondary.checkbox--ghost[disabled] .checkmark,
+.checkbox--secondary.checkbox--text[disabled] .checkmark {
+    border-color: var(--checks-borders-gray-disabled);
+    background-color: transparent;
+}
+
+.checkbox--secondary.checkbox--outline[disabled] .input:checked ~ .checkmark::after,
+.checkbox--secondary.checkbox--outline[disabled] .input:indeterminate ~ .checkmark::after,
+.checkbox--secondary.checkbox--ghost[disabled] .input:checked ~ .checkmark::after,
+.checkbox--secondary.checkbox--ghost[disabled] .input:indeterminate ~ .checkmark::after,
+.checkbox--secondary.checkbox--text[disabled] .input:checked ~ .checkmark::after,
+.checkbox--secondary.checkbox--text[disabled] .input:indeterminate ~ .checkmark::after {
+    background-color: var(--checks-marks-gray-disabled);
+}
+
+/* Outline, Ghost, Text - Danger */
+
+.checkbox--danger.checkbox--outline .checkmark,
+.checkbox--danger.checkbox--ghost .checkmark,
+.checkbox--danger.checkbox--text .checkmark {
+    border-color: var(--button-text-danger-opaque-default);
+    background-color: transparent;
+}
+
+.checkbox--danger.checkbox--outline:hover .checkmark,
+.checkbox--danger.checkbox--ghost:hover .checkmark,
+.checkbox--danger.checkbox--text:hover .checkmark {
+    border-color: var(--button-text-danger-opaque-hover);
+    background-color: var(--checks-backs-red-opaque-hover);
+}
+
+.checkbox--danger.checkbox--outline:active .checkmark,
+.checkbox--danger.checkbox--ghost:active .checkmark,
+.checkbox--danger.checkbox--text:active .checkmark,
+.checkbox--danger.checkbox--outline.active .checkmark,
+.checkbox--danger.checkbox--ghost.active .checkmark,
+.checkbox--danger.checkbox--text.active .checkmark {
+    border-color: var(--button-text-danger-opaque-pressed);
+    background-color: var(--checks-backs-red-opaque-pressed);
+}
+
+.checkbox--danger.checkbox--outline .input:checked ~ .checkmark::after,
+.checkbox--danger.checkbox--outline .input:indeterminate ~ .checkmark::after,
+.checkbox--danger.checkbox--ghost .input:checked ~ .checkmark::after,
+.checkbox--danger.checkbox--ghost .input:indeterminate ~ .checkmark::after,
+.checkbox--danger.checkbox--text .input:checked ~ .checkmark::after,
+.checkbox--danger.checkbox--text .input:indeterminate ~ .checkmark::after {
+    background-color: var(--checks-marks-red-default);
+}
+
+.checkbox--danger.checkbox--outline[disabled] .checkmark,
+.checkbox--danger.checkbox--ghost[disabled] .checkmark,
+.checkbox--danger.checkbox--text[disabled] .checkmark {
+    border-color: var(--button-text-danger-opaque-disabled);
+    background-color: transparent;
+}
+
+.checkbox--danger.checkbox--outline[disabled] .input:checked ~ .checkmark::after,
+.checkbox--danger.checkbox--outline[disabled] .input:indeterminate ~ .checkmark::after,
+.checkbox--danger.checkbox--ghost[disabled] .input:checked ~ .checkmark::after,
+.checkbox--danger.checkbox--ghost[disabled] .input:indeterminate ~ .checkmark::after,
+.checkbox--danger.checkbox--text[disabled] .input:checked ~ .checkmark::after,
+.checkbox--danger.checkbox--text[disabled] .input:indeterminate ~ .checkmark::after {
+    background-color: var(--checks-marks-red-disabled);
+}

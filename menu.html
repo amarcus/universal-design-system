@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menu</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/index.css">
+<script src="js/lucide.js"></script>
+<script type="module" src="dist/components/menu/uds-menu-item.js"></script>
+<script type="module" src="dist/components/menu/uds-menu-section.js"></script>
+<script type="module" src="dist/components/menu/uds-menu.js"></script>
+<script defer src="js/menu-schema.js"></script>
+<script defer src="js/index.js"></script>
+
+<style>
+    body:not(.demo-ready) uds-menu-item::part(note) {
+        display: none;
+    }
+
+    body:not(.demo-ready) uds-menu-item::part(icon-right) {
+        display: none;
+    }
+
+    body:not(.demo-ready) uds-menu-section::part(label) {
+        display: none;
+    }
+</style>
+
+</head>
+
+<body id="page-menu">
+    <div class="flex-list">
+
+        <div class="flex-list-content">
+            <!-- Filled -->
+            <div class="flex-list-column" data-column="filled">
+                <div class="column-title">Filled</div>
+
+                <uds-menu variant="filled">
+                    <uds-menu-section section-type="actions" label="File">
+                        <uds-menu-item value="save" type="primary" note="⌘S">
+                            <i slot="icon" data-lucide="save"></i>
+                            Save
+                        </uds-menu-item>
+
+                        <uds-menu-item value="save-as" type="secondary" empty-icon note="⌘⇧S" submenu="save-as">
+                            Save as
+                        </uds-menu-item>
+
+                        <uds-menu-item value="export" type="secondary" disabled>
+                            <i slot="icon" data-lucide="share"></i>
+                            Share
+                        </uds-menu-item>
+                        
+                        <uds-menu-item value="close" type="secondary" empty-icon note="⌘P">
+                            Print...
+                        </uds-menu-item>
+                    </uds-menu-section>
+
+                    <uds-menu-section exclusive section-type="options" label="Alignment">
+                        <uds-menu-item value="left" selected note="⌘⎇L">
+                            Left
+                            <i slot="icon-right" data-lucide="align-start-vertical"></i>
+                        </uds-menu-item>
+
+                        <uds-menu-item value="center" note="⌘⎇C">
+                            Center
+                            <i slot="icon-right" data-lucide="align-horizontal-justify-center"></i>
+                        </uds-menu-item>
+
+                        <uds-menu-item value="right" note="⌘⎇R">
+                            Right
+                            <i slot="icon-right" data-lucide="align-end-vertical"></i>
+                        </uds-menu-item>
+                    </uds-menu-section>
+
+                    <uds-menu-section section-type="options" label="Appearance">
+                        <uds-menu-item value="option-1" selected note="⇧G">
+                            Show grid
+                        </uds-menu-item>
+
+                        <uds-menu-item value="option-2" selected note="⇧R">
+                            Show rulers
+                        </uds-menu-item>
+
+                        <uds-menu-item value="option-3" selected note="⇧O">
+                            Show outlines
+                        </uds-menu-item>
+                    </uds-menu-section>
+                    
+                    <uds-menu-section section-type="actions">
+                        <uds-menu-item value="close" type="danger" note="⌘⌫">
+                            <i slot="icon" data-lucide="trash-2"></i>
+                            Delete
+                        </uds-menu-item>
+                    </uds-menu-section>
+
+                    <uds-menu submenu="save-as">
+                        <uds-menu-section section-type="actions">
+                            <uds-menu-item>PDF (print-ready)</uds-menu-item>
+                            <uds-menu-item>Image (PNG / JPG / SVG)</uds-menu-item>
+                            <uds-menu-item>Editable File (.docx / .pptx)</uds-menu-item>
+                            <uds-menu-item>Template</uds-menu-item>
+                            <uds-menu-item>Local copy</uds-menu-item>
+                        </uds-menu-section>
+                    </uds-menu>
+                </uds-menu>
+            </div>
+
+
+            <!-- Outline -->
+            <div class="flex-list-column" data-column="outline">
+                <div class="column-title">Outline</div>
+
+                <uds-menu variant="outline">
+                    <uds-menu-section section-type="actions" label="File">
+                        <uds-menu-item value="save" type="primary" note="⌘S">
+                            <i slot="icon" data-lucide="save"></i>
+                            Save
+                        </uds-menu-item>
+
+                        <uds-menu-item value="save-as" type="secondary" empty-icon note="⌘⇧S" submenu="save-as">
+                            Save as
+                        </uds-menu-item>
+
+                        <uds-menu-item value="export" type="secondary" disabled>
+                            <i slot="icon" data-lucide="share"></i>
+                            Share
+                        </uds-menu-item>
+                        
+                        <uds-menu-item value="close" type="secondary" empty-icon note="⌘P">
+                            Print...
+                        </uds-menu-item>
+                    </uds-menu-section>
+
+                    <uds-menu-section exclusive section-type="options" label="Alignment">
+                        <uds-menu-item value="left" selected note="⌘⎇L">
+                            Left
+                            <i slot="icon-right" data-lucide="align-start-vertical"></i>
+                        </uds-menu-item>
+
+                        <uds-menu-item value="center" note="⌘⎇C">
+                            Center
+                            <i slot="icon-right" data-lucide="align-horizontal-justify-center"></i>
+                        </uds-menu-item>
+
+                        <uds-menu-item value="right" note="⌘⎇R">
+                            Right
+                            <i slot="icon-right" data-lucide="align-end-vertical"></i>
+                        </uds-menu-item>
+                    </uds-menu-section>
+
+                    <uds-menu-section section-type="options" label="Appearance">
+                        <uds-menu-item value="option-1" selected note="⇧G">
+                            Show grid
+                        </uds-menu-item>
+
+                        <uds-menu-item value="option-2" selected note="⇧R">
+                            Show rulers
+                        </uds-menu-item>
+
+                        <uds-menu-item value="option-3" selected note="⇧O">
+                            Show outlines
+                        </uds-menu-item>
+                    </uds-menu-section>
+                    
+                    <uds-menu-section section-type="actions">
+                        <uds-menu-item value="close" type="danger" note="⌘⌫">
+                            <i slot="icon" data-lucide="trash-2"></i>
+                            Delete
+                        </uds-menu-item>
+                    </uds-menu-section>
+
+                    <uds-menu submenu="save-as">
+                        <uds-menu-section section-type="actions">
+                            <uds-menu-item>PDF (print-ready)</uds-menu-item>
+                            <uds-menu-item>Image (PNG / JPG / SVG)</uds-menu-item>
+                            <uds-menu-item>Editable File (.docx / .pptx)</uds-menu-item>
+                            <uds-menu-item>Template</uds-menu-item>
+                            <uds-menu-item>Local copy</uds-menu-item>
+                        </uds-menu-section>
+                    </uds-menu>
+                </uds-menu>
+            </div>
+
+
+            <!-- Ghost -->
+            <div class="flex-list-column" data-column="ghost">
+                <div class="column-title">Ghost</div>
+
+                <uds-menu variant="ghost">
+                    <uds-menu-section section-type="actions" label="File">
+                        <uds-menu-item value="save" type="primary" note="⌘S">
+                            <i slot="icon" data-lucide="save"></i>
+                            Save
+                        </uds-menu-item>
+
+                        <uds-menu-item value="save-as" type="secondary" empty-icon note="⌘⇧S" submenu="save-as">
+                            Save as
+                        </uds-menu-item>
+
+                        <uds-menu-item value="export" type="secondary" disabled has-children>
+                            <i slot="icon" data-lucide="share"></i>
+                            Share
+                        </uds-menu-item>
+                        
+                        <uds-menu-item value="close" type="secondary" empty-icon note="⌘P">
+                            Print...
+                        </uds-menu-item>
+                    </uds-menu-section>
+
+                    <uds-menu-section exclusive section-type="options" label="Alignment">
+                        <uds-menu-item value="left" selected note="⌘⎇L">
+                            Left
+                            <i slot="icon-right" data-lucide="align-start-vertical"></i>
+                        </uds-menu-item>
+
+                        <uds-menu-item value="center" note="⌘⎇C">
+                            Center
+                            <i slot="icon-right" data-lucide="align-horizontal-justify-center"></i>
+                        </uds-menu-item>
+
+                        <uds-menu-item value="right" note="⌘⎇R">
+                            Right
+                            <i slot="icon-right" data-lucide="align-end-vertical"></i>
+                        </uds-menu-item>
+                    </uds-menu-section>
+
+                    <uds-menu-section section-type="options" label="Appearance">
+                        <uds-menu-item value="option-1" selected note="⇧G">
+                            Show grid
+                        </uds-menu-item>
+
+                        <uds-menu-item value="option-2" selected note="⇧R">
+                            Show rulers
+                        </uds-menu-item>
+
+                        <uds-menu-item value="option-3" selected note="⇧O">
+                            Show outlines
+                        </uds-menu-item>
+                    </uds-menu-section>
+                    
+                    <uds-menu-section section-type="actions">
+                        <uds-menu-item value="close" type="danger" note="⌘⌫">
+                            <i slot="icon" data-lucide="trash-2"></i>
+                            Delete
+                        </uds-menu-item>
+                    </uds-menu-section>
+
+                    <uds-menu submenu="save-as">
+                        <uds-menu-section section-type="actions">
+                            <uds-menu-item>PDF (print-ready)</uds-menu-item>
+                            <uds-menu-item>Image (PNG / JPG / SVG)</uds-menu-item>
+                            <uds-menu-item>Editable File (.docx / .pptx)</uds-menu-item>
+                            <uds-menu-item>Template</uds-menu-item>
+                            <uds-menu-item>Local copy</uds-menu-item>
+                        </uds-menu-section>
+                    </uds-menu>
+                </uds-menu>
+            </div>
+
+
+            <!-- Text -->
+            <div class="flex-list-column" data-column="text">
+                <div class="column-title">Text</div>
+
+                <uds-menu variant="text">
+                    <uds-menu-section section-type="actions" label="File">
+                        <uds-menu-item value="save" type="primary" note="⌘S">
+                            <i slot="icon" data-lucide="save"></i>
+                            Save
+                        </uds-menu-item>
+
+                        <uds-menu-item value="save-as" type="secondary" empty-icon note="⌘⇧S" submenu="save-as">
+                            Save as
+                        </uds-menu-item>
+
+                        <uds-menu-item value="export" type="secondary" disabled has-children>
+                            <i slot="icon" data-lucide="share"></i>
+                            Share
+                        </uds-menu-item>
+                        
+                        <uds-menu-item value="close" type="secondary" empty-icon note="⌘P">
+                            Print...
+                        </uds-menu-item>
+                    </uds-menu-section>
+
+                    <uds-menu-section exclusive section-type="options" label="Alignment">
+                        <uds-menu-item value="left" selected note="⌘⎇L">
+                            Left
+                            <i slot="icon-right" data-lucide="align-start-vertical"></i>
+                        </uds-menu-item>
+
+                        <uds-menu-item value="center" note="⌘⎇C">
+                            Center
+                            <i slot="icon-right" data-lucide="align-horizontal-justify-center"></i>
+                        </uds-menu-item>
+
+                        <uds-menu-item value="right" note="⌘⎇R">
+                            Right
+                            <i slot="icon-right" data-lucide="align-end-vertical"></i>
+                        </uds-menu-item>
+                    </uds-menu-section>
+
+                    <uds-menu-section section-type="options" label="Appearance">
+                        <uds-menu-item value="option-1" selected note="⇧G">
+                            Show grid
+                        </uds-menu-item>
+
+                        <uds-menu-item value="option-2" selected note="⇧R">
+                            Show rulers
+                        </uds-menu-item>
+
+                        <uds-menu-item value="option-3" selected note="⇧O">
+                            Show outlines
+                        </uds-menu-item>
+                    </uds-menu-section>
+                    
+                    <uds-menu-section section-type="actions">
+                        <uds-menu-item value="close" type="danger" note="⌘⌫">
+                            <i slot="icon" data-lucide="trash-2"></i>
+                            Delete
+                        </uds-menu-item>
+                    </uds-menu-section>
+
+                    <uds-menu submenu="save-as">
+                        <uds-menu-section section-type="actions">
+                            <uds-menu-item>PDF (print-ready)</uds-menu-item>
+                            <uds-menu-item>Image (PNG / JPG / SVG)</uds-menu-item>
+                            <uds-menu-item>Editable File (.docx / .pptx)</uds-menu-item>
+                            <uds-menu-item>Template</uds-menu-item>
+                            <uds-menu-item>Local copy</uds-menu-item>
+                        </uds-menu-section>
+                    </uds-menu>
+                </uds-menu>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

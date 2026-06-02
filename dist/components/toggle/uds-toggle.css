@@ -1,0 +1,365 @@
+:host {
+    display: inline-block;
+    box-sizing: border-box;
+    height: fit-content;
+    line-height: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+.toggle {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 2px;
+    box-sizing: border-box;
+    font-family: var(--font-sans);
+    font-size: var(--font-size-medium);
+    line-height: 1.2;
+    cursor: pointer;
+    user-select: none;
+}
+
+.toggle:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 1px;
+}
+
+.toggle:has(.input:disabled) {
+    cursor: not-allowed;
+}
+
+
+/* Guts */
+
+.input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    pointer-events: none;
+}
+
+.switch-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+}
+
+.switch {
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+    flex: 0 0 auto;
+    margin: 2px 0;
+    padding: 2px;
+    border-radius: 100px;
+    box-sizing: border-box;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+.thumb {
+    position: absolute;
+    display: block;
+    border-radius: 100px;
+    transition: transform 0.2s, background-color 0.2s;
+    transform: translateX(0);
+}
+
+.input:checked + .switch-wrapper .thumb {
+    background-color: var(--toggle-knobs-on-default);
+}
+
+.content {
+    display: inline-flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    width: fit-content;
+    white-space: nowrap;
+}
+
+.wrapper {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.label {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+:host:has(.description:not(:empty)) {
+    height: auto;
+    align-items: flex-start;
+}
+
+.description {
+    white-space: normal;
+    max-width: 100%;
+    font-size: 12px;
+}
+
+.description:empty {
+    display: none;
+}
+
+.counter {
+    display: inline-flex;
+    align-items: center;
+    opacity: 0.75;
+}
+
+.icon-right {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+:host:has(.description:not(:empty)) {
+    height: auto;
+    align-items: flex-start;
+}
+
+.description {
+    white-space: normal;
+    max-width: 100%;
+    font-size: 12px;
+    opacity: 0.75;
+    overflow-wrap: break-word;
+}
+
+.description:empty {
+    display: none;
+}
+
+
+/* Sizes */
+
+.toggle--small .switch-wrapper {
+    width: 28px;
+    height: var(--height-small);
+}
+
+.toggle--small .switch {
+    height: 16px;
+}
+
+.toggle--small .thumb {
+    width: 12px;
+    height: 12px;
+}
+
+.toggle--small .input:checked + .switch-wrapper .thumb {
+    transform: translateX(12px);
+}
+
+.toggle--small .wrapper {
+    height: var(--height-small);
+}
+
+.toggle--small .label {
+    padding: 0 2px;
+}
+
+:host:has(.toggle--small) .description {
+    padding: 0 2px;
+    margin-top: -2px;
+}
+
+.toggle--small .counter {
+    margin-right: 2px;
+}
+
+.toggle--medium .switch-wrapper {
+    width: 36px;
+    height: var(--height-medium);
+}
+
+.toggle--medium .switch {
+    height: 20px;
+}
+
+.toggle--medium .thumb {
+    width: 16px;
+    height: 16px;
+}
+
+.toggle--medium .input:checked + .switch-wrapper .thumb {
+    transform: translateX(16px);
+}
+
+.toggle--medium .wrapper {
+    height: var(--height-medium);
+}
+
+.toggle--medium .label {
+    padding: 0 4px;
+}
+
+:host:has(.toggle--medium) .description {
+    padding: 0 4px;
+    margin-top: -4px;
+}
+
+.toggle--medium .counter {
+    margin-right: 4px;
+}
+
+.toggle--large .switch-wrapper {
+    width: 44px;
+    height: var(--height-large);
+}
+
+.toggle--large .switch {
+    height: 24px;
+}
+
+.toggle--large .thumb {
+    width: 20px;
+    height: 20px;
+}
+
+.toggle--large .input:checked + .switch-wrapper .thumb {
+    transform: translateX(20px);
+}
+
+.toggle--large .label {
+    padding: 0 4px;
+}
+
+:host:has(.toggle--large) .description {
+    padding: 0 4px;
+    margin-top: -8px;
+}
+
+.toggle--large .counter {
+    margin-right: 4px;
+}
+
+.toggle--large .wrapper {
+    height: var(--height-large);
+}
+
+
+/* States - Off */
+
+.toggle {
+    color: var(--toggle-text-off-default);
+}
+
+.toggle .switch {
+    background-color: var(--toggle-backs-off-default);
+}
+
+.toggle .thumb {
+    background-color: var(--toggle-knobs-off-default);
+}
+
+.toggle:hover {
+    color: var(--toggle-text-off-hover);
+}
+
+.toggle:hover .switch {
+    background-color: var(--toggle-backs-off-hover);
+}
+
+.toggle:hover .thumb {
+    background-color: var(--toggle-knobs-off-hover);
+}
+
+.toggle:active {
+    color: var(--toggle-text-off-pressed);
+}
+
+.toggle:active .switch {
+    background-color: var(--toggle-backs-off-pressed);
+}
+
+.toggle:active .thumb {
+    background-color: var(--toggle-knobs-off-pressed);
+}
+
+.toggle:has(.input:disabled) {
+    color: var(--toggle-text-off-disabled);
+}
+
+.input:disabled + .switch-wrapper .switch {
+    background-color: var(--toggle-backs-off-disabled);
+}
+
+.input:disabled + .switch-wrapper .thumb {
+    background-color: var(--toggle-knobs-off-disabled);
+}
+
+
+/* States - On */
+
+.toggle:has(.input:checked) {
+    color: var(--toggle-text-on-default);
+}
+
+.input:checked + .switch-wrapper .switch {
+    background-color: var(--toggle-backs-on-default);
+}
+
+.input:checked + .switch-wrapper .thumb {
+    background-color: var(--toggle-knobs-on-default);
+}
+
+.toggle:has(.input:checked:not(:disabled)):hover {
+    color: var(--toggle-text-on-hover);
+}
+
+.toggle:has(.input:checked:not(:disabled)):hover .switch {
+    background-color: var(--toggle-backs-on-hover);
+}
+
+.toggle:has(.input:checked:not(:disabled)):hover .thumb {
+    background-color: var(--toggle-knobs-on-hover);
+}
+
+.toggle:has(.input:checked:not(:disabled)):active {
+    color: var(--toggle-text-on-pressed);
+}
+
+.toggle:has(.input:checked:not(:disabled)):active .switch {
+    background-color: var(--toggle-backs-on-pressed);
+}
+
+.toggle:has(.input:checked:not(:disabled)):active .thumb {
+    background-color: var(--toggle-knobs-on-pressed);
+}
+
+.toggle:has(.input:checked:disabled) {
+    color: var(--toggle-text-on-disabled);
+}
+
+.input:checked:disabled + .switch-wrapper .switch {
+    background-color: var(--toggle-backs-on-disabled);
+}
+
+.input:checked:disabled + .switch-wrapper .thumb {
+    background-color: var(--toggle-knobs-on-disabled);
+}
+
+
+/* Specials */
+
+.toggle--scale:active:not(.toggle--disabled) .switch {
+    transform: scale(0.96);
+}
+
+.toggle--disabled {
+    cursor: not-allowed;
+}
+
+.toggle--disabled .content {
+    color: var(--toggle-text-off-disabled);
+}
