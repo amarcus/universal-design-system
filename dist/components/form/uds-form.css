@@ -1,0 +1,14 @@
+:host {
+    display: inline-block;
+    box-sizing: border-box;
+    height: fit-content;
+    line-height: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+.form {
+    display: flex;
+    width: 640px;
+    flex-direction: column;
+    gap: 32px;
+}

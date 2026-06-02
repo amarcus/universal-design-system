@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tabs</title>
+<script>
+    <?php $ver = rand(); ?>
+    window.__DEV_BUILD__ = <?php echo $ver; ?>;
+</script>
+<link rel="stylesheet" href="css/tokens.css?v=<?php echo $ver; ?>">
+<link rel="stylesheet" href="css/index.css?v=<?php echo $ver; ?>">
+<script src="js/lucide.js"></script>
+<script type="module" src="dist/components/button/uds-button.js?v=<?php echo $ver; ?>"></script>
+<script type="module" src="dist/components/tabs/uds-tabs.js?v=<?php echo $ver; ?>"></script>
+<script defer src="js/tabs-schema.js?v=<?php echo $ver; ?>"></script>
+<script defer src="js/index.js?v=<?php echo $ver; ?>"></script>
+
+<style>
+    body:not(.demo-ready) uds-tab::part(icon) {
+        display: none;
+    }
+
+    body:not(.demo-ready) uds-tab::part(icon-right) {
+        display: none;
+    }
+
+    body:not(.demo-ready) uds-tab::part(counter) {
+        display: none;
+    }
+
+    body:not(.demo-ready) uds-tabs:not([level="browser"]) uds-tab::part(button) {
+        display: none;
+    }
+</style>
+
+</head>
+
+<body id="page-tabs">
+    <div class="flex-table tabs-table">
+        <div class="row header" data-row="types">
+            <div class="cell row-title"></div>
+
+            <div class="group" data-group="default">
+                <div class="overtitle">Default</div>
+            </div>
+
+            <div class="group" data-group="delimiters">
+                <div class="overtitle">With delimiters</div>
+            </div>
+        </div>
+
+        <!-- Hug -->
+        <div class="period" data-period="hug">
+            <div class="period-title">Hug</div>
+
+            <div class="row">
+                <div class="cell row-title">Browser</div>
+
+                <div class="group" data-group="default">
+                    <div class="cell">
+                        <uds-tabs level="browser" value="overview">
+                            <uds-tab value="overview">
+                                <i slot="icon" data-lucide="star"></i>
+                                Overview
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="ghost" size="small">
+                                    <i slot="icon" data-lucide="x"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="details">
+                                <i slot="icon" data-lucide="star"></i>
+                                Details
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="ghost" size="small">
+                                    <i slot="icon" data-lucide="x"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="settings">
+                                <i slot="icon" data-lucide="star"></i>
+                                Settings
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="ghost" size="small">
+                                    <i slot="icon" data-lucide="x"></i>
+                                </uds-button>
+                            </uds-tab>
+                        </uds-tabs>
+                    </div>
+                </div>
+
+                <div class="group" data-group="delimiters">
+                    <div class="cell">
+                        <uds-tabs level="browser" value="overview" delimiters>
+                            <uds-tab value="overview">
+                                <i slot="icon" data-lucide="star"></i>
+                                Overview
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="ghost" size="small">
+                                    <i slot="icon" data-lucide="x"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="details">
+                                <i slot="icon" data-lucide="star"></i>
+                                Details
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="ghost" size="small">
+                                    <i slot="icon" data-lucide="x"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="settings">
+                                <i slot="icon" data-lucide="star"></i>
+                                Settings
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="ghost" size="small">
+                                    <i slot="icon" data-lucide="x"></i>
+                                </uds-button>
+                            </uds-tab>
+                        </uds-tabs>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="cell row-title">Body</div>
+
+                <div class="group" data-group="default">
+                    <div class="cell">
+                        <uds-tabs level="body" value="overview">
+                            <uds-tab value="overview" counter="3">
+                                <i slot="icon-top" data-lucide="star"></i>
+                                <i slot="icon" data-lucide="star"></i>
+                                Overview
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="details" counter="3">
+                                <i slot="icon-top" data-lucide="star"></i>
+                                <i slot="icon" data-lucide="star"></i>
+                                Details
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="settings" counter="3">
+                                <i slot="icon-top" data-lucide="star"></i>
+                                <i slot="icon" data-lucide="star"></i>
+                                Settings
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                        </uds-tabs>
+                    </div>
+                </div>
+
+                <div class="group" data-group="delimiters">
+                    <div class="cell">
+                        <uds-tabs level="body" value="overview" delimiters>
+                            <uds-tab value="overview" counter="3">
+                                <i slot="icon-top" data-lucide="star"></i>
+                                <i slot="icon" data-lucide="star"></i>
+                                Overview
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="details" counter="3">
+                                <i slot="icon-top" data-lucide="star"></i>
+                                <i slot="icon" data-lucide="star"></i>
+                                Details
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="settings" counter="3">
+                                <i slot="icon-top" data-lucide="star"></i>
+                                <i slot="icon" data-lucide="star"></i>
+                                Settings
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                        </uds-tabs>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="cell row-title">Section</div>
+
+                <div class="group" data-group="default">
+                    <div class="cell">
+                        <uds-tabs level="section" value="overview">
+                            <uds-tab value="overview">
+                                <i slot="icon" data-lucide="star"></i>
+                                Overview
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="details">
+                                <i slot="icon" data-lucide="star"></i>
+                                Details
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="settings">
+                                <i slot="icon" data-lucide="star"></i>
+                                Settings
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                        </uds-tabs>
+                    </div>
+                </div>
+
+                <div class="group" data-group="delimiters">
+                    <div class="cell">
+                        <uds-tabs level="section" value="overview" delimiters>
+                            <uds-tab value="overview">
+                                <i slot="icon" data-lucide="star"></i>
+                                Overview
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="details">
+                                <i slot="icon" data-lucide="star"></i>
+                                Details
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="settings">
+                                <i slot="icon" data-lucide="star"></i>
+                                Settings
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                        </uds-tabs>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="cell row-title">Panel</div>
+
+                <div class="group" data-group="default">
+                    <div class="cell">
+                        <uds-tabs level="panel" value="overview">
+                            <uds-tab value="overview">
+                                <i slot="icon" data-lucide="star"></i>
+                                Overview
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="details">
+                                <i slot="icon" data-lucide="star"></i>
+                                Details
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="settings">
+                                <i slot="icon" data-lucide="star"></i>
+                                Settings
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                        </uds-tabs>
+                    </div>
+                </div>
+
+                <div class="group" data-group="delimiters">
+                    <div class="cell">
+                        <uds-tabs level="panel" value="overview" delimiters>
+                            <uds-tab value="overview">
+                                <i slot="icon" data-lucide="star"></i>
+                                Overview
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="details">
+                                <i slot="icon" data-lucide="star"></i>
+                                Details
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="settings">
+                                <i slot="icon" data-lucide="star"></i>
+                                Settings
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                        </uds-tabs>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fill -->
+        <div class="period" data-period="fill">
+            <div class="period-title">Fill</div>
+
+            <div class="row">
+                <div class="cell row-title">Browser</div>
+
+                <div class="group" data-group="default">
+                    <div class="cell">
+                        <uds-tabs level="browser" value="overview" fill>
+                            <uds-tab value="overview">
+                                <i slot="icon" data-lucide="star"></i>
+                                Overview
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="ghost" size="small">
+                                    <i slot="icon" data-lucide="x"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="details">
+                                <i slot="icon" data-lucide="star"></i>
+                                Details
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="ghost" size="small">
+                                    <i slot="icon" data-lucide="x"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="settings">
+                                <i slot="icon" data-lucide="star"></i>
+                                Settings
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="ghost" size="small">
+                                    <i slot="icon" data-lucide="x"></i>
+                                </uds-button>
+                            </uds-tab>
+                        </uds-tabs>
+                    </div>
+                </div>
+
+                <div class="group" data-group="delimiters">
+                    <div class="cell">
+                        <uds-tabs level="browser" value="overview" delimiters fill>
+                            <uds-tab value="overview">
+                                <i slot="icon" data-lucide="star"></i>
+                                Overview
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="ghost" size="small">
+                                    <i slot="icon" data-lucide="x"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="details">
+                                <i slot="icon" data-lucide="star"></i>
+                                Details
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="ghost" size="small">
+                                    <i slot="icon" data-lucide="x"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="settings">
+                                <i slot="icon" data-lucide="star"></i>
+                                Settings
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="ghost" size="small">
+                                    <i slot="icon" data-lucide="x"></i>
+                                </uds-button>
+                            </uds-tab>
+                        </uds-tabs>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="cell row-title">Body</div>
+
+                <div class="group" data-group="default">
+                    <div class="cell">
+                        <uds-tabs level="body" value="overview" fill>
+                            <uds-tab value="overview" counter="3">
+                                <i slot="icon-top" data-lucide="star"></i>
+                                <i slot="icon" data-lucide="star"></i>
+                                Overview
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="details" counter="3">
+                                <i slot="icon-top" data-lucide="star"></i>
+                                <i slot="icon" data-lucide="star"></i>
+                                Details
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="settings" counter="3">
+                                <i slot="icon-top" data-lucide="star"></i>
+                                <i slot="icon" data-lucide="star"></i>
+                                Settings
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                        </uds-tabs>
+                    </div>
+                </div>
+
+                <div class="group" data-group="delimiters">
+                    <div class="cell">
+                        <uds-tabs level="body" value="overview" delimiters fill>
+                            <uds-tab value="overview" counter="3">
+                                <i slot="icon-top" data-lucide="star"></i>
+                                <i slot="icon" data-lucide="star"></i>
+                                Overview
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="details" counter="3">
+                                <i slot="icon-top" data-lucide="star"></i>
+                                <i slot="icon" data-lucide="star"></i>
+                                Details
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="settings" counter="3">
+                                <i slot="icon-top" data-lucide="star"></i>
+                                <i slot="icon" data-lucide="star"></i>
+                                Settings
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                        </uds-tabs>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="cell row-title">Section</div>
+
+                <div class="group" data-group="default">
+                    <div class="cell">
+                        <uds-tabs level="section" value="overview" fill>
+                            <uds-tab value="overview">
+                                <i slot="icon" data-lucide="star"></i>
+                                Overview
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="details">
+                                <i slot="icon" data-lucide="star"></i>
+                                Details
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="settings">
+                                <i slot="icon" data-lucide="star"></i>
+                                Settings
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                        </uds-tabs>
+                    </div>
+                </div>
+
+                <div class="group" data-group="delimiters">
+                    <div class="cell">
+                        <uds-tabs level="section" value="overview" delimiters fill>
+                            <uds-tab value="overview">
+                                <i slot="icon" data-lucide="star"></i>
+                                Overview
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="details">
+                                <i slot="icon" data-lucide="star"></i>
+                                Details
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="settings">
+                                <i slot="icon" data-lucide="star"></i>
+                                Settings
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                        </uds-tabs>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="cell row-title">Panel</div>
+
+                <div class="group" data-group="default">
+                    <div class="cell">
+                        <uds-tabs level="panel" value="overview" fill>
+                            <uds-tab value="overview">
+                                <i slot="icon" data-lucide="star"></i>
+                                Overview
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="details">
+                                <i slot="icon" data-lucide="star"></i>
+                                Details
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="settings">
+                                <i slot="icon" data-lucide="star"></i>
+                                Settings
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                        </uds-tabs>
+                    </div>
+                </div>
+
+                <div class="group" data-group="delimiters">
+                    <div class="cell">
+                        <uds-tabs level="panel" value="overview" delimiters fill>
+                            <uds-tab value="overview">
+                                <i slot="icon" data-lucide="star"></i>
+                                Overview
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="details">
+                                <i slot="icon" data-lucide="star"></i>
+                                Details
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                            <uds-tab value="settings">
+                                <i slot="icon" data-lucide="star"></i>
+                                Settings
+                                <i slot="icon-right" data-lucide="info"></i>
+                                <uds-button slot="button" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="ellipsis"></i>
+                                </uds-button>
+                            </uds-tab>
+                        </uds-tabs>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

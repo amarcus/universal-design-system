@@ -1,0 +1,791 @@
+ :host {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+    -webkit-font-smoothing: antialiased;
+}
+
+.menu-item {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    gap: 0;
+    line-height: 1.2;
+    font-family: var(--font-sans);
+    font-size: var(--font-size-medium);
+    border-radius: var(--radius-medium);
+    padding: calc(var(--paddings-medium) - 1px);
+    min-height: var(--height-medium);
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background-color 0.2s, transform 0.12s, opacity 0.2s;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+}
+
+.menu-item:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 1px;
+}
+
+
+/* Guts */
+
+.left-side {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: start;
+    gap: 0;
+    flex: 1;
+}
+
+.right-side {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: end;
+    white-space: nowrap;
+    gap: 0;
+}
+
+.label {
+    padding: 0 4px;
+    text-align: left;
+}
+
+.note {
+    opacity: 0.75;
+    margin-right: 4px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+}
+
+.description {
+    margin-top: 2px;
+    font-size: 12px;
+    padding: 0 4px;
+    text-align: left;
+    opacity: 0.75;
+    line-height: 1.2;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    overflow-wrap: anywhere;
+}
+
+
+
+/* Disabled */
+
+.menu-item[disabled] {
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* Icons */
+
+.icon, 
+.icon-right {
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+:host([empty-icon]) .icon {
+    visibility: hidden;
+    display: inline-flex !important;
+}
+
+
+/* Specials */
+
+.menu-item:active:not(.menu-item--scale),
+.menu-item.active:not(.menu-item--scale) {
+    transform: none;
+}
+
+.menu-item.menu-item--scale:active,
+.menu-item.menu-item--scale.active {
+    transform: scale(0.98);
+}
+
+.menu-item--round {
+    border-radius: 100px !important;
+}
+
+
+
+/* 
+
+    == Types ==
+    
+*/
+
+/* Filled - Common */
+
+.menu-item--filled {
+    border-color: transparent;
+}
+
+/* Filled - Primary */
+
+.menu-item--filled.menu-item--primary {
+    background-color: transparent;
+    color: var(--menu-text-primary-default);
+}
+
+.menu-item--filled.menu-item--primary:hover {
+    background-color: var(--menu-backs-primary-hover);
+    color: var(--menu-text-primary-hover);
+}
+
+.menu-item--filled.menu-item--primary:active,
+.menu-item--filled.menu-item--primary.active {
+    background-color: var(--menu-backs-primary-pressed);
+    color: var(--menu-text-primary-pressed);
+}
+
+.menu-item--filled.menu-item--primary[disabled] {
+    background-color: transparent;
+    color: var(--menu-text-primary-disabled);
+}
+
+:host([submenu-open]) .menu-item--filled.menu-item--primary {
+    background-color: var(--menu-backs-primary-hover);
+    color: var(--menu-text-primary-hover);
+}
+
+/* Filled - Secondary */
+
+.menu-item--filled.menu-item--secondary {
+    background-color: transparent;
+    color: var(--menu-text-secondary-default);
+}
+
+.menu-item--filled.menu-item--secondary:hover {
+    background-color: var(--menu-backs-secondary-hover);
+    color: var(--menu-text-secondary-hover);
+}
+
+.menu-item--filled.menu-item--secondary:active,
+.menu-item--filled.menu-item--secondary.active {
+    background-color: var(--menu-backs-secondary-pressed);
+    color: var(--menu-text-secondary-pressed);
+}
+
+.menu-item--filled.menu-item--secondary[disabled] {
+    background-color: transparent;
+    color: var(--menu-text-secondary-disabled);
+}
+
+:host([submenu-open]) .menu-item--filled.menu-item--secondary {
+    background-color: var(--menu-backs-secondary-hover);
+    color: var(--menu-text-secondary-hover);
+}
+
+/* Filled - Danger */
+
+.menu-item--filled.menu-item--danger {
+    background-color: transparent;
+    color: var(--menu-text-danger-default);
+}
+
+.menu-item--filled.menu-item--danger:hover {
+    background-color: var(--menu-backs-danger-hover);
+    color: var(--menu-text-danger-hover);
+}
+
+.menu-item--filled.menu-item--danger:active,
+.menu-item--filled.menu-item--danger.active {
+    background-color: var(--menu-backs-danger-pressed);
+    color: var(--menu-text-danger-pressed);
+}
+
+.menu-item--filled.menu-item--danger[disabled] {
+    background-color: transparent;
+    color: var(--menu-text-danger-disabled);
+}
+
+:host([submenu-open]) .menu-item--filled.menu-item--danger {
+    background-color: var(--menu-backs-danger-hover);
+    color: var(--menu-text-danger-hover);
+}
+
+/* Outlined - Primary */
+
+.menu-item--outline.menu-item--primary {
+    background-color: transparent;
+    color: var(--menu-text-primary-opaque-default);
+}
+
+.menu-item--outline.menu-item--primary:hover {
+    background-color: var(--menu-backs-primary-opaque-hover);
+    border-color: var(--menu-borders-primary-default);
+    color: var(--menu-text-primary-opaque-hover);
+}
+
+.menu-item--outline.menu-item--primary:active,
+.menu-item--outline.menu-item--primary.active {
+    background-color: var(--menu-backs-primary-opaque-pressed);
+    border-color: var(--menu-borders-primary-default);
+    color: var(--menu-text-primary-opaque-pressed);
+}
+
+.menu-item--outline.menu-item--primary[disabled] {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--menu-text-primary-opaque-disabled);
+}
+
+:host([submenu-open]) .menu-item--outline.menu-item--primary {
+    background-color: var(--menu-backs-primary-opaque-hover);
+    border-color: var(--menu-borders-primary-default);
+    color: var(--menu-text-primary-opaque-hover);
+}
+
+/* Outline - Secondary */
+
+.menu-item--outline.menu-item--secondary {
+    background-color: transparent;
+    color: var(--menu-text-secondary-opaque-default);
+}
+
+.menu-item--outline.menu-item--secondary:hover {
+    background-color: var(--menu-backs-secondary-opaque-hover);
+    border-color: var(--menu-borders-secondary-default);
+    color: var(--menu-text-secondary-opaque-hover);
+}
+
+.menu-item--outline.menu-item--secondary:active,
+.menu-item--outline.menu-item--secondary.active {
+    background-color: var(--menu-backs-secondary-opaque-pressed);
+    border-color: var(--menu-borders-secondary-default);
+    color: var(--menu-text-secondary-opaque-pressed);
+}
+
+.menu-item--outline.menu-item--secondary[disabled] {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--menu-text-secondary-opaque-disabled);
+}
+
+:host([submenu-open]) .menu-item--outline.menu-item--secondary {
+    background-color: var(--menu-backs-secondary-opaque-hover);
+    border-color: var(--menu-borders-secondary-default);
+    color: var(--menu-text-secondary-opaque-hover);
+}
+
+/* Outline - Danger */
+
+.menu-item--outline.menu-item--danger {
+    background-color: transparent;
+    color: var(--menu-text-danger-opaque-default);
+}
+
+.menu-item--outline.menu-item--danger:hover {
+    background-color: var(--menu-backs-danger-opaque-hover);
+    border-color: var(--menu-borders-danger-default);
+    color: var(--menu-text-danger-opaque-hover);
+}
+
+.menu-item--outline.menu-item--danger:active,
+.menu-item--outline.menu-item--danger.active {
+    background-color: var(--menu-backs-danger-opaque-pressed);
+    border-color: var(--menu-borders-danger-default);
+    color: var(--menu-text-danger-opaque-pressed);
+}
+
+.menu-item--outline.menu-item--danger[disabled] {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--menu-text-danger-opaque-disabled);
+}
+
+:host([submenu-open]) .menu-item--outline.menu-item--danger {
+    background-color: var(--menu-backs-danger-opaque-hover);
+    border-color: var(--menu-borders-danger-default);
+    color: var(--menu-text-danger-opaque-hover);
+}
+
+/* Ghost - Primary */
+
+.menu-item--ghost.menu-item--primary {
+    background-color: transparent;
+    color: var(--menu-text-primary-opaque-default);
+}
+
+.menu-item--ghost.menu-item--primary:hover {
+    background-color: var(--menu-backs-primary-opaque-hover);
+    color: var(--menu-text-primary-opaque-hover);
+}
+
+.menu-item--ghost.menu-item--primary:active,
+.menu-item--ghost.menu-item--primary.active {
+    background-color: var(--menu-backs-primary-opaque-pressed);
+    color: var(--menu-text-primary-opaque-pressed);
+}
+
+.menu-item--ghost.menu-item--primary[disabled] {
+    background-color: transparent;
+    color: var(--menu-text-primary-opaque-disabled);
+}
+
+:host([submenu-open]) .menu-item--ghost.menu-item--primary {
+    background-color: var(--menu-backs-primary-opaque-hover);
+    color: var(--menu-text-primary-opaque-hover);
+}
+
+/* Ghost - Secondary */
+
+.menu-item--ghost.menu-item--secondary {
+    background-color: transparent;
+    color: var(--menu-text-secondary-opaque-default);
+}
+
+.menu-item--ghost.menu-item--secondary:hover {
+    background-color: var(--menu-backs-secondary-opaque-hover);
+    color: var(--menu-text-secondary-opaque-hover);
+}
+
+.menu-item--ghost.menu-item--secondary:active,
+.menu-item--ghost.menu-item--secondary.active {
+    background-color: var(--menu-backs-secondary-opaque-pressed);
+    color: var(--menu-text-secondary-opaque-pressed);
+}
+
+.menu-item--ghost.menu-item--secondary[disabled] {
+    background-color: transparent;
+    color: var(--menu-text-secondary-opaque-disabled);
+}
+
+:host([submenu-open]) .menu-item--ghost.menu-item--secondary {
+    background-color: var(--menu-backs-secondary-opaque-hover);
+    color: var(--menu-text-secondary-opaque-hover);
+}
+
+/* Ghost - Danger */
+
+.menu-item--ghost.menu-item--danger {
+    background-color: transparent;
+    color: var(--menu-text-danger-opaque-default);
+}
+
+.menu-item--ghost.menu-item--danger:hover {
+    background-color: var(--menu-backs-danger-opaque-hover);
+    color: var(--menu-text-danger-opaque-hover);
+}
+
+.menu-item--ghost.menu-item--danger:active,
+.menu-item--ghost.menu-item--danger.active {
+    background-color: var(--menu-backs-danger-opaque-pressed);
+    color: var(--menu-text-danger-opaque-pressed);
+}
+
+.menu-item--ghost.menu-item--danger[disabled] {
+    background-color: transparent;
+    color: var(--menu-text-danger-opaque-disabled);
+}
+
+:host([submenu-open]) .menu-item--ghost.menu-item--danger {
+    background-color: var(--menu-backs-danger-opaque-hover);
+    color: var(--menu-text-danger-opaque-hover);
+}
+
+/* Text - Common */
+
+.menu-item--text {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+/* Text - Primary */
+
+.menu-item--text.menu-item--primary {
+    color: var(--menu-text-primary-opaque-default);
+}
+
+.menu-item--text.menu-item--primary:hover {
+    color: var(--menu-text-primary-opaque-hover);
+}
+
+.menu-item--text.menu-item--primary:active,
+.menu-item--text.menu-item--primary.active {
+    color: var(--menu-text-primary-opaque-pressed);
+}
+
+.menu-item--text.menu-item--primary[disabled] {
+    color: var(--menu-text-primary-opaque-disabled);
+}
+
+:host([submenu-open]) .menu-item--text.menu-item--primary {
+    color: var(--menu-text-primary-opaque-hover);
+}
+
+/* Text - Secondary */
+
+.menu-item--text.menu-item--secondary {
+    color: var(--menu-text-secondary-opaque-default);
+}
+
+.menu-item--text.menu-item--secondary:hover {
+    color: var(--menu-text-secondary-opaque-hover);
+}
+
+.menu-item--text.menu-item--secondary:active,
+.menu-item--text.menu-item--secondary.active {
+    color: var(--menu-text-secondary-opaque-pressed);
+}
+
+.menu-item--text.menu-item--secondary[disabled] {
+    color: var(--menu-text-secondary-opaque-disabled);
+}
+
+:host([submenu-open]) .menu-item--text.menu-item--secondary {
+    color: var(--menu-text-secondary-opaque-hover);
+}
+
+/* Text - Danger */
+
+.menu-item--text.menu-item--danger {
+    color: var(--menu-text-danger-opaque-default);
+}
+
+.menu-item--text.menu-item--danger:hover {
+    color: var(--menu-text-danger-opaque-hover);
+}
+
+.menu-item--text.menu-item--danger:active,
+.menu-item--text.menu-item--danger.active {
+    color: var(--menu-text-danger-opaque-pressed);
+}
+
+.menu-item--text.menu-item--danger[disabled] {
+    color: var(--menu-text-danger-opaque-disabled);
+}
+
+:host([submenu-open]) .menu-item--text.menu-item--danger {
+    color: var(--menu-text-danger-opaque-hover);
+}
+
+
+
+
+/* 
+
+    == Checkmark and Chevron Styles ==
+
+*/
+
+.checkmark {
+    position: relative;
+    height: 18px;
+    width: 18px;
+    flex-shrink: 0;
+    transition: all 0.2s ease-in-out;
+    opacity: 0;
+}
+
+.checkmark::after {
+    display: block;
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 12px;
+    height: 12px;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 12'><path d='M4.75098 11.9902C4.38639 11.9902 4.0765 11.833 3.82129 11.5186L0.280273 7.15723C0.180013 7.03874 0.107096 6.92253 0.0615234 6.80859C0.0205078 6.69466 0 6.57617 0 6.45312C0 6.17969 0.0911458 5.9541 0.273438 5.77637C0.455729 5.59863 0.685872 5.50977 0.963867 5.50977C1.27832 5.50977 1.54264 5.64421 1.75684 5.91309L4.72363 9.67285L10.5137 0.499023C10.6322 0.316732 10.7552 0.189128 10.8828 0.116211C11.0104 0.038737 11.1699 0 11.3613 0C11.6393 0 11.8672 0.0865885 12.0449 0.259766C12.2227 0.432943 12.3115 0.653971 12.3115 0.922852C12.3115 1.03223 12.2933 1.1416 12.2568 1.25098C12.2204 1.36035 12.1634 1.47428 12.0859 1.59277L5.6875 11.4912C5.46875 11.8239 5.15658 11.9902 4.75098 11.9902Z'/></svg>") center / contain no-repeat;
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 12'><path d='M4.75098 11.9902C4.38639 11.9902 4.0765 11.833 3.82129 11.5186L0.280273 7.15723C0.180013 7.03874 0.107096 6.92253 0.0615234 6.80859C0.0205078 6.69466 0 6.57617 0 6.45312C0 6.17969 0.0911458 5.9541 0.273438 5.77637C0.455729 5.59863 0.685872 5.50977 0.963867 5.50977C1.27832 5.50977 1.54264 5.64421 1.75684 5.91309L4.72363 9.67285L10.5137 0.499023C10.6322 0.316732 10.7552 0.189128 10.8828 0.116211C11.0104 0.038737 11.1699 0 11.3613 0C11.6393 0 11.8672 0.0865885 12.0449 0.259766C12.2227 0.432943 12.3115 0.653971 12.3115 0.922852C12.3115 1.03223 12.2933 1.1416 12.2568 1.25098C12.2204 1.36035 12.1634 1.47428 12.0859 1.59277L5.6875 11.4912C5.46875 11.8239 5.15658 11.9902 4.75098 11.9902Z'/></svg>") center / contain no-repeat;
+}
+
+.chevron {
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chevron::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 13'><path d='M7.15723 6.13867C7.15723 6.27539 7.12988 6.40527 7.0752 6.52832C7.02507 6.64681 6.94303 6.76074 6.8291 6.87012L1.57227 12.0176C1.39453 12.1908 1.17806 12.2773 0.922852 12.2773C0.758789 12.2773 0.60612 12.2363 0.464844 12.1543C0.323568 12.0723 0.209635 11.9629 0.123047 11.8262C0.0410156 11.6895 0 11.5345 0 11.3613C0 11.1107 0.0957031 10.8874 0.287109 10.6914L4.96973 6.13867L0.287109 1.58594C0.0957031 1.39453 0 1.17122 0 0.916016C0 0.747396 0.0410156 0.594727 0.123047 0.458008C0.209635 0.316732 0.323568 0.205078 0.464844 0.123047C0.60612 0.0410156 0.758789 0 0.922852 0C1.17806 0 1.39453 0.0865885 1.57227 0.259766L6.8291 5.40723C6.93848 5.5166 7.02051 5.63053 7.0752 5.74902C7.12988 5.86751 7.15723 5.9974 7.15723 6.13867Z'/></svg>") center / contain no-repeat;
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 13'><path d='M7.15723 6.13867C7.15723 6.27539 7.12988 6.40527 7.0752 6.52832C7.02507 6.64681 6.94303 6.76074 6.8291 6.87012L1.57227 12.0176C1.39453 12.1908 1.17806 12.2773 0.922852 12.2773C0.758789 12.2773 0.60612 12.2363 0.464844 12.1543C0.323568 12.0723 0.209635 11.9629 0.123047 11.8262C0.0410156 11.6895 0 11.5345 0 11.3613C0 11.1107 0.0957031 10.8874 0.287109 10.6914L4.96973 6.13867L0.287109 1.58594C0.0957031 1.39453 0 1.17122 0 0.916016C0 0.747396 0.0410156 0.594727 0.123047 0.458008C0.209635 0.316732 0.323568 0.205078 0.464844 0.123047C0.60612 0.0410156 0.758789 0 0.922852 0C1.17806 0 1.39453 0.0865885 1.57227 0.259766L6.8291 5.40723C6.93848 5.5166 7.02051 5.63053 7.0752 5.74902C7.12988 5.86751 7.15723 5.9974 7.15723 6.13867Z'/></svg>") center / contain no-repeat;
+}
+
+:host([selected]) .checkmark {
+    opacity: 1;
+}
+
+:host-context(uds-menu-section[section-type="actions"]) .checkmark {
+    display: none;
+}
+
+
+/* 
+
+    == Checkmark Types ==
+
+*/
+
+/* Filled - Primary */
+
+.menu-item--primary.menu-item--filled .checkmark::after,
+.menu-item--primary.menu-item--filled .chevron::before {
+    background-color: var(--menu-text-primary-default);
+}
+
+.menu-item--primary.menu-item--filled:hover .checkmark::after,
+.menu-item--primary.menu-item--filled:hover .chevron::before {
+    background-color: var(--menu-text-primary-hover);
+}
+
+.menu-item--primary.menu-item--filled:active .checkmark::after,
+.menu-item--primary.menu-item--filled.active .checkmark::after,
+.menu-item--primary.menu-item--filled:active .chevron::before,
+.menu-item--primary.menu-item--filled.active .chevron::before {
+    background-color: var(--menu-text-primary-pressed);
+}
+
+.menu-item--primary.menu-item--filled[disabled] .checkmark::after,
+.menu-item--primary.menu-item--filled[disabled] .chevron::before {
+    background-color: var(--menu-text-primary-disabled);
+}
+
+:host([submenu-open]) .menu-item--primary.menu-item--filled .checkmark::after,
+:host([submenu-open]) .menu-item--primary.menu-item--filled .chevron::before {
+    background-color: var(--menu-text-primary-hover);
+}
+
+/* Filled - Secondary */
+
+.menu-item--secondary.menu-item--filled .checkmark::after,
+.menu-item--secondary.menu-item--filled .chevron::before {
+    background-color: var(--menu-text-secondary-default);
+}
+
+.menu-item--secondary.menu-item--filled:hover .checkmark::after,
+.menu-item--secondary.menu-item--filled:hover .chevron::before {
+    background-color: var(--menu-text-secondary-hover);
+}
+
+.menu-item--secondary.menu-item--filled:active .checkmark::after,
+.menu-item--secondary.menu-item--filled.active .checkmark::after,
+.menu-item--secondary.menu-item--filled:active .chevron::before,
+.menu-item--secondary.menu-item--filled.active .chevron::before {
+    background-color: var(--menu-text-secondary-pressed);
+}
+
+.menu-item--secondary.menu-item--filled[disabled] .checkmark::after,
+.menu-item--secondary.menu-item--filled[disabled] .chevron::before {
+    background-color: var(--menu-text-secondary-disabled);
+}
+
+:host([submenu-open]) .menu-item--secondary.menu-item--filled .checkmark::after,
+:host([submenu-open]) .menu-item--secondary.menu-item--filled .chevron::before {
+    background-color: var(--menu-text-secondary-hover);
+}
+
+/* Filled - Danger */
+
+.menu-item--danger.menu-item--filled .checkmark::after,
+.menu-item--danger.menu-item--filled .chevron::before {
+    background-color: var(--menu-text-danger-default);
+}
+
+.menu-item--danger.menu-item--filled:hover .checkmark::after,
+.menu-item--danger.menu-item--filled:hover .chevron::before {
+    background-color: var(--menu-text-danger-hover);
+}
+
+.menu-item--danger.menu-item--filled:active .checkmark::after,
+.menu-item--danger.menu-item--filled.active .checkmark::after,
+.menu-item--danger.menu-item--filled:active .chevron::before,
+.menu-item--danger.menu-item--filled.active .chevron::before {
+    background-color: var(--menu-text-danger-pressed);
+}
+
+.menu-item--danger.menu-item--filled[disabled] .checkmark::after,
+.menu-item--danger.menu-item--filled[disabled] .chevron::before {
+    background-color: var(--menu-text-danger-disabled);
+}
+
+:host([submenu-open]) .menu-item--danger.menu-item--filled .checkmark::after,
+:host([submenu-open]) .menu-item--danger.menu-item--filled .chevron::before {
+    background-color: var(--menu-text-danger-hover);
+}
+
+/* Outline / Ghost / Text - Primary */
+
+.menu-item--primary.menu-item--outline .checkmark::after,
+.menu-item--primary.menu-item--ghost .checkmark::after,
+.menu-item--primary.menu-item--text .checkmark::after,
+.menu-item--primary.menu-item--outline .chevron::before,
+.menu-item--primary.menu-item--ghost .chevron::before,
+.menu-item--primary.menu-item--text .chevron::before {
+    background-color: var(--menu-text-primary-opaque-default);
+}
+
+.menu-item--primary.menu-item--outline:hover .checkmark::after,
+.menu-item--primary.menu-item--ghost:hover .checkmark::after,
+.menu-item--primary.menu-item--text:hover .checkmark::after,
+.menu-item--primary.menu-item--outline:hover .chevron::before,
+.menu-item--primary.menu-item--ghost:hover .chevron::before,
+.menu-item--primary.menu-item--text:hover .chevron::before {
+    background-color: var(--menu-text-primary-opaque-hover);
+}
+
+.menu-item--primary.menu-item--outline:active .checkmark::after,
+.menu-item--primary.menu-item--ghost:active .checkmark::after,
+.menu-item--primary.menu-item--text:active .checkmark::after,
+.menu-item--primary.menu-item--outline.active .checkmark::after,
+.menu-item--primary.menu-item--ghost.active .checkmark::after,
+.menu-item--primary.menu-item--text.active .checkmark::after,
+.menu-item--primary.menu-item--outline:active .chevron::before,
+.menu-item--primary.menu-item--ghost:active .chevron::before,
+.menu-item--primary.menu-item--text:active .chevron::before,
+.menu-item--primary.menu-item--outline.active .chevron::before,
+.menu-item--primary.menu-item--ghost.active .chevron::before,
+.menu-item--primary.menu-item--text.active .chevron::before {
+    background-color: var(--menu-text-primary-opaque-hover);
+}
+
+.menu-item--primary.menu-item--outline[disabled] .checkmark::after,
+.menu-item--primary.menu-item--ghost[disabled] .checkmark::after,
+.menu-item--primary.menu-item--text[disabled] .checkmark::after,
+.menu-item--primary.menu-item--outline[disabled] .chevron::before,
+.menu-item--primary.menu-item--ghost[disabled] .chevron::before,
+.menu-item--primary.menu-item--text[disabled] .chevron::before {
+    background-color: var(--menu-text-primary-opaque-disabled);
+}
+
+:host([submenu-open]) .menu-item--primary.menu-item--outline .checkmark::after,
+:host([submenu-open]) .menu-item--primary.menu-item--ghost .checkmark::after,
+:host([submenu-open]) .menu-item--primary.menu-item--text .checkmark::after,
+:host([submenu-open]) .menu-item--primary.menu-item--outline .chevron::before,
+:host([submenu-open]) .menu-item--primary.menu-item--ghost .chevron::before,
+:host([submenu-open]) .menu-item--primary.menu-item--text .chevron::before {
+    background-color: var(--menu-text-primary-opaque-hover);
+}
+
+/* Outline / Ghost / Text - Secondary */
+
+.menu-item--secondary.menu-item--outline .checkmark::after,
+.menu-item--secondary.menu-item--ghost .checkmark::after,
+.menu-item--secondary.menu-item--text .checkmark::after,
+.menu-item--secondary.menu-item--outline .chevron::before,
+.menu-item--secondary.menu-item--ghost .chevron::before,
+.menu-item--secondary.menu-item--text .chevron::before {
+    background-color: var(--menu-text-secondary-opaque-default);
+}
+
+.menu-item--secondary.menu-item--outline:hover .checkmark::after,
+.menu-item--secondary.menu-item--ghost:hover .checkmark::after,
+.menu-item--secondary.menu-item--text:hover .checkmark::after,
+.menu-item--secondary.menu-item--outline:hover .chevron::before,
+.menu-item--secondary.menu-item--ghost:hover .chevron::before,
+.menu-item--secondary.menu-item--text:hover .chevron::before {
+    background-color: var(--menu-text-secondary-opaque-hover);
+}
+
+.menu-item--secondary.menu-item--outline:active .checkmark::after,
+.menu-item--secondary.menu-item--ghost:active .checkmark::after,
+.menu-item--secondary.menu-item--text:active .checkmark::after,
+.menu-item--secondary.menu-item--outline.active .checkmark::after,
+.menu-item--secondary.menu-item--ghost.active .checkmark::after,
+.menu-item--secondary.menu-item--text.active .checkmark::after,
+.menu-item--secondary.menu-item--outline:active .chevron::before,
+.menu-item--secondary.menu-item--ghost:active .chevron::before,
+.menu-item--secondary.menu-item--text:active .chevron::before,
+.menu-item--secondary.menu-item--outline.active .chevron::before,
+.menu-item--secondary.menu-item--ghost.active .chevron::before,
+.menu-item--secondary.menu-item--text.active .chevron::before {
+    background-color: var(--menu-text-secondary-opaque-pressed);
+}
+
+.menu-item--secondary.menu-item--outline[disabled] .checkmark::after,
+.menu-item--secondary.menu-item--ghost[disabled] .checkmark::after,
+.menu-item--secondary.menu-item--text[disabled] .checkmark::after,
+.menu-item--secondary.menu-item--outline[disabled] .chevron::before,
+.menu-item--secondary.menu-item--ghost[disabled] .chevron::before,
+.menu-item--secondary.menu-item--text[disabled] .chevron::before {
+    background-color: var(--menu-text-secondary-opaque-disabled);
+}
+
+:host([submenu-open]) .menu-item--secondary.menu-item--outline .checkmark::after,
+:host([submenu-open]) .menu-item--secondary.menu-item--ghost .checkmark::after,
+:host([submenu-open]) .menu-item--secondary.menu-item--text .checkmark::after,
+:host([submenu-open]) .menu-item--secondary.menu-item--outline .chevron::before,
+:host([submenu-open]) .menu-item--secondary.menu-item--ghost .chevron::before,
+:host([submenu-open]) .menu-item--secondary.menu-item--text .chevron::before {
+    background-color: var(--menu-text-secondary-opaque-hover);
+}
+
+/* Outline / Ghost / Text - Danger */
+
+.menu-item--danger.menu-item--outline .checkmark::after,
+.menu-item--danger.menu-item--ghost .checkmark::after,
+.menu-item--danger.menu-item--text .checkmark::after,
+.menu-item--danger.menu-item--outline .chevron::before,
+.menu-item--danger.menu-item--ghost .chevron::before,
+.menu-item--danger.menu-item--text .chevron::before {
+    background-color: var(--menu-text-danger-opaque-default);
+}
+
+.menu-item--danger.menu-item--outline:hover .checkmark::after,
+.menu-item--danger.menu-item--ghost:hover .checkmark::after,
+.menu-item--danger.menu-item--text:hover .checkmark::after,
+.menu-item--danger.menu-item--outline:hover .chevron::before,
+.menu-item--danger.menu-item--ghost:hover .chevron::before,
+.menu-item--danger.menu-item--text:hover .chevron::before {
+    background-color: var(--menu-text-danger-opaque-hover);
+}
+
+.menu-item--danger.menu-item--outline:active .checkmark::after,
+.menu-item--danger.menu-item--ghost:active .checkmark::after,
+.menu-item--danger.menu-item--text:active .checkmark::after,
+.menu-item--danger.menu-item--outline.active .checkmark::after,
+.menu-item--danger.menu-item--ghost.active .checkmark::after,
+.menu-item--danger.menu-item--text.active .checkmark::after,
+.menu-item--danger.menu-item--outline:active .chevron::before,
+.menu-item--danger.menu-item--ghost:active .chevron::before,
+.menu-item--danger.menu-item--text:active .chevron::before,
+.menu-item--danger.menu-item--outline.active .chevron::before,
+.menu-item--danger.menu-item--ghost.active .chevron::before,
+.menu-item--danger.menu-item--text.active .chevron::before {
+    background-color: var(--menu-text-danger-opaque-pressed);
+}
+
+.menu-item--danger.menu-item--outline[disabled] .checkmark::after,
+.menu-item--danger.menu-item--ghost[disabled] .checkmark::after,
+.menu-item--danger.menu-item--text[disabled] .checkmark::after,
+.menu-item--danger.menu-item--outline[disabled] .chevron::before,
+.menu-item--danger.menu-item--ghost[disabled] .chevron::before,
+.menu-item--danger.menu-item--text[disabled] .chevron::before {
+    background-color: var(--menu-text-danger-opaque-disabled);
+}
+
+:host([submenu-open]) .menu-item--danger.menu-item--outline .checkmark::after,
+:host([submenu-open]) .menu-item--danger.menu-item--ghost .checkmark::after,
+:host([submenu-open]) .menu-item--danger.menu-item--text .checkmark::after,
+:host([submenu-open]) .menu-item--danger.menu-item--outline .chevron::before,
+:host([submenu-open]) .menu-item--danger.menu-item--ghost .chevron::before,
+:host([submenu-open]) .menu-item--danger.menu-item--text .chevron::before {
+    background-color: var(--menu-text-danger-opaque-hover);
+}

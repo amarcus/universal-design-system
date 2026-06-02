@@ -1,0 +1,24 @@
+<div part="input-container" class="input-container">
+    <div part="content" class="content">
+        <span part="icon" class="icon">
+            <slot name="icon"></slot>
+        </span>
+        
+        <input part="input" class="input">
+        <textarea part="textarea" class="textarea"></textarea>
+
+        <div part="suffix" class="suffix">
+            <span part="counter" class="counter"></span>
+            
+            <span part="button" class="button">
+                <slot name="button"></slot>
+            </span>
+
+            <span part="clear-button" class="clear-button">
+                <slot name="clear-button"></slot>
+            </span>
+        </div>
+    </div>
+
+    <div part="description" class="description"></div>
+</div>

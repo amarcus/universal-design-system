@@ -1,0 +1,665 @@
+ :host {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+    -webkit-font-smoothing: antialiased;
+}
+
+.list-item {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    gap: 0;
+    line-height: 1.2;
+    font-family: var(--font-sans);
+    font-size: var(--font-size-medium);
+    border-radius: var(--radius-medium);
+    padding: calc(var(--paddings-medium) - 1px);
+    min-height: var(--height-medium);
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background-color 0.2s, transform 0.12s, opacity 0.2s;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+}
+
+.list-item:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 1px;
+}
+
+
+/* Guts */
+
+.left-side {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: start;
+    gap: 4px;
+    flex: 1;
+}
+
+.right-side {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: end;
+    white-space: nowrap;
+    gap: 4px;
+}
+
+.label {
+    padding: 0 4px;
+    text-align: left;
+}
+
+.button-1,
+.button-2 {
+    opacity: 0.75;
+    line-height: 0;
+}
+
+.note {
+    opacity: 0.75;
+    margin-right: 4px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+}
+
+.description {
+    margin-top: 2px;
+    font-size: 12px;
+    padding: 0 4px;
+    text-align: left;
+    opacity: 0.75;
+    line-height: 1.2;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    overflow-wrap: anywhere;
+}
+
+
+
+/* Disabled */
+
+.list-item[disabled] {
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* Icons */
+
+.icon {
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+:host([empty-icon]) .icon {
+    visibility: hidden;
+    display: inline-flex !important;
+}
+
+
+/* Specials */
+
+.list-item:active:not(.list-item--scale),
+.list-item.active:not(.list-item--scale) {
+    transform: none;
+}
+
+.list-item.list-item--scale:active,
+.list-item.list-item--scale.active {
+    transform: scale(0.98);
+}
+
+.list-item--round {
+    border-radius: 100px !important;
+}
+
+
+
+/* 
+
+    == Types ==
+    
+*/
+
+/* Filled - Common */
+
+.list-item--filled {
+    border-color: transparent;
+}
+
+/* Filled - Primary */
+
+.list-item--filled.list-item--primary {
+    background-color: transparent;
+    color: var(--list-text-primary-default);
+}
+
+.list-item--filled.list-item--primary:hover {
+    background-color: var(--list-backs-primary-hover);
+    color: var(--list-text-primary-hover);
+}
+
+.list-item--filled.list-item--primary:active,
+.list-item--filled.list-item--primary.active {
+    background-color: var(--list-backs-primary-pressed);
+    color: var(--list-text-primary-pressed);
+}
+
+.list-item--filled.list-item--primary[disabled] {
+    background-color: transparent;
+    color: var(--list-text-primary-disabled);
+}
+
+:host([sublist-open]) .list-item--filled.list-item--primary {
+    background-color: var(--list-backs-primary-hover);
+    color: var(--list-text-primary-hover);
+}
+
+/* Filled - Secondary */
+
+.list-item--filled.list-item--secondary {
+    background-color: transparent;
+    color: var(--list-text-secondary-default);
+}
+
+.list-item--filled.list-item--secondary:hover {
+    background-color: var(--list-backs-secondary-hover);
+    color: var(--list-text-secondary-hover);
+}
+
+.list-item--filled.list-item--secondary:active,
+.list-item--filled.list-item--secondary.active {
+    background-color: var(--list-backs-secondary-pressed);
+    color: var(--list-text-secondary-pressed);
+}
+
+.list-item--filled.list-item--secondary[disabled] {
+    background-color: transparent;
+    color: var(--list-text-secondary-disabled);
+}
+
+:host([sublist-open]) .list-item--filled.list-item--secondary {
+    background-color: var(--list-backs-secondary-hover);
+    color: var(--list-text-secondary-hover);
+}
+
+/* Outlined - Primary */
+
+.list-item--outline.list-item--primary {
+    background-color: transparent;
+    color: var(--list-text-primary-opaque-default);
+}
+
+.list-item--outline.list-item--primary:hover {
+    background-color: var(--list-backs-primary-opaque-hover);
+    border-color: var(--list-borders-primary-default);
+    color: var(--list-text-primary-opaque-hover);
+}
+
+.list-item--outline.list-item--primary:active,
+.list-item--outline.list-item--primary.active {
+    background-color: var(--list-backs-primary-opaque-pressed);
+    border-color: var(--list-borders-primary-default);
+    color: var(--list-text-primary-opaque-pressed);
+}
+
+.list-item--outline.list-item--primary[disabled] {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--list-text-primary-opaque-disabled);
+}
+
+:host([sublist-open]) .list-item--outline.list-item--primary {
+    background-color: var(--list-backs-primary-opaque-hover);
+    border-color: var(--list-borders-primary-default);
+    color: var(--list-text-primary-opaque-hover);
+}
+
+/* Outline - Secondary */
+
+.list-item--outline.list-item--secondary {
+    background-color: transparent;
+    color: var(--list-text-secondary-opaque-default);
+}
+
+.list-item--outline.list-item--secondary:hover {
+    background-color: var(--list-backs-secondary-opaque-hover);
+    border-color: var(--list-borders-secondary-default);
+    color: var(--list-text-secondary-opaque-hover);
+}
+
+.list-item--outline.list-item--secondary:active,
+.list-item--outline.list-item--secondary.active {
+    background-color: var(--list-backs-secondary-opaque-pressed);
+    border-color: var(--list-borders-secondary-default);
+    color: var(--list-text-secondary-opaque-pressed);
+}
+
+.list-item--outline.list-item--secondary[disabled] {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--list-text-secondary-opaque-disabled);
+}
+
+:host([sublist-open]) .list-item--outline.list-item--secondary {
+    background-color: var(--list-backs-secondary-opaque-hover);
+    border-color: var(--list-borders-secondary-default);
+    color: var(--list-text-secondary-opaque-hover);
+}
+
+/* Ghost - Primary */
+
+.list-item--ghost.list-item--primary {
+    background-color: transparent;
+    color: var(--list-text-primary-opaque-default);
+}
+
+.list-item--ghost.list-item--primary:hover {
+    background-color: var(--list-backs-primary-opaque-hover);
+    color: var(--list-text-primary-opaque-hover);
+}
+
+.list-item--ghost.list-item--primary:active,
+.list-item--ghost.list-item--primary.active {
+    background-color: var(--list-backs-primary-opaque-pressed);
+    color: var(--list-text-primary-opaque-pressed);
+}
+
+.list-item--ghost.list-item--primary[disabled] {
+    background-color: transparent;
+    color: var(--list-text-primary-opaque-disabled);
+}
+
+:host([sublist-open]) .list-item--ghost.list-item--primary {
+    background-color: var(--list-backs-primary-opaque-hover);
+    color: var(--list-text-primary-opaque-hover);
+}
+
+/* Ghost - Secondary */
+
+.list-item--ghost.list-item--secondary {
+    background-color: transparent;
+    color: var(--list-text-secondary-opaque-default);
+}
+
+.list-item--ghost.list-item--secondary:hover {
+    background-color: var(--list-backs-secondary-opaque-hover);
+    color: var(--list-text-secondary-opaque-hover);
+}
+
+.list-item--ghost.list-item--secondary:active,
+.list-item--ghost.list-item--secondary.active {
+    background-color: var(--list-backs-secondary-opaque-pressed);
+    color: var(--list-text-secondary-opaque-pressed);
+}
+
+.list-item--ghost.list-item--secondary[disabled] {
+    background-color: transparent;
+    color: var(--list-text-secondary-opaque-disabled);
+}
+
+:host([sublist-open]) .list-item--ghost.list-item--secondary {
+    background-color: var(--list-backs-secondary-opaque-hover);
+    color: var(--list-text-secondary-opaque-hover);
+}
+
+/* Text - Common */
+
+.list-item--text {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+/* Text - Primary */
+
+.list-item--text.list-item--primary {
+    color: var(--list-text-primary-opaque-default);
+}
+
+.list-item--text.list-item--primary:hover {
+    color: var(--list-text-primary-opaque-hover);
+}
+
+.list-item--text.list-item--primary:active,
+.list-item--text.list-item--primary.active {
+    color: var(--list-text-primary-opaque-pressed);
+}
+
+.list-item--text.list-item--primary[disabled] {
+    color: var(--list-text-primary-opaque-disabled);
+}
+
+:host([sublist-open]) .list-item--text.list-item--primary {
+    color: var(--list-text-primary-opaque-hover);
+}
+
+/* Text - Secondary */
+
+.list-item--text.list-item--secondary {
+    color: var(--list-text-secondary-opaque-default);
+}
+
+.list-item--text.list-item--secondary:hover {
+    color: var(--list-text-secondary-opaque-hover);
+}
+
+.list-item--text.list-item--secondary:active,
+.list-item--text.list-item--secondary.active {
+    color: var(--list-text-secondary-opaque-pressed);
+}
+
+.list-item--text.list-item--secondary[disabled] {
+    color: var(--list-text-secondary-opaque-disabled);
+}
+
+:host([sublist-open]) .list-item--text.list-item--secondary {
+    color: var(--list-text-secondary-opaque-hover);
+}
+
+
+
+
+/* 
+
+    == Checkmark, Dragger and Chevron Styles ==
+
+*/
+
+.checkmark {
+    position: relative;
+    height: 18px;
+    width: 18px;
+    flex-shrink: 0;
+    transition: all 0.2s ease-in-out;
+    opacity: 0;
+}
+
+.checkmark::after {
+    display: block;
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 12px;
+    height: 12px;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 12'><path d='M4.75098 11.9902C4.38639 11.9902 4.0765 11.833 3.82129 11.5186L0.280273 7.15723C0.180013 7.03874 0.107096 6.92253 0.0615234 6.80859C0.0205078 6.69466 0 6.57617 0 6.45312C0 6.17969 0.0911458 5.9541 0.273438 5.77637C0.455729 5.59863 0.685872 5.50977 0.963867 5.50977C1.27832 5.50977 1.54264 5.64421 1.75684 5.91309L4.72363 9.67285L10.5137 0.499023C10.6322 0.316732 10.7552 0.189128 10.8828 0.116211C11.0104 0.038737 11.1699 0 11.3613 0C11.6393 0 11.8672 0.0865885 12.0449 0.259766C12.2227 0.432943 12.3115 0.653971 12.3115 0.922852C12.3115 1.03223 12.2933 1.1416 12.2568 1.25098C12.2204 1.36035 12.1634 1.47428 12.0859 1.59277L5.6875 11.4912C5.46875 11.8239 5.15658 11.9902 4.75098 11.9902Z'/></svg>") center / contain no-repeat;
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 12'><path d='M4.75098 11.9902C4.38639 11.9902 4.0765 11.833 3.82129 11.5186L0.280273 7.15723C0.180013 7.03874 0.107096 6.92253 0.0615234 6.80859C0.0205078 6.69466 0 6.57617 0 6.45312C0 6.17969 0.0911458 5.9541 0.273438 5.77637C0.455729 5.59863 0.685872 5.50977 0.963867 5.50977C1.27832 5.50977 1.54264 5.64421 1.75684 5.91309L4.72363 9.67285L10.5137 0.499023C10.6322 0.316732 10.7552 0.189128 10.8828 0.116211C11.0104 0.038737 11.1699 0 11.3613 0C11.6393 0 11.8672 0.0865885 12.0449 0.259766C12.2227 0.432943 12.3115 0.653971 12.3115 0.922852C12.3115 1.03223 12.2933 1.1416 12.2568 1.25098C12.2204 1.36035 12.1634 1.47428 12.0859 1.59277L5.6875 11.4912C5.46875 11.8239 5.15658 11.9902 4.75098 11.9902Z'/></svg>") center / contain no-repeat;
+}
+
+.dragger {
+    position: relative;
+    height: 20px;
+    width: 20px;
+    flex-shrink: 0;
+    transition: all 0.2s ease-in-out;
+    cursor: move;
+}
+
+.dragger::after {
+    display: block;
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><circle cx='4' cy='1.333' r='0.85'/><circle cx='8' cy='1.333' r='0.85'/><circle cx='4' cy='6' r='0.85'/><circle cx='8' cy='6' r='0.85'/><circle cx='4' cy='10.667' r='0.85'/><circle cx='8' cy='10.667' r='0.85'/></svg>") center / contain no-repeat;
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><circle cx='4' cy='1.333' r='0.85'/><circle cx='8' cy='1.333' r='0.85'/><circle cx='4' cy='6' r='0.85'/><circle cx='8' cy='6' r='0.85'/><circle cx='4' cy='10.667' r='0.85'/><circle cx='8' cy='10.667' r='0.85'/></svg>") center / contain no-repeat;
+}
+
+.chevron {
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chevron::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 13'><path d='M7.15723 6.13867C7.15723 6.27539 7.12988 6.40527 7.0752 6.52832C7.02507 6.64681 6.94303 6.76074 6.8291 6.87012L1.57227 12.0176C1.39453 12.1908 1.17806 12.2773 0.922852 12.2773C0.758789 12.2773 0.60612 12.2363 0.464844 12.1543C0.323568 12.0723 0.209635 11.9629 0.123047 11.8262C0.0410156 11.6895 0 11.5345 0 11.3613C0 11.1107 0.0957031 10.8874 0.287109 10.6914L4.96973 6.13867L0.287109 1.58594C0.0957031 1.39453 0 1.17122 0 0.916016C0 0.747396 0.0410156 0.594727 0.123047 0.458008C0.209635 0.316732 0.323568 0.205078 0.464844 0.123047C0.60612 0.0410156 0.758789 0 0.922852 0C1.17806 0 1.39453 0.0865885 1.57227 0.259766L6.8291 5.40723C6.93848 5.5166 7.02051 5.63053 7.0752 5.74902C7.12988 5.86751 7.15723 5.9974 7.15723 6.13867Z'/></svg>") center / contain no-repeat;
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 13'><path d='M7.15723 6.13867C7.15723 6.27539 7.12988 6.40527 7.0752 6.52832C7.02507 6.64681 6.94303 6.76074 6.8291 6.87012L1.57227 12.0176C1.39453 12.1908 1.17806 12.2773 0.922852 12.2773C0.758789 12.2773 0.60612 12.2363 0.464844 12.1543C0.323568 12.0723 0.209635 11.9629 0.123047 11.8262C0.0410156 11.6895 0 11.5345 0 11.3613C0 11.1107 0.0957031 10.8874 0.287109 10.6914L4.96973 6.13867L0.287109 1.58594C0.0957031 1.39453 0 1.17122 0 0.916016C0 0.747396 0.0410156 0.594727 0.123047 0.458008C0.209635 0.316732 0.323568 0.205078 0.464844 0.123047C0.60612 0.0410156 0.758789 0 0.922852 0C1.17806 0 1.39453 0.0865885 1.57227 0.259766L6.8291 5.40723C6.93848 5.5166 7.02051 5.63053 7.0752 5.74902C7.12988 5.86751 7.15723 5.9974 7.15723 6.13867Z'/></svg>") center / contain no-repeat;
+}
+
+:host([selected]) .checkmark {
+    opacity: 1;
+}
+
+
+/* 
+
+    == Checkmark Types ==
+
+*/
+
+/* Filled - Primary */
+
+.list-item--primary.list-item--filled .checkmark::after,
+.list-item--primary.list-item--filled .chevron::before {
+    background-color: var(--list-text-primary-default);
+}
+
+.list-item--primary.list-item--filled:hover .checkmark::after,
+.list-item--primary.list-item--filled:hover .chevron::before {
+    background-color: var(--list-text-primary-hover);
+}
+
+.list-item--primary.list-item--filled:active .checkmark::after,
+.list-item--primary.list-item--filled.active .checkmark::after,
+.list-item--primary.list-item--filled:active .chevron::before,
+.list-item--primary.list-item--filled.active .chevron::before {
+    background-color: var(--list-text-primary-pressed);
+}
+
+.list-item--primary.list-item--filled[disabled] .checkmark::after,
+.list-item--primary.list-item--filled[disabled] .chevron::before {
+    background-color: var(--list-text-primary-disabled);
+}
+
+:host([sublist-open]) .list-item--primary.list-item--filled .checkmark::after,
+:host([sublist-open]) .list-item--primary.list-item--filled .chevron::before {
+    background-color: var(--list-text-primary-hover);
+}
+
+/* Filled - Secondary */
+
+.list-item--secondary.list-item--filled .checkmark::after,
+.list-item--secondary.list-item--filled .chevron::before {
+    background-color: var(--list-text-secondary-default);
+}
+
+.list-item--secondary.list-item--filled:hover .checkmark::after,
+.list-item--secondary.list-item--filled:hover .chevron::before {
+    background-color: var(--list-text-secondary-hover);
+}
+
+.list-item--secondary.list-item--filled:active .checkmark::after,
+.list-item--secondary.list-item--filled.active .checkmark::after,
+.list-item--secondary.list-item--filled:active .chevron::before,
+.list-item--secondary.list-item--filled.active .chevron::before {
+    background-color: var(--list-text-secondary-pressed);
+}
+
+.list-item--secondary.list-item--filled[disabled] .checkmark::after,
+.list-item--secondary.list-item--filled[disabled] .chevron::before {
+    background-color: var(--list-text-secondary-disabled);
+}
+
+:host([sublist-open]) .list-item--secondary.list-item--filled .checkmark::after,
+:host([sublist-open]) .list-item--secondary.list-item--filled .chevron::before {
+    background-color: var(--list-text-secondary-hover);
+}
+
+/* Outline / Ghost / Text - Primary */
+
+.list-item--primary.list-item--outline .checkmark::after,
+.list-item--primary.list-item--ghost .checkmark::after,
+.list-item--primary.list-item--text .checkmark::after,
+.list-item--primary.list-item--outline .chevron::before,
+.list-item--primary.list-item--ghost .chevron::before,
+.list-item--primary.list-item--text .chevron::before {
+    background-color: var(--list-text-primary-opaque-default);
+}
+
+.list-item--primary.list-item--outline:hover .checkmark::after,
+.list-item--primary.list-item--ghost:hover .checkmark::after,
+.list-item--primary.list-item--text:hover .checkmark::after,
+.list-item--primary.list-item--outline:hover .chevron::before,
+.list-item--primary.list-item--ghost:hover .chevron::before,
+.list-item--primary.list-item--text:hover .chevron::before {
+    background-color: var(--list-text-primary-opaque-hover);
+}
+
+.list-item--primary.list-item--outline:active .checkmark::after,
+.list-item--primary.list-item--ghost:active .checkmark::after,
+.list-item--primary.list-item--text:active .checkmark::after,
+.list-item--primary.list-item--outline.active .checkmark::after,
+.list-item--primary.list-item--ghost.active .checkmark::after,
+.list-item--primary.list-item--text.active .checkmark::after,
+.list-item--primary.list-item--outline:active .chevron::before,
+.list-item--primary.list-item--ghost:active .chevron::before,
+.list-item--primary.list-item--text:active .chevron::before,
+.list-item--primary.list-item--outline.active .chevron::before,
+.list-item--primary.list-item--ghost.active .chevron::before,
+.list-item--primary.list-item--text.active .chevron::before {
+    background-color: var(--list-text-primary-opaque-hover);
+}
+
+.list-item--primary.list-item--outline[disabled] .checkmark::after,
+.list-item--primary.list-item--ghost[disabled] .checkmark::after,
+.list-item--primary.list-item--text[disabled] .checkmark::after,
+.list-item--primary.list-item--outline[disabled] .chevron::before,
+.list-item--primary.list-item--ghost[disabled] .chevron::before,
+.list-item--primary.list-item--text[disabled] .chevron::before {
+    background-color: var(--list-text-primary-opaque-disabled);
+}
+
+:host([sublist-open]) .list-item--primary.list-item--outline .checkmark::after,
+:host([sublist-open]) .list-item--primary.list-item--ghost .checkmark::after,
+:host([sublist-open]) .list-item--primary.list-item--text .checkmark::after,
+:host([sublist-open]) .list-item--primary.list-item--outline .chevron::before,
+:host([sublist-open]) .list-item--primary.list-item--ghost .chevron::before,
+:host([sublist-open]) .list-item--primary.list-item--text .chevron::before {
+    background-color: var(--list-text-primary-opaque-hover);
+}
+
+/* Outline / Ghost / Text - Secondary */
+
+.list-item--secondary.list-item--outline .checkmark::after,
+.list-item--secondary.list-item--ghost .checkmark::after,
+.list-item--secondary.list-item--text .checkmark::after,
+.list-item--secondary.list-item--outline .chevron::before,
+.list-item--secondary.list-item--ghost .chevron::before,
+.list-item--secondary.list-item--text .chevron::before {
+    background-color: var(--list-text-secondary-opaque-default);
+}
+
+.list-item--secondary.list-item--outline:hover .checkmark::after,
+.list-item--secondary.list-item--ghost:hover .checkmark::after,
+.list-item--secondary.list-item--text:hover .checkmark::after,
+.list-item--secondary.list-item--outline:hover .chevron::before,
+.list-item--secondary.list-item--ghost:hover .chevron::before,
+.list-item--secondary.list-item--text:hover .chevron::before {
+    background-color: var(--list-text-secondary-opaque-hover);
+}
+
+.list-item--secondary.list-item--outline:active .checkmark::after,
+.list-item--secondary.list-item--ghost:active .checkmark::after,
+.list-item--secondary.list-item--text:active .checkmark::after,
+.list-item--secondary.list-item--outline.active .checkmark::after,
+.list-item--secondary.list-item--ghost.active .checkmark::after,
+.list-item--secondary.list-item--text.active .checkmark::after,
+.list-item--secondary.list-item--outline:active .chevron::before,
+.list-item--secondary.list-item--ghost:active .chevron::before,
+.list-item--secondary.list-item--text:active .chevron::before,
+.list-item--secondary.list-item--outline.active .chevron::before,
+.list-item--secondary.list-item--ghost.active .chevron::before,
+.list-item--secondary.list-item--text.active .chevron::before {
+    background-color: var(--list-text-secondary-opaque-pressed);
+}
+
+.list-item--secondary.list-item--outline[disabled] .checkmark::after,
+.list-item--secondary.list-item--ghost[disabled] .checkmark::after,
+.list-item--secondary.list-item--text[disabled] .checkmark::after,
+.list-item--secondary.list-item--outline[disabled] .chevron::before,
+.list-item--secondary.list-item--ghost[disabled] .chevron::before,
+.list-item--secondary.list-item--text[disabled] .chevron::before {
+    background-color: var(--list-text-secondary-opaque-disabled);
+}
+
+:host([sublist-open]) .list-item--secondary.list-item--outline .checkmark::after,
+:host([sublist-open]) .list-item--secondary.list-item--ghost .checkmark::after,
+:host([sublist-open]) .list-item--secondary.list-item--text .checkmark::after,
+:host([sublist-open]) .list-item--secondary.list-item--outline .chevron::before,
+:host([sublist-open]) .list-item--secondary.list-item--ghost .chevron::before,
+:host([sublist-open]) .list-item--secondary.list-item--text .chevron::before {
+    background-color: var(--list-text-secondary-opaque-hover);
+}
+
+
+
+/* 
+
+    == Classic listbox selection ==
+
+*/
+
+:host-context(uds-list[mode="listbox-classic"]):host([selected]) .list-item--filled.list-item--primary {
+    background-color: var(--list-backs-primary-hover);
+    color: var(--list-text-primary-hover);
+}
+
+:host-context(uds-list[mode="listbox-classic"]):host([selected]) .list-item--filled.list-item--secondary {
+    background-color: var(--list-backs-secondary-hover);
+    color: var(--list-text-secondary-hover);
+}
+
+
+
+/* 
+
+    == Right button styles ==
+
+*/
+
+.button-1,
+.button-2 {
+    --button-text-primary-opaque-default: currentColor;
+    --button-text-primary-opaque-hover: currentColor;
+    --button-text-primary-opaque-pressed: currentColor;
+    --button-text-primary-opaque-disabled: currentColor;
+
+    --button-text-secondary-opaque-default: currentColor;
+    --button-text-secondary-opaque-hover: currentColor;
+    --button-text-secondary-opaque-pressed: currentColor;
+    --button-text-secondary-opaque-disabled: currentColor;
+
+    --button-text-danger-opaque-default: currentColor;
+    --button-text-danger-opaque-hover: currentColor;
+    --button-text-danger-opaque-pressed: currentColor;
+    --button-text-danger-opaque-disabled: currentColor;
+}

@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>List</title>
+<script>
+    <?php $ver = rand(); ?>
+    window.__DEV_BUILD__ = <?php echo $ver; ?>;
+</script>
+<link rel="stylesheet" href="css/tokens.css?v=<?php echo $ver; ?>">
+<link rel="stylesheet" href="css/index.css?v=<?php echo $ver; ?>">
+<script src="js/lucide.js"></script>
+<script type="module" src="dist/components/list/uds-list-item.js?v=<?php echo $ver; ?>"></script>
+<script type="module" src="dist/components/list/uds-list-section.js?v=<?php echo $ver; ?>"></script>
+<script type="module" src="dist/components/list/uds-list.js?v=<?php echo $ver; ?>"></script>
+<script type="module" src="dist/components/button/uds-button.js?<?php echo rand(); ?>"></script>
+<script defer src="js/list-schema.js?v=<?php echo $ver; ?>"></script>
+<script defer src="js/index.js?v=<?php echo $ver; ?>"></script>
+
+<style>
+    body:not(.demo-ready) uds-list-item::part(note) {
+        display: none;
+    }
+
+    body:not(.demo-ready) uds-list-item::part(icon) {
+        display: none;
+    }
+
+    body:not(.demo-ready) uds-list-item::part(button-1),
+    body:not(.demo-ready) uds-list-item::part(button-2) {
+        display: none;
+    }
+
+    body:not(.demo-ready) uds-list-section::part(label) {
+        display: none;
+    }
+
+    body:not(.demo-ready) uds-list-item[sublist="sublist1"] {
+        display: none;
+    }
+</style>
+
+</head>
+
+<body id="page-list">
+
+    <div class="flex-list">
+        <div class="flex-list-title">Primary</div>
+
+        <div class="flex-list-content">
+            <!-- Filled -->
+            <div class="flex-list-column" data-column="filled">
+                <div class="column-title">Filled</div>
+
+                <uds-list variant="filled">
+                    <uds-list-section label="Section">
+                        <uds-list-item note="1" selected>
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                        
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                    </uds-list-section>
+
+
+                    <uds-list-section label="Section">
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1" sublist="sublist1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                        
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                    </uds-list-section>
+
+                    <uds-list sublist="sublist1">
+                        <uds-list-section>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                        </uds-list-section>
+                    </uds-list>
+                </uds-list>
+            </div>
+
+
+            <!-- Outline -->
+            <div class="flex-list-column" data-column="outline">
+                <div class="column-title">Outline</div>
+
+                <uds-list variant="outline">
+                    <uds-list-section label="Section">
+                        <uds-list-item note="1" selected>
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                        
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                    </uds-list-section>
+
+
+                    <uds-list-section label="Section">
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1" sublist="sublist1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                        
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                    </uds-list-section>
+
+                    <uds-list sublist="sublist1">
+                        <uds-list-section>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                        </uds-list-section>
+                    </uds-list>
+                </uds-list>
+            </div>
+
+
+            <!-- Ghost -->
+            <div class="flex-list-column" data-column="ghost">
+                <div class="column-title">Ghost</div>
+
+                <uds-list variant="ghost">
+                    <uds-list-section label="Section">
+                        <uds-list-item note="1" selected>
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                        
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                    </uds-list-section>
+
+
+                    <uds-list-section label="Section">
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1" sublist="sublist1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                        
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                    </uds-list-section>
+
+                    <uds-list sublist="sublist1">
+                        <uds-list-section>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                        </uds-list-section>
+                    </uds-list>
+                </uds-list>
+            </div>
+
+
+            <!-- Text -->
+            <div class="flex-list-column" data-column="text">
+                <div class="column-title">Text</div>
+
+                <uds-list variant="text">
+                    <uds-list-section label="Section">
+                        <uds-list-item note="1" selected>
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                        
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                    </uds-list-section>
+
+
+                    <uds-list-section label="Section">
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1" sublist="sublist1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                        
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                    </uds-list-section>
+
+                    <uds-list sublist="sublist1">
+                        <uds-list-section>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                        </uds-list-section>
+                    </uds-list>
+                </uds-list>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="flex-list">
+        <div class="flex-list-title">Secondary</div>
+
+        <div class="flex-list-content">
+            <!-- Filled -->
+            <div class="flex-list-column" data-column="filled">
+                <uds-list variant="filled" type="secondary">
+                    <uds-list-section label="Section">
+                        <uds-list-item note="1" selected>
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                        
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                    </uds-list-section>
+
+
+                    <uds-list-section label="Section">
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1" sublist="sublist1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                        
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                    </uds-list-section>
+
+                    <uds-list sublist="sublist1">
+                        <uds-list-section>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                        </uds-list-section>
+                    </uds-list>
+                </uds-list>
+            </div>
+
+
+            <!-- Outline -->
+            <div class="flex-list-column" data-column="outline">
+                <uds-list variant="outline" type="secondary">
+                    <uds-list-section label="Section">
+                        <uds-list-item note="1" selected>
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                        
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                    </uds-list-section>
+
+
+                    <uds-list-section label="Section">
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1" sublist="sublist1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                        
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                    </uds-list-section>
+
+                    <uds-list sublist="sublist1">
+                        <uds-list-section>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                        </uds-list-section>
+                    </uds-list>
+                </uds-list>
+            </div>
+
+
+            <!-- Ghost -->
+            <div class="flex-list-column" data-column="ghost">
+                <uds-list variant="ghost" type="secondary">
+                    <uds-list-section label="Section">
+                        <uds-list-item note="1" selected>
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                        
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                    </uds-list-section>
+
+
+                    <uds-list-section label="Section">
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1" sublist="sublist1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                        
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                    </uds-list-section>
+
+                    <uds-list sublist="sublist1">
+                        <uds-list-section>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                        </uds-list-section>
+                    </uds-list>
+                </uds-list>
+            </div>
+
+
+            <!-- Text -->
+            <div class="flex-list-column" data-column="text">
+                <uds-list variant="text" type="secondary">
+                    <uds-list-section label="Section">
+                        <uds-list-item note="1" selected>
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                        
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                    </uds-list-section>
+
+
+                    <uds-list-section label="Section">
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1" sublist="sublist1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                        
+                        <uds-list-item note="1">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Label
+                            <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="pencil"></i>
+                            </uds-button>
+                            <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                <i slot="icon" data-lucide="trash-2"></i>
+                            </uds-button>
+                        </uds-list-item>
+                    </uds-list-section>
+
+                    <uds-list sublist="sublist1">
+                        <uds-list-section>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                            <uds-list-item note="1">
+                                <i slot="icon" data-lucide="copy"></i>
+                                Label
+                                <uds-button slot="button-1" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="pencil"></i>
+                                </uds-button>
+                                <uds-button slot="button-2" type="secondary" variant="text" size="small">
+                                    <i slot="icon" data-lucide="trash-2"></i>
+                                </uds-button>
+                            </uds-list-item>
+                        </uds-list-section>
+                    </uds-list>
+                </uds-list>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

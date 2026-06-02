@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Button</title>
+<script>
+    <?php $ver = rand(); ?>
+    window.__DEV_BUILD__ = <?php echo $ver; ?>;
+</script>
+<link rel="stylesheet" href="css/tokens.css?v=<?php echo $ver; ?>">
+<link rel="stylesheet" href="css/index.css?v=<?php echo $ver; ?>">
+<script src="js/lucide.js"></script>
+<script type="module" src="dist/components/button/uds-button.js?v=<?php echo $ver; ?>"></script>
+<script defer src="js/button-schema.js?v=<?php echo $ver; ?>"></script>
+<script defer src="js/index.js?v=<?php echo $ver; ?>"></script>
+</head>
+
+<body>
+    <div class="flex-table">
+        <div class="row header" data-row="types">
+            <div class="cell row-title"></div>
+
+            <div class="group" data-group="primary">
+                <div class="overtitle">Primary</div>
+                <div class="cell" data-cell="small"></div>
+                <div class="cell" data-cell="medium"></div>
+                <div class="cell" data-cell="large"></div>
+            </div>
+
+            <div class="group" data-group="secondary">
+                <div class="overtitle">Secondary</div>
+                <div class="cell" data-cell="small"></div>
+                <div class="cell" data-cell="medium"></div>
+                <div class="cell" data-cell="large"></div>
+            </div>
+
+            <div class="group" data-group="danger">
+                <div class="overtitle">Danger</div>
+                <div class="cell" data-cell="small"></div>
+                <div class="cell" data-cell="medium"></div>
+                <div class="cell" data-cell="large"></div>
+            </div>
+        </div>
+
+        <div class="row header" data-row="sizes">
+            <div class="cell row-title"></div>
+
+            <div class="group" data-group="primary">
+                <div class="cell" data-cell="small">Small</div>
+                <div class="cell" data-cell="medium">Medium</div>
+                <div class="cell" data-cell="large">Large</div>
+            </div>
+
+            <div class="group" data-group="secondary">
+                <div class="cell" data-cell="small">Small</div>
+                <div class="cell" data-cell="medium">Medium</div>
+                <div class="cell" data-cell="large">Large</div>
+            </div>
+
+            <div class="group" data-group="danger">
+                <div class="cell" data-cell="small">Small</div>
+                <div class="cell" data-cell="medium">Medium</div>
+                <div class="cell" data-cell="large">Large</div>
+            </div>
+        </div>
+
+        <!-- Filled -->
+        <div class="period" data-period="filled">
+            <div class="row">
+                <div class="cell row-title">Filled</div>
+
+                <div class="group" data-group="primary">
+                    <div class="cell" data-cell="small">
+                        <uds-button type="primary" size="small" variant="filled" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="medium">
+                        <uds-button type="primary" size="medium" variant="filled" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="large">
+                        <uds-button type="primary" size="large" variant="filled" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                </div>
+
+                <div class="group" data-group="secondary">
+                    <div class="cell" data-cell="small">
+                        <uds-button type="secondary" size="small" variant="filled" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="medium">
+                        <uds-button type="secondary" size="medium" variant="filled" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="large">
+                        <uds-button type="secondary" size="large" variant="filled" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                </div>
+
+                <div class="group" data-group="danger">
+                    <div class="cell" data-cell="small">
+                        <uds-button type="danger" size="small" variant="filled" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="medium">
+                        <uds-button type="danger" size="medium" variant="filled" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="large">
+                        <uds-button type="danger" size="large" variant="filled" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Outline -->
+        <div class="period" data-period="outline">
+            <div class="row">
+                <div class="cell row-title">Outline</div>
+
+                <div class="group" data-group="primary">
+                    <div class="cell" data-cell="small">
+                        <uds-button type="primary" size="small" variant="outline" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="medium">
+                        <uds-button type="primary" size="medium" variant="outline" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="large">
+                        <uds-button type="primary" size="large" variant="outline" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                </div>
+
+                <div class="group" data-group="secondary">
+                    <div class="cell" data-cell="small">
+                        <uds-button type="secondary" size="small" variant="outline" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="medium">
+                        <uds-button type="secondary" size="medium" variant="outline" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="large">
+                        <uds-button type="secondary" size="large" variant="outline" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                </div>
+
+                <div class="group" data-group="danger">
+                    <div class="cell" data-cell="small">
+                        <uds-button type="danger" size="small" variant="outline" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="medium">
+                        <uds-button type="danger" size="medium" variant="outline" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="large">
+                        <uds-button type="danger" size="large" variant="outline" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ghost -->
+        <div class="period" data-period="ghost">
+            <div class="row">
+                <div class="cell row-title">Ghost</div>
+
+                <div class="group" data-group="primary">
+                    <div class="cell" data-cell="small">
+                        <uds-button type="primary" size="small" variant="ghost" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="medium">
+                        <uds-button type="primary" size="medium" variant="ghost" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="large">
+                        <uds-button type="primary" size="large" variant="ghost" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                </div>
+
+                <div class="group" data-group="secondary">
+                    <div class="cell" data-cell="small">
+                        <uds-button type="secondary" size="small" variant="ghost" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="medium">
+                        <uds-button type="secondary" size="medium" variant="ghost" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="large">
+                        <uds-button type="secondary" size="large" variant="ghost" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                </div>
+
+                <div class="group" data-group="danger">
+                    <div class="cell" data-cell="small">
+                        <uds-button type="danger" size="small" variant="ghost" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="medium">
+                        <uds-button type="danger" size="medium" variant="ghost" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="large">
+                        <uds-button type="danger" size="large" variant="ghost" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Text -->
+        <div class="period" data-period="text">
+            <div class="row">
+                <div class="cell row-title">Text</div>
+
+                <div class="group" data-group="primary">
+                    <div class="cell" data-cell="small">
+                        <uds-button type="primary" size="small" variant="text" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="medium">
+                        <uds-button type="primary" size="medium" variant="text" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="large">
+                        <uds-button type="primary" size="large" variant="text" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                </div>
+
+                <div class="group" data-group="secondary">
+                    <div class="cell" data-cell="small">
+                        <uds-button type="secondary" size="small" variant="text" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="medium">
+                        <uds-button type="secondary" size="medium" variant="text" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="large">
+                        <uds-button type="secondary" size="large" variant="text" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                </div>
+
+                <div class="group" data-group="danger">
+                    <div class="cell" data-cell="small">
+                        <uds-button type="danger" size="small" variant="text" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="medium">
+                        <uds-button type="danger" size="medium" variant="text" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                    <div class="cell" data-cell="large">
+                        <uds-button type="danger" size="large" variant="text" counter="3">
+                            <i slot="icon" data-lucide="copy"></i>
+                            Action
+                            <i slot="icon-right" data-lucide="chevron-right"></i>
+                        </uds-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

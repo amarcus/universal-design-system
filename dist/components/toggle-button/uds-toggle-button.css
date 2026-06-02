@@ -1,0 +1,592 @@
+:host {
+    position: relative;
+    overflow: visible;
+    display: inline-block;
+    box-sizing: border-box;
+    height: fit-content;
+    line-height: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+.toggle-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    gap: 0;
+    line-height: 1.2;
+    font-family: var(--font-sans);
+    padding: 0 8px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background-color 0.2s, transform 0.12s, opacity 0.2s;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+}
+
+.toggle-button:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 1px;
+}
+
+
+/* Guts */
+
+.label {
+    padding: 0 4px;
+}
+
+.counter {
+    opacity: 0.75;
+    margin-right: 4px;
+}
+
+
+/* Disabled */
+
+.toggle-button[disabled] {
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* Icons */
+
+.icon, 
+.icon-right {
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+
+/* Sizes */
+
+.toggle-button--small {
+    font-size: var(--font-size-small);
+    border-radius: var(--uds-button-radius, var(--radius-small));
+    padding: var(--paddings-small) calc(var(--paddings-small) - 1px);
+    height: var(--height-small);
+}
+
+.toggle-button--medium {
+    font-size: var(--font-size-medium);
+    border-radius: var(--uds-button-radius, var(--radius-medium));
+    padding: var(--paddings-medium) calc(var(--paddings-medium) - 1px);
+    height: var(--height-medium);
+}
+
+.toggle-button--large {
+    font-size: var(--font-size-large);
+    border-radius: var(--uds-button-radius, var(--radius-large));
+    padding: var(--paddings-large) calc(var(--paddings-large) - 1px);
+    height: var(--height-large);
+}
+
+.toggle-button--small .counter {
+    margin-right: 2px;
+}
+
+.toggle-button--small .label {
+    padding: 0 2px;
+}
+
+
+/* Specials */
+
+.toggle-button:active:not(.toggle-button--scale) {
+    transform: none;
+}
+
+.toggle-button.toggle-button--scale:active {
+    transform: scale(0.98);
+}
+
+.toggle-button--round {
+    border-radius: 100px !important;
+}
+
+
+/* 
+
+    == Types ==
+    
+*/
+
+/* Filled - Common */
+
+.toggle-button--filled {
+    border-color: transparent;
+}
+
+/* Filled - Primary */
+
+.toggle-button--filled.toggle-button--primary {
+    background-color: var(--button-backs-primary-default);
+    color: var(--button-text-primary-default);
+}
+
+.toggle-button--filled.toggle-button--primary:hover {
+    background-color: var(--button-backs-primary-hover);
+    color: var(--button-text-primary-hover);
+}
+
+.toggle-button--filled.toggle-button--primary:active {
+    background-color: var(--button-backs-primary-pressed);
+    color: var(--button-text-primary-pressed);
+}
+
+:host([active]) .toggle-button--filled.toggle-button--primary {
+    background-color: var(--button-backs-primary-active);
+    color: var(--button-text-primary-active);
+}
+
+:host([active]) .toggle-button--filled.toggle-button--primary:hover {
+    background-color: var(--button-backs-primary-active-hover);
+    color: var(--button-text-primary-active-hover);
+}
+
+:host([active]) .toggle-button--filled.toggle-button--primary:active {
+    background-color: var(--button-backs-primary-active-pressed);
+    color: var(--button-text-primary-active-pressed);
+}
+
+.toggle-button--filled.toggle-button--primary[disabled] {
+    background-color: var(--button-backs-primary-disabled);
+    color: var(--button-text-primary-disabled);
+}
+
+/* Filled - Secondary */
+
+.toggle-button--filled.toggle-button--secondary {
+    background-color: var(--button-backs-secondary-default);
+    color: var(--button-text-secondary-default);
+}
+
+.toggle-button--filled.toggle-button--secondary:hover {
+    background-color: var(--button-backs-secondary-hover);
+    color: var(--button-text-secondary-hover);
+}
+
+.toggle-button--filled.toggle-button--secondary:active {
+    background-color: var(--button-backs-secondary-pressed);
+    color: var(--button-text-secondary-pressed);
+}
+
+:host([active]) .toggle-button--filled.toggle-button--secondary {
+    background-color: var(--button-backs-secondary-active);
+    color: var(--button-text-secondary-active);
+}
+
+:host([active]) .toggle-button--filled.toggle-button--secondary:hover {
+    background-color: var(--button-backs-secondary-active-hover);
+    color: var(--button-text-secondary-active-hover);
+}
+
+:host([active]) .toggle-button--filled.toggle-button--secondary:active {
+    background-color: var(--button-backs-secondary-active-pressed);
+}
+
+.toggle-button--filled.toggle-button--secondary[disabled] {
+    background-color: var(--button-backs-secondary-disabled);
+    color: var(--button-text-secondary-disabled);
+}
+
+/* Filled - Danger */
+
+.toggle-button--filled.toggle-button--danger {
+    background-color: var(--button-backs-danger-default);
+    color: var(--button-text-danger-default);
+}
+
+.toggle-button--filled.toggle-button--danger:hover {
+    background-color: var(--button-backs-danger-hover);
+    color: var(--button-text-danger-hover);
+}
+
+.toggle-button--filled.toggle-button--danger:active {
+    background-color: var(--button-backs-danger-pressed);
+    color: var(--button-text-danger-pressed);
+}
+
+:host([active]) .toggle-button--filled.toggle-button--danger {
+    background-color: var(--button-backs-danger-active);
+    color: var(--button-text-danger-active);
+}
+
+:host([active]) .toggle-button--filled.toggle-button--danger:hover {
+    background-color: var(--button-backs-danger-active-hover);
+    color: var(--button-text-danger-active-hover);
+}
+
+:host([active]) .toggle-button--filled.toggle-button--danger:active {
+    background-color: var(--button-backs-danger-active-pressed);
+}
+
+.toggle-button--filled.toggle-button--danger[disabled] {
+    background-color: var(--button-backs-danger-disabled);
+    color: var(--button-text-danger-disabled);
+}
+
+/* Outlined - Primary */
+
+.toggle-button--outline.toggle-button--primary {
+    background-color: transparent;
+    color: var(--button-text-primary-opaque-default);
+    border-color: var(--button-borders-primary-default);
+}
+
+.toggle-button--outline.toggle-button--primary:hover {
+    background-color: var(--button-backs-primary-opaque-hover);
+    color: var(--button-text-primary-opaque-hover);
+    border-color: var(--button-borders-primary-default);
+}
+
+.toggle-button--outline.toggle-button--primary:active {
+    background-color: var(--button-backs-primary-opaque-pressed);
+    color: var(--button-text-primary-opaque-pressed);
+    border-color: var(--button-borders-primary-default);
+}
+
+:host([active]) .toggle-button--outline.toggle-button--primary {
+    background-color: var(--button-backs-primary-active-opaque);
+    color: var(--button-text-primary-opaque-active);
+}
+
+:host([active]) .toggle-button--outline.toggle-button--primary:hover {
+    background-color: var(--button-backs-primary-active-opaque-hover);
+    color: var(--button-text-primary-opaque-active-hover);
+}
+
+:host([active]) .toggle-button--outline.toggle-button--primary:active {
+    background-color: var(--button-backs-primary-active-opaque-pressed);
+    color: var(--button-text-primary-opaque-active-pressed);
+}
+
+.toggle-button--outline.toggle-button--primary[disabled] {
+    background-color: transparent;
+    color: var(--button-text-primary-opaque-disabled);
+    border-color: var(--button-borders-primary-disabled);
+}
+
+/* Outline - Secondary */
+
+.toggle-button--outline.toggle-button--secondary {
+    background-color: transparent;
+    color: var(--button-text-secondary-opaque-default);
+    border-color: var(--button-borders-secondary-default);
+}
+
+.toggle-button--outline.toggle-button--secondary:hover {
+    background-color: var(--button-backs-secondary-opaque-hover);
+    color: var(--button-text-secondary-opaque-hover);
+    border-color: var(--button-borders-secondary-default);
+}
+
+.toggle-button--outline.toggle-button--secondary:active {
+    background-color: var(--button-backs-secondary-opaque-pressed);
+    color: var(--button-text-secondary-opaque-pressed);
+    border-color: var(--button-borders-secondary-default);
+}
+
+:host([active]) .toggle-button--outline.toggle-button--secondary {
+    background-color: var(--button-backs-secondary-active-opaque);
+    color: var(--button-text-secondary-opaque-active);
+}
+
+:host([active]) .toggle-button--outline.toggle-button--secondary:hover {
+    background-color: var(--button-backs-secondary-active-opaque-hover);
+    color: var(--button-text-secondary-opaque-active-hover);
+}
+
+:host([active]) .toggle-button--outline.toggle-button--secondary:active {
+    background-color: var(--button-backs-secondary-active-opaque-pressed);
+}
+
+.toggle-button--outline.toggle-button--secondary[disabled] {
+    background-color: transparent;
+    color: var(--button-text-secondary-opaque-disabled);
+    border-color: var(--button-borders-secondary-disabled);
+}
+
+/* Outline - Danger */
+
+.toggle-button--outline.toggle-button--danger {
+    background-color: transparent;
+    color: var(--button-text-danger-opaque-default);
+    border-color: var(--button-borders-danger-default);
+}
+
+.toggle-button--outline.toggle-button--danger:hover {
+    background-color: var(--button-backs-danger-opaque-hover);
+    color: var(--button-text-danger-opaque-hover);
+    border-color: var(--button-borders-danger-default);
+}
+
+.toggle-button--outline.toggle-button--danger:active {
+    background-color: var(--button-backs-danger-opaque-pressed);
+    color: var(--button-text-danger-opaque-pressed);
+    border-color: var(--button-borders-danger-default);
+}
+
+:host([active]) .toggle-button--outline.toggle-button--danger {
+    background-color: var(--button-backs-danger-active-opaque);
+    color: var(--button-text-danger-opaque-active);
+}
+
+:host([active]) .toggle-button--outline.toggle-button--danger:hover {
+    background-color: var(--button-backs-danger-active-opaque-hover);
+    color: var(--button-text-danger-opaque-active-hover);
+}
+
+:host([active]) .toggle-button--outline.toggle-button--danger:active {
+    background-color: var(--button-backs-danger-active-opaque-pressed);
+}
+
+.toggle-button--outline.toggle-button--danger[disabled] {
+    background-color: transparent;
+    color: var(--button-text-danger-opaque-disabled);
+    border-color: var(--button-borders-danger-disabled);
+}
+
+/* Ghost - Primary */
+
+.toggle-button--ghost.toggle-button--primary {
+    background-color: transparent;
+    color: var(--button-text-primary-opaque-default);
+}
+
+.toggle-button--ghost.toggle-button--primary:hover {
+    background-color: var(--button-backs-primary-opaque-hover);
+    color: var(--button-text-primary-opaque-hover);
+}
+
+.toggle-button--ghost.toggle-button--primary:active {
+    background-color: var(--button-backs-primary-opaque-pressed);
+    color: var(--button-text-primary-opaque-pressed);
+}
+
+:host([active]) .toggle-button--ghost.toggle-button--primary {
+    background-color: var(--button-backs-primary-active-opaque);
+    color: var(--button-text-primary-opaque-active);
+}
+
+:host([active]) .toggle-button--ghost.toggle-button--primary:hover {
+    background-color: var(--button-backs-primary-active-opaque-hover);
+    color: var(--button-text-primary-opaque-active-hover);
+}
+
+:host([active]) .toggle-button--ghost.toggle-button--primary:active {
+    background-color: var(--button-backs-primary-active-opaque-pressed);
+}
+
+.toggle-button--ghost.toggle-button--primary[disabled] { 
+    background-color: transparent;
+    color: var(--button-text-primary-opaque-disabled);
+}
+
+/* Ghost - Secondary */
+
+.toggle-button--ghost.toggle-button--secondary {
+    background-color: transparent;
+    color: var(--button-text-secondary-opaque-default);
+}
+
+.toggle-button--ghost.toggle-button--secondary:hover {
+    background-color: var(--button-backs-secondary-opaque-hover);
+    color: var(--button-text-secondary-opaque-hover);
+}
+
+.toggle-button--ghost.toggle-button--secondary:active {
+    background-color: var(--button-backs-secondary-opaque-pressed);
+    color: var(--button-text-secondary-opaque-pressed);
+}
+
+:host([active]) .toggle-button--ghost.toggle-button--secondary {
+    background-color: var(--button-backs-secondary-active-opaque);
+    color: var(--button-text-secondary-opaque-active);
+}
+
+:host([active]) .toggle-button--ghost.toggle-button--secondary:hover {
+    background-color: var(--button-backs-secondary-active-opaque-hover);
+    color: var(--button-text-secondary-opaque-active-hover);
+}
+
+:host([active]) .toggle-button--ghost.toggle-button--secondary:active {
+    background-color: var(--button-backs-secondary-active-opaque-pressed);
+}
+
+.toggle-button--ghost.toggle-button--secondary[disabled] {
+    background-color: transparent;
+    color: var(--button-text-secondary-opaque-disabled); 
+}
+
+/* Ghost - Danger */
+
+.toggle-button--ghost.toggle-button--danger {
+    background-color: transparent;
+    color: var(--button-text-danger-opaque-default);
+}
+
+.toggle-button--ghost.toggle-button--danger:hover {
+    background-color: var(--button-backs-danger-opaque-hover);
+    color: var(--button-text-danger-opaque-hover);
+}
+
+.toggle-button--ghost.toggle-button--danger:active {
+    background-color: var(--button-backs-danger-opaque-pressed);
+    color: var(--button-text-danger-opaque-pressed);
+}
+
+:host([active]) .toggle-button--ghost.toggle-button--danger {
+    background-color: var(--button-backs-danger-active-opaque);
+    color: var(--button-text-danger-opaque-active);
+}
+
+:host([active]) .toggle-button--ghost.toggle-button--danger:hover {
+    background-color: var(--button-backs-danger-active-opaque-hover);
+    color: var(--button-text-danger-opaque-active-hover);
+}
+
+:host([active]) .toggle-button--ghost.toggle-button--danger:active {
+    background-color: var(--button-backs-danger-active-opaque-pressed);
+}
+
+.toggle-button--ghost.toggle-button--danger[disabled] { 
+    background-color: transparent;
+    color: var(--button-text-danger-opaque-disabled); 
+}
+
+/* Text - Common */
+
+.toggle-button--text {
+    background-color: transparent;
+    border-color: transparent;
+    padding: 0;
+    height: auto;
+}
+
+/* Text - Primary */
+
+.toggle-button--text.toggle-button--primary {
+    color: var(--button-text-primary-opaque-default);
+}
+
+.toggle-button--text.toggle-button--primary:hover {
+    color: var(--button-text-primary-opaque-hover);
+}
+
+.toggle-button--text.toggle-button--primary:active {
+    color: var(--button-text-primary-opaque-pressed);
+}
+
+:host([active]) .toggle-button--text.toggle-button--primary {
+    color: var(--button-text-primary-opaque-active);
+}
+
+:host([active]) .toggle-button--text.toggle-button--primary:hover {
+    color: var(--button-text-primary-opaque-active-hover);
+}
+
+:host([active]) .toggle-button--text.toggle-button--primary:active {
+    color: var(--button-text-primary-opaque-active-pressed);
+}
+
+.toggle-button--text.toggle-button--primary[disabled] { 
+    color: var(--button-text-primary-opaque-disabled); 
+}
+
+/* Text - Secondary */
+
+.toggle-button--text.toggle-button--secondary {
+    color: var(--button-text-secondary-opaque-default);
+}
+
+.toggle-button--text.toggle-button--secondary:hover {
+    color: var(--button-text-secondary-opaque-hover);
+}
+
+.toggle-button--text.toggle-button--secondary:active {
+    color: var(--button-text-secondary-opaque-pressed);
+}
+
+:host([active]) .toggle-button--text.toggle-button--secondary {
+    color: var(--button-text-secondary-opaque-active);
+}
+
+:host([active]) .toggle-button--text.toggle-button--secondary:hover {
+    color: var(--button-text-secondary-opaque-active-hover);
+}
+
+:host([active]) .toggle-button--text.toggle-button--secondary:active {
+    color: var(--button-text-secondary-opaque-active-pressed);
+}
+
+.toggle-button--text.toggle-button--secondary[disabled] { 
+    color: var(--button-text-secondary-opaque-disabled); 
+}
+
+/* Text - Danger */
+
+.toggle-button--text.toggle-button--danger {
+    color: var(--button-text-danger-opaque-default);
+}
+
+.toggle-button--text.toggle-button--danger:hover {
+    color: var(--button-text-danger-opaque-hover);
+}
+
+.toggle-button--text.toggle-button--danger:active {
+    color: var(--button-text-danger-opaque-pressed);
+}
+
+:host([active]) .toggle-button--text.toggle-button--danger {
+    color: var(--button-text-danger-opaque-active);
+}
+
+:host([active]) .toggle-button--text.toggle-button--danger:hover {
+    color: var(--button-text-danger-opaque-active-hover);
+}
+
+:host([active]) .toggle-button--text.toggle-button--danger:active {
+    color: var(--button-text-danger-opaque-active-pressed);
+}
+
+.toggle-button--text.toggle-button--danger[disabled] { 
+    color: var(--button-text-danger-opaque-disabled); 
+}
+
+
+/* Connected dropdowns */
+
+.dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    z-index: 1000;
+    display: none;
+    min-width: 100%;
+    width: max-content;
+    line-height: normal;
+}
+
+:host([dropdown-type="list"]) {
+    width: 100%;
+}
+
+:host([dropdown-type="list"]) .toggle-button {
+    justify-content: space-between;
+    width: 100%;
+}
+
+:host([active]) .dropdown {
+    display: block;
+}
+
+.dropdown ::slotted(*) {
+    display: block;
+}

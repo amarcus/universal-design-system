@@ -1,0 +1,54 @@
+:host {
+    display: inline-block;
+    box-sizing: border-box;
+    height: fit-content;
+    line-height: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+.tabs {
+    display: flex;
+    box-sizing: border-box;
+}
+
+.tabs--fill {
+    width: 100%;
+}
+
+.tabs--fill ::slotted(uds-tab) {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+
+/* Level 1 - Browser-like tabs */
+
+.tabs--l1 {
+    padding: 6px 12px 0 12px;
+    background-color: var(--semantics-backs-gray-default);
+    border-radius: var(--radius-large) var(--radius-large) 0 0;
+}
+
+
+/* Level 2 - Body tab */
+
+.tabs--l2 {
+    padding: 2px;
+    gap: 2px;
+    background-color: var(--semantics-backs-gray-default);
+    border-radius: var(--radius-large);
+}
+
+
+/* Level 3 - Section tab */
+
+.tabs--l3 {
+    gap: 2px;
+}
+
+
+/* Level 4 - Panel tab */
+
+.tabs--l4 {
+    gap: 0;
+}

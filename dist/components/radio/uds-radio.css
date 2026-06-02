@@ -1,0 +1,794 @@
+:host {
+    display: inline-block;
+    box-sizing: border-box;
+    height: fit-content;
+    line-height: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+.radio-container {
+    display: inline-flex;
+    align-items: flex-start;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    line-height: 1.2;
+    font-family: var(--font-sans);
+    pointer-events: auto;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    transition: background-color 0.2s, transform 0.12s, opacity 0.2s;
+    overflow: hidden;
+    user-select: none;
+    gap: 2px;
+}
+
+.radio-container:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 1px;
+}
+
+
+/* Guts */
+
+.content {
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: flex-start;
+    white-space: nowrap;
+    gap: 2px;
+    flex-direction: column;
+}
+
+.input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    pointer-events: none;
+}
+
+.counter {
+    opacity: 0.75;
+}
+
+.icon-right {
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+label {
+    height: 20px;
+    cursor: inherit;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+:host:has(.description:not(:empty)) {
+    height: auto;
+    align-items: flex-start;
+}
+
+.description {
+    white-space: normal;
+    max-width: 100%;
+    font-size: 12px;
+}
+
+.description:empty {
+    display: none;
+}
+
+:host-context(uds-radio-group:not([horizontal])) {
+    display: block;
+    width: 100%;
+}
+
+:host-context(uds-radio-group:not([horizontal])) .radio-container {
+    width: 100%;
+}
+
+
+/* Sizes */
+
+.radio-container.radio--small {
+    font-size: var(--font-size-small);
+    min-height: var(--height-small);
+    border-radius: var(--radius-small);
+    padding: var(--paddings-small) calc(var(--paddings-small) - 1px);
+}
+
+.radio-container.radio--medium {
+    font-size: var(--font-size-medium);
+    min-height: var(--height-medium);
+    border-radius: var(--radius-medium);
+    padding: var(--paddings-medium) calc(var(--paddings-medium) - 1px);
+}
+
+.radio-container.radio--large {
+    font-size: var(--font-size-large);
+    min-height: var(--height-large);
+    border-radius: var(--radius-large);
+    padding: var(--paddings-large) calc(var(--paddings-large) - 1px);
+}
+
+.radio-container.radio--text {
+    min-height: unset;
+    border-radius: 0;
+    border-width: 0;
+    padding: 0;
+}
+
+.radio-container.radio--small .label,
+:host:has(.radio--small) .description {
+    padding: 0 2px;
+}
+
+.radio-container.radio--medium .label,
+:host:has(.radio--medium) .description {
+    padding: 0 4px;
+}
+
+.radio-container.radio--large .label,
+:host:has(.radio--large) .description {
+    padding: 0 4px;
+}
+
+.radio-container.radio--small .counter {
+    margin-right: 2px;
+}
+
+.radio-container.radio--medium .counter {
+    margin-right: 4px;
+}
+
+.radio-container.radio--large .counter {
+    margin-right: 4px;
+}
+
+
+/* Specials */
+
+.radio-container[disabled] {
+    cursor: not-allowed;
+}
+
+.radio-container:active:not(.radio--scale),
+.radio-container.active:not(.radio--scale) {
+    transform: none;
+}
+
+.radio-container.radio--scale:active,
+.radio-container.radio--scale.active {
+    transform: scale(0.98);
+}
+
+.radio--round {
+    border-radius: 100px !important;
+}
+
+.radio--round .radiomark {
+    border-radius: 100px !important;
+}
+
+
+
+/* 
+
+    == Types ==
+    
+*/
+
+/* Filled - Primary */
+
+.radio--primary.radio--filled {
+    background-color: var(--button-backs-primary-default);
+    color: var(--button-text-primary-default);
+}
+
+.radio--primary.radio--filled:hover {
+    background-color: var(--button-backs-primary-hover);
+    color: var(--button-text-primary-hover);
+}
+
+.radio--primary.radio--filled:active,
+.radio--primary.radio--filled.active {
+    background-color: var(--button-backs-primary-pressed);
+    color: var(--button-text-primary-pressed);
+}
+
+.radio--primary.radio--filled[disabled] {
+    background-color: var(--button-backs-primary-disabled);
+    color: var(--button-text-primary-disabled);
+}
+
+/* Filled - Secondary */
+
+.radio--secondary.radio--filled {
+    background-color: var(--button-backs-secondary-default);
+    color: var(--button-text-secondary-default);
+}
+
+.radio--secondary.radio--filled:hover {
+    background-color: var(--button-backs-secondary-hover);
+    color: var(--button-text-secondary-hover);
+}
+
+.radio--secondary.radio--filled:active,
+.radio--secondary.radio--filled.active {
+    background-color: var(--button-backs-secondary-pressed);
+    color: var(--button-text-secondary-pressed);
+}
+
+.radio--secondary.radio--filled[disabled] {
+    background-color: var(--button-backs-secondary-disabled);
+    color: var(--button-text-secondary-disabled);
+}
+
+/* Filled - Danger */
+
+.radio--danger.radio--filled {
+    background-color: var(--button-backs-danger-default);
+    color: var(--button-text-danger-default);
+}
+
+.radio--danger.radio--filled:hover {
+    background-color: var(--button-backs-danger-hover);
+    color: var(--button-text-danger-hover);
+}
+
+.radio--danger.radio--filled:active,
+.radio--danger.radio--filled.active {
+    background-color: var(--button-backs-danger-pressed);
+    color: var(--button-text-danger-pressed);
+}
+
+.radio--danger.radio--filled[disabled] {
+    background-color: var(--button-backs-danger-disabled);
+    color: var(--button-text-danger-disabled);
+}
+
+/* Outline - Common */
+
+.radio--outline {
+    border: 1px solid;
+}
+
+/* Outline - Primary */
+
+.radio--primary.radio--outline {
+    border-color: var(--button-borders-primary-default);
+    color: var(--button-text-primary-opaque-default);
+}
+
+.radio--primary.radio--outline:hover {
+    background-color: var(--button-backs-primary-opaque-hover);
+    color: var(--button-text-primary-opaque-hover);
+}
+
+.radio--primary.radio--outline:active,
+.radio--primary.radio--outline.active {
+    background-color: var(--button-backs-primary-opaque-pressed);
+    color: var(--button-text-primary-opaque-pressed);
+}
+
+.radio--primary.radio--outline[disabled] {
+    background-color: transparent;
+    border-color: var(--button-borders-primary-disabled);
+    color: var(--button-text-primary-opaque-disabled);
+}
+
+/* Outline - Secondary */
+
+.radio--secondary.radio--outline {
+    border-color: var(--button-borders-secondary-default);
+    color: var(--button-text-secondary-opaque-default);
+}
+
+.radio--secondary.radio--outline:hover {
+    background-color: var(--button-backs-secondary-opaque-hover);
+    color: var(--button-text-secondary-opaque-hover);
+}
+
+.radio--secondary.radio--outline:active,
+.radio--secondary.radio--outline.active {
+    background-color: var(--button-backs-secondary-opaque-pressed);
+    color: var(--button-text-secondary-opaque-pressed);
+}
+
+.radio--secondary.radio--outline[disabled] {
+    background-color: transparent;
+    border-color: var(--button-borders-secondary-disabled);
+    color: var(--button-text-secondary-opaque-disabled);
+}
+
+/* Outline - Danger */
+
+.radio--danger.radio--outline {
+    border-color: var(--button-borders-danger-default);
+    color: var(--button-text-danger-opaque-default);
+}
+
+.radio--danger.radio--outline:hover {
+    background-color: var(--button-backs-danger-opaque-hover);
+    color: var(--button-text-danger-opaque-hover);
+}
+
+.radio--danger.radio--outline:active,
+.radio--danger.radio--outline.active {
+    background-color: var(--button-backs-danger-opaque-pressed);
+    color: var(--button-text-danger-opaque-pressed);
+}
+
+.radio--danger.radio--outline[disabled] {
+    background-color: transparent;
+    border-color: var(--button-borders-danger-disabled);
+    color: var(--button-text-danger-opaque-disabled);
+}
+
+/* Ghost - Primary */
+
+.radio--primary.radio--ghost {
+    color: var(--button-text-primary-opaque-default);
+}
+
+radio--primary.radio--ghost:hover {
+    background-color: var(--button-backs-primary-opaque-hover);
+    color: var(--button-text-primary-opaque-hover);
+}
+
+.radio--primary.radio--ghost:active,
+.radio--primary.radio--ghost.active {
+    background-color: var(--button-backs-primary-opaque-pressed);
+    color: var(--button-text-primary-opaque-pressed);
+}
+
+.radio--primary.radio--ghost[disabled] {
+    background-color: transparent;
+    color: var(--button-text-primary-opaque-disabled);
+}
+
+/* Ghost - Secondary */
+
+.radio--secondary.radio--ghost {
+    color: var(--button-text-secondary-opaque-default);
+}
+
+.radio--secondary.radio--ghost:hover {
+    background-color: var(--button-backs-secondary-opaque-hover);
+    color: var(--button-text-secondary-opaque-hover);
+}
+
+.radio--secondary.radio--ghost:active,
+.radio--secondary.radio--ghost.active {
+    background-color: var(--button-backs-secondary-opaque-pressed);
+    color: var(--button-text-secondary-opaque-pressed);
+}
+
+.radio--secondary.radio--ghost[disabled] {
+    background-color: transparent;
+    color: var(--button-text-secondary-opaque-disabled);
+}
+
+/* Ghost - Danger */
+
+.radio--danger.radio--ghost {
+    color: var(--button-text-danger-opaque-default);
+}
+
+.radio--danger.radio--ghost:hover {
+    background-color: var(--button-backs-danger-opaque-hover);
+    color: var(--button-text-danger-opaque-hover);
+}
+
+.radio--danger.radio--ghost:active,
+.radio--danger.radio--ghost.active {
+    background-color: var(--button-backs-danger-opaque-pressed);
+    color: var(--button-text-danger-opaque-pressed);
+}
+
+.radio--danger.radio--ghost[disabled] {
+    background-color: transparent;
+    color: var(--button-text-danger-opaque-disabled);
+}
+
+/* Text - Primary */
+
+.radio--primary.radio--text {
+    color: var(--button-text-secondary-opaque-default);
+}
+
+.radio--primary.radio--text:hover {
+    color: var(--button-text-secondary-opaque-hover);
+}
+
+.radio--primary.radio--text:active,
+.radio--primary.radio--text.active {
+    color: var(--button-text-secondary-opaque-pressed);
+}
+
+.radio--primary.radio--text[disabled] {
+    color: var(--button-text-secondary-opaque-disabled);
+}
+
+/* Text - Secondary */
+
+.radio--secondary.radio--text {
+    color: var(--button-text-secondary-opaque-default);
+}
+
+.radio--secondary.radio--text:hover {
+    color: var(--button-text-secondary-opaque-hover);
+}
+
+.radio--secondary.radio--text:active,
+.radio--secondary.radio--text.active {
+    color: var(--button-text-secondary-opaque-pressed);
+}
+
+.radio--secondary.radio--text[disabled] {
+    color: var(--button-text-secondary-opaque-disabled);
+}
+
+/* Text - Danger */
+
+.radio--danger.radio--text {
+    color: var(--button-text-danger-opaque-default);
+}
+
+.radio--danger.radio--text:hover {
+    color: var(--button-text-danger-opaque-hover);
+}
+
+.radio--danger.radio--text:active,
+.radio--danger.radio--text.active {
+    color: var(--button-text-danger-opaque-pressed);
+}
+
+.radio--danger.radio--text[disabled] {
+    color: var(--button-text-danger-opaque-disabled);
+}
+
+
+/* 
+
+    == Radiomark Styles ==
+
+*/
+
+.radiomark {
+    position: relative;
+    height: 18px;
+    width: 18px;
+    background-color: transparent;
+    border: 1px solid;
+    border-radius: 100px;
+    transition: all 0.2s ease-in-out;
+}
+
+.radiomark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 5px;
+    top: 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 100px;
+}
+
+.input:checked ~ .radiomark::after {
+    display: block;
+}
+
+
+
+/* 
+
+    == Radiomark Types ==
+
+*/
+
+/* Filled - Primary */
+
+.radio--primary.radio--filled .radiomark {
+    border-color: var(--checks-borders-white-border-default);
+}
+
+.radio--primary.radio--filled:hover .radiomark {
+    background-color: var(--checks-backs-blue-opaque-hover);
+}
+
+.radio--primary.radio--filled:active .radiomark,
+.radio--primary.radio--filled.active .radiomark {
+    background-color: var(--checks-backs-blue-opaque-pressed);
+}
+
+.radio--primary.radio--filled[disabled] .radiomark {
+    border-color: var(--checks-borders-white-border-disabled);
+    background-color: transparent;
+}
+
+.radio--primary.radio--filled .input:checked ~ .radiomark {
+    background-color: var(--checks-backs-white-default);
+}
+
+.radio--primary.radio--filled:hover .input:checked ~ .radiomark {
+    background-color: var(--checks-backs-white-hover);
+}
+
+.radio--primary.radio--filled:active .input:checked ~ .radiomark,
+.radio--primary.radio--filled.active .input:checked ~ .radiomark {
+    background-color: var(--checks-backs-white-pressed);
+}
+
+.radio--primary.radio--filled[disabled] .input:checked ~ .radiomark {
+    background-color: var(--checks-backs-white-disabled);
+}
+
+.radio--primary.radio--filled .input:checked ~ .radiomark::after {
+    background-color: var(--checks-marks-blue-default);
+}
+
+.radio--primary.radio--filled:hover .input:checked ~ .radiomark::after {
+    background-color: var(--checks-marks-blue-hover);
+}
+
+.radio--primary.radio--filled:active .input:checked ~ .radiomark::after,
+.radio--primary.radio--filled.active .input:checked ~ .radiomark::after {
+    background-color: var(--checks-marks-blue-pressed);
+}
+
+.radio--primary.radio--filled[disabled] .input:checked ~ .radiomark::after {
+    background-color: var(--checks-marks-blue-disabled);
+}
+
+/* Filled - Secondary */
+
+.radio--secondary.radio--filled .radiomark {
+    border-color: var(--checks-borders-gray-default);
+}
+
+.radio--secondary.radio--filled:hover .radiomark {
+    background-color: var(--checks-backs-gray-opaque-hover);
+}
+
+.radio--secondary.radio--filled:active .radiomark,
+.radio--secondary.radio--filled.active .radiomark {
+    background-color: var(--checks-backs-gray-opaque-pressed);
+}
+
+.radio--secondary.radio--filled[disabled] .radiomark {
+    border-color: var(--checks-borders-gray-disabled);
+    background-color: transparent;
+}
+
+.radio--secondary.radio--filled .input:checked ~ .radiomark {
+    border-color: transparent;
+    background-color: var(--checks-backs-white-default);
+}
+
+.radio--secondary.radio--filled:hover .input:checked ~ .radiomark {
+    background-color: var(--checks-backs-white-hover);
+}
+
+.radio--secondary.radio--filled:active .input:checked ~ .radiomark,
+.radio--secondary.radio--filled.active .input:checked ~ .radiomark {
+    background-color: var(--checks-backs-white-pressed);
+}
+
+.radio--secondary.radio--filled[disabled] .input:checked ~ .radiomark {
+    background-color: var(--checks-backs-white-disabled);
+}
+
+.radio--secondary.radio--filled .input:checked ~ .radiomark::after {
+    background-color: var(--checks-marks-gray-default);
+}
+
+.radio--secondary.radio--filled:hover .input:checked ~ .radiomark::after {
+    background-color: var(--checks-marks-gray-hover);
+}
+
+.radio--secondary.radio--filled:active .input:checked ~ .radiomark::after,
+.radio--secondary.radio--filled.active .input:checked ~ .radiomark::after {
+    background-color: var(--checks-marks-gray-pressed);
+}
+
+.radio--secondary.radio--filled[disabled] .input:checked ~ .radiomark::after {
+    background-color: var(--checks-marks-gray-disabled);
+}
+
+/* Filled - Danger */
+
+.radio--danger.radio--filled .radiomark {
+    border-color: var(--checks-borders-white-border-default);
+}
+
+.radio--danger.radio--filled:hover .radiomark {
+    background-color: var(--checks-backs-red-opaque-hover);
+}
+
+.radio--danger.radio--filled:active .radiomark,
+.radio--danger.radio--filled.active .radiomark {
+    background-color: var(--checks-backs-red-opaque-pressed);
+}
+
+.radio--danger.radio--filled[disabled] .radiomark {
+    border-color: var(--checks-borders-white-border-disabled);
+    background-color: transparent;
+}
+
+.radio--danger.radio--filled .input:checked ~ .radiomark {
+    background-color: var(--checks-backs-white-default);
+}
+
+.radio--danger.radio--filled:hover .input:checked ~ .radiomark {
+    background-color: var(--checks-backs-white-hover);
+}
+
+.radio--danger.radio--filled:active .input:checked ~ .radiomark,
+.radio--danger.radio--filled.active .input:checked ~ .radiomark {
+    background-color: var(--checks-backs-white-pressed);
+}
+
+.radio--danger.radio--filled[disabled] .input:checked ~ .radiomark {
+    background-color: var(--checks-backs-white-disabled);
+}
+
+.radio--danger.radio--filled .input:checked ~ .radiomark::after {
+    background-color: var(--checks-marks-red-default);
+}
+
+.radio--danger.radio--filled:hover .input:checked ~ .radiomark::after {
+    background-color: var(--checks-marks-red-hover);
+}
+
+.radio--danger.radio--filled:active .input:checked ~ .radiomark::after,
+.radio--danger.radio--filled.active .input:checked ~ .radiomark::after {
+    background-color: var(--checks-marks-red-pressed);
+}
+
+.radio--danger.radio--filled[disabled] .input:checked ~ .radiomark::after {
+    background-color: var(--checks-marks-red-disabled);
+}
+
+/* Outline, Ghost, Text - Primary */
+
+.radio--primary.radio--outline .radiomark,
+.radio--primary.radio--ghost .radiomark,
+.radio--primary.radio--text .radiomark {
+    border-color: var(--button-text-primary-opaque-default);
+    background-color: transparent;
+}
+
+.radio--primary.radio--outline:hover .radiomark,
+.radio--primary.radio--ghost:hover .radiomark,
+.radio--primary.radio--text:hover .radiomark {
+    border-color: var(--button-text-primary-opaque-hover);
+    background-color: var(--checks-backs-blue-opaque-hover);
+}
+
+.radio--primary.radio--outline:active .radiomark,
+.radio--primary.radio--ghost:active .radiomark,
+.radio--primary.radio--text:active .radiomark,
+.radio--primary.radio--outline.active .radiomark,
+.radio--primary.radio--ghost.active .radiomark,
+.radio--primary.radio--text.active .radiomark {
+    border-color: var(--button-text-primary-opaque-pressed);
+    background-color: var(--checks-backs-blue-opaque-pressed);
+}
+
+.radio--primary.radio--outline .input:checked ~ .radiomark::after,
+.radio--primary.radio--ghost .input:checked ~ .radiomark::after,
+.radio--primary.radio--text .input:checked ~ .radiomark::after {
+    background-color: var(--checks-marks-blue-default);
+}
+
+.radio--primary.radio--outline[disabled] .radiomark,
+.radio--primary.radio--ghost[disabled] .radiomark,
+.radio--primary.radio--text[disabled] .radiomark {
+    border-color: var(--button-text-primary-opaque-disabled);
+    background-color: transparent;
+}
+
+.radio--primary.radio--outline[disabled] .input:checked ~ .radiomark::after,
+.radio--primary.radio--ghost[disabled] .input:checked ~ .radiomark::after,
+.radio--primary.radio--text[disabled] .input:checked ~ .radiomark::after {
+    background-color: var(--checks-marks-blue-disabled);
+}
+
+/* Outline, Ghost, Text - Secondary */
+
+.radio--secondary.radio--outline .radiomark,
+.radio--secondary.radio--ghost .radiomark,
+.radio--secondary.radio--text .radiomark {
+    border-color: var(--button-borders-secondary-default);
+    background-color: transparent;
+}
+
+.radio--secondary.radio--outline:hover .radiomark,
+.radio--secondary.radio--ghost:hover .radiomark,
+.radio--secondary.radio--text:hover .radiomark {
+    border-color: var(--button-borders-secondary-default);
+    background-color: var(--checks-backs-gray-opaque-hover);
+}
+
+.radio--secondary.radio--outline:active .radiomark,
+.radio--secondary.radio--ghost:active .radiomark,
+.radio--secondary.radio--text:active .radiomark,
+.radio--secondary.radio--outline.active .radiomark,
+.radio--secondary.radio--ghost.active .radiomark,
+.radio--secondary.radio--text.active .radiomark {
+    border-color: var(--button-borders-secondary-default);
+    background-color: var(--checks-backs-gray-opaque-pressed);
+}
+
+.radio--secondary.radio--outline .input:checked ~ .radiomark::after,
+.radio--secondary.radio--ghost .input:checked ~ .radiomark::after,
+.radio--secondary.radio--text .input:checked ~ .radiomark::after {
+    background-color: var(--checks-marks-gray-default);
+}
+
+.radio--secondary.radio--outline[disabled] .radiomark,
+.radio--secondary.radio--ghost[disabled] .radiomark,
+.radio--secondary.radio--text[disabled] .radiomark {
+    border-color: var(--checks-borders-gray-disabled);
+    background-color: transparent;
+}
+
+.radio--secondary.radio--outline[disabled] .input:checked ~ .radiomark::after,
+.radio--secondary.radio--ghost[disabled] .input:checked ~ .radiomark::after,
+.radio--secondary.radio--text[disabled] .input:checked ~ .radiomark::after {
+    background-color: var(--checks-marks-gray-disabled);
+}
+
+/* Outline, Ghost, Text - Danger */
+
+.radio--danger.radio--outline .radiomark,
+.radio--danger.radio--ghost .radiomark,
+.radio--danger.radio--text .radiomark {
+    border-color: var(--button-text-danger-opaque-default);
+    background-color: transparent;
+}
+
+.radio--danger.radio--outline:hover .radiomark,
+.radio--danger.radio--ghost:hover .radiomark,
+.radio--danger.radio--text:hover .radiomark {
+    border-color: var(--button-text-danger-opaque-hover);
+    background-color: var(--checks-backs-red-opaque-hover);
+}
+
+.radio--danger.radio--outline:active .radiomark,
+.radio--danger.radio--ghost:active .radiomark,
+.radio--danger.radio--text:active .radiomark,
+.radio--danger.radio--outline.active .radiomark,
+.radio--danger.radio--ghost.active .radiomark,
+.radio--danger.radio--text.active .radiomark {
+    border-color: var(--button-text-danger-opaque-pressed);
+    background-color: var(--checks-backs-red-opaque-pressed);
+}
+
+.radio--danger.radio--outline .input:checked ~ .radiomark::after,
+.radio--danger.radio--ghost .input:checked ~ .radiomark::after,
+.radio--danger.radio--text .input:checked ~ .radiomark::after {
+    background-color: var(--checks-marks-red-default);
+}
+
+.radio--danger.radio--outline[disabled] .radiomark,
+.radio--danger.radio--ghost[disabled] .radiomark,
+.radio--danger.radio--text[disabled] .radiomark {
+    border-color: var(--button-text-danger-opaque-disabled);
+    background-color: transparent;
+}
+
+.radio--danger.radio--outline[disabled] .input:checked ~ .radiomark::after,
+.radio--danger.radio--ghost[disabled] .input:checked ~ .radiomark::after,
+.radio--danger.radio--text[disabled] .input:checked ~ .radiomark::after {
+    background-color: var(--checks-marks-red-disabled);
+}

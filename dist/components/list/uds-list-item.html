@@ -1,0 +1,39 @@
+<button part="list-item" class="list-item" type="button" role="listitem">
+    <div part="left-side" class="left-side">
+        <span part="dragger" class="dragger">
+            <slot name="dragger"></slot>
+        </span>
+
+        <span part="checkmark" class="checkmark">
+            <slot name="checkmark"></slot>
+        </span>
+
+        <span part="icon" class="icon">
+            <slot name="icon"></slot>
+        </span>
+
+        <div part="content" class="content">
+            <span part="label" class="label">
+                <slot></slot>
+            </span>
+
+            <span part="description" class="description"></span>
+        </div>
+    </div>
+
+    <div part="right-side" class="right-side">
+        <span part="note" class="note"></span>
+
+        <span part="button-1" class="button-1">
+            <slot name="button-1"></slot>
+        </span>
+
+        <span part="button-2" class="button-2">
+            <slot name="button-2"></slot>
+        </span>
+
+        <span part="chevron" class="chevron">
+            <slot name="chevron"></slot>
+        </span>
+    </div>
+</button>

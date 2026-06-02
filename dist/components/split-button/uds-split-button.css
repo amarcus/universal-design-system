@@ -1,0 +1,89 @@
+:host {
+    display: inline-block;
+    box-sizing: border-box;
+    height: fit-content;
+    line-height: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+.split-button {
+    display: inline-flex;
+    gap: 1px;
+}
+
+.split-button.split-button--outline {
+    gap: 0;
+}
+
+.split-button.split-button--outline ::slotted(uds-toggle-button) {
+    margin-left: -1px;
+}
+
+
+/* Sizes */
+
+.split-button--small {
+    border-radius: var(--radius-small);
+    height: var(--height-small);
+}
+
+.split-button--medium {
+    border-radius: var(--radius-medium);
+    height: var(--height-medium);
+}
+
+.split-button--large {
+    border-radius: var(--radius-large);
+    height: var(--height-large);
+}
+
+
+/* Roundings */
+
+.split-button--small ::slotted(uds-button) {
+    --uds-button-radius: var(--radius-small) 0 0 var(--radius-small);
+}
+
+.split-button--medium ::slotted(uds-button) {
+    --uds-button-radius: var(--radius-medium) 0 0 var(--radius-medium);
+}
+
+.split-button--large ::slotted(uds-button) {
+    --uds-button-radius: var(--radius-large) 0 0 var(--radius-large);
+}
+
+.split-button--small ::slotted(uds-toggle-button) {
+    --uds-button-radius: 0 var(--radius-small) var(--radius-small) 0;
+}
+
+.split-button--medium ::slotted(uds-toggle-button) {
+    --uds-button-radius: 0 var(--radius-medium) var(--radius-medium) 0;
+}
+
+.split-button--large ::slotted(uds-toggle-button) {
+    --uds-button-radius: 0 var(--radius-large) var(--radius-large) 0;
+}
+
+.split-button--small.split-button--round ::slotted(uds-button) {
+    --uds-button-radius: 999px 0 0 999px;
+}
+
+.split-button--small.split-button--round ::slotted(uds-toggle-button) {
+    --uds-button-radius: 0 999px 999px 0;
+}
+
+.split-button--medium.split-button--round ::slotted(uds-button) {
+    --uds-button-radius: 999px 0 0 999px;
+}
+
+.split-button--medium.split-button--round ::slotted(uds-toggle-button) {
+    --uds-button-radius: 0 999px 999px 0;
+}
+
+.split-button--large.split-button--round ::slotted(uds-button) {
+    --uds-button-radius: 999px 0 0 999px;
+}
+
+.split-button--large.split-button--round ::slotted(uds-toggle-button) {
+    --uds-button-radius: 0 999px 999px 0;
+}

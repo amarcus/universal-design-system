@@ -1,0 +1,31 @@
+<button part="tab" class="tab" role="tab">
+    <span part="delimiter" class="delimiter"></span>
+
+    <div part="cell" class="cell">
+        <div part="wrapper" class="wrapper">
+            <span part="icon-top" class="icon-top">
+                <slot name="icon-top"></slot>
+            </span>
+
+            <div part="content" class="content">
+                <span part="icon" class="icon">
+                    <slot name="icon"></slot>
+                </span>
+
+                <span part="label" class="label">
+                    <slot></slot>
+                </span>
+
+                <span part="counter" class="counter"></span>
+
+                <span part="icon-right" class="icon-right">
+                    <slot name="icon-right"></slot>
+                </span>
+
+                <span part="button" class="button">
+                    <slot name="button"></slot>
+                </span>
+            </div>
+        </div>
+    </div>
+</button>

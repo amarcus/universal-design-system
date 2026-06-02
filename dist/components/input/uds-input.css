@@ -1,0 +1,732 @@
+:host {
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+    height: fit-content;
+    line-height: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+.input {
+    transition: outline 0.1s;
+    font-size: 16px;
+}
+
+:host(:focus-within) .input-container:not(.input--text) .input {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 1px;
+}
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    font-family: var(--font-sans);
+    transition: all 0.2s;
+    box-sizing: border-box;
+}
+
+
+/* Guts */
+
+.content {
+    display: flex;
+    width: 100%;
+    flex: 1 1 auto;
+    min-height: 0;
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+    z-index: 1;
+}
+
+.input {
+    position: relative;
+    width: 100%;
+    min-height: 0;
+    flex: 1 1 auto;
+    border: 1px solid transparent;
+    font-family: var(--font-sans);
+    color: inherit;
+    cursor: inherit;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.textarea {
+    display: none;
+    width: 100%;
+    min-height: 30px;
+    padding: 8px 12px;
+    border: none;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 1.2;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.textarea:focus {
+    outline: none;
+    border-color: var(--uds-color-primary);
+    box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.2);
+}
+
+.suffix {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    color: inherit;
+    line-height: 0;
+    cursor: default;
+}
+
+.counter {
+    display: inline-flex;
+    align-items: center;
+    color: inherit;
+    opacity: 0.75;
+    margin-right: 4px;
+}
+
+.description {
+    margin-top: 2px;
+    color: var(--general-text-light);
+    font-size: 12px;
+    opacity: 0.75;
+    line-height: 1.2;
+    pointer-events: none;
+}
+
+
+/* Sizes */
+
+.input-container.input--small .content {
+    min-height: var(--height-small);
+    border-radius: var(--radius-small);
+}
+
+.input-container.input--medium .content {
+    min-height: var(--height-medium);
+    border-radius: var(--radius-medium);
+}
+
+.input-container.input--large .content {
+    min-height: var(--height-large);
+    border-radius: var(--radius-large);
+}
+
+.input-container.input--small .input {
+    padding: var(--paddings-small);
+    padding-left: calc(var(--paddings-small) + 4px);
+    border-radius: var(--radius-small);
+}
+
+.input-container.input--medium .input {
+    padding: var(--paddings-medium);
+    padding-left: calc(var(--paddings-medium) + 4px);
+    border-radius: var(--radius-medium);
+}
+
+.input-container.input--large .input {
+    padding: var(--paddings-large);
+    padding-left: calc(var(--paddings-large) + 4px);
+    border-radius: var(--radius-large);
+}
+
+.input-container.input--small.has-icon .input {
+    padding-left: calc(var(--paddings-small) + 4px + 20px);
+}
+
+.input-container.input--small.has-suffix .input {
+    padding-right: calc(var(--paddings-small) + var(--suffix-width));
+}
+
+.input-container.input--small .suffix {
+    right: var(--paddings-small);
+}
+
+.input-container.input--small .counter {
+    margin-right: 2px;
+}
+
+.input-container.input--small .icon {
+    left: var(--paddings-small);
+}
+
+.input-container.input--medium.has-icon .input {
+    padding-left: calc(var(--paddings-medium) + 4px + 20px);
+}
+
+.input-container.input--medium.has-suffix .input {
+    padding-right: calc(var(--paddings-medium) + var(--suffix-width));
+}
+
+.input-container.input--medium .suffix {
+    right: var(--paddings-medium);
+}
+
+.input-container.input--medium .counter {
+    margin-right: 4px;
+}
+
+.input-container.input--medium .icon {
+    left: var(--paddings-medium);
+}
+
+.input-container.input--large.has-icon .input {
+    padding-left: calc(var(--paddings-large) + 4px + 20px);
+}
+
+.input-container.input--large.has-suffix .input {
+    padding-right: calc(var(--paddings-large) + var(--suffix-width));
+}
+
+.input-container.input--large .suffix {
+    right: var(--paddings-large);
+}
+
+.input-container.input--large .counter {
+    margin-right: 4px;
+}
+
+.input-container.input--large .icon {
+    left: var(--paddings-large);
+}
+
+
+/* Specials */
+
+:host([multiline]) .input-container {
+    height: auto;
+}
+
+:host([resizer]) .textarea {
+    resize: vertical;
+}
+
+:host([disabled]) .input-container {
+    cursor: not-allowed;
+}
+
+:host([disabled]) .input::placeholder {
+    opacity: 0.5;
+}
+
+:host([disabled]) ::slotted(uds-button[slot="button"]:not([disabled])),
+:host([disabled]) ::slotted(uds-button[slot="clear-button"]:not([disabled])) {
+    opacity: 0.25;
+    pointer-events: none;
+}
+
+.input-container:active:not(.input--scale) {
+    transform: none;
+}
+
+.input-container.input--scale:active {
+    transform: scale(0.98);
+}
+
+.input--round,
+.input--round .input {
+    border-radius: 100px !important;
+}
+
+
+
+
+/* 
+
+    == Types ==
+
+*/
+
+/* Common */
+
+.input--primary .input::placeholder {
+    color: var(--fields-text-primary-placeholder);
+}
+
+.input--secondary .input::placeholder {
+    color: var(--fields-text-secondary-placeholder);
+}
+
+.input--danger .input::placeholder {
+    color: var(--fields-text-danger-placeholder);
+}
+
+/* Filled - Primary */
+
+.input--primary.input--filled {
+    color: var(--fields-text-primary-default);
+}
+
+.input--primary.input--filled .input {
+    background-color: var(--fields-backs-primary-default);
+}
+
+.input--primary.input--filled:hover {
+    color: var(--fields-text-primary-hover);
+}
+
+.input--primary.input--filled:hover .input {
+    background-color: var(--fields-backs-primary-hover);
+}
+
+.input--primary.input--filled:active {
+    color: var(--fields-text-primary-pressed);
+}
+
+.input--primary.input--filled:active .input {
+    background-color: var(--fields-backs-primary-pressed);
+}
+
+:host(:focus-within) .input--primary.input--filled {
+    color: var(--fields-text-primary-default);
+}
+
+:host(:focus-within) .input--primary.input--filled .input {
+    background-color: var(--fields-backs-primary-focused);
+}
+
+:host([disabled]) .input--primary.input--filled {
+    color: var(--fields-text-primary-disabled);
+}
+
+:host([disabled]) .input--primary.input--filled .input {
+    background-color: var(--fields-backs-primary-disabled);
+}
+
+/* Filled - Secondary */
+
+.input--secondary.input--filled {
+    color: var(--fields-text-secondary-default);
+}
+
+.input--secondary.input--filled .input {
+    background-color: var(--fields-backs-secondary-default);
+}
+
+.input--secondary.input--filled:hover {
+    color: var(--fields-text-secondary-hover);
+}
+
+.input--secondary.input--filled:hover .input {
+    background-color: var(--fields-backs-secondary-hover);
+}
+
+.input--secondary.input--filled:active {
+    color: var(--fields-text-secondary-pressed);
+}
+
+.input--secondary.input--filled:active .input {
+    background-color: var(--fields-backs-secondary-pressed);
+}
+
+:host(:focus-within) .input--secondary.input--filled {
+    color: var(--fields-text-secondary-default);
+}
+
+:host(:focus-within) .input--secondary.input--filled .input {
+    background-color: var(--fields-backs-secondary-focused);
+}
+
+:host([disabled]) .input--secondary.input--filled {
+    color: var(--fields-text-secondary-disabled);
+}
+
+:host([disabled]) .input--secondary.input--filled .input {
+    background-color: var(--fields-backs-secondary-disabled);
+}
+
+/* Filled - Danger */
+
+.input--danger.input--filled {
+    color: var(--fields-text-danger-default);
+}
+
+.input--danger.input--filled .input {
+    background-color: var(--fields-backs-danger-default);
+}
+
+.input--danger.input--filled:hover {
+    color: var(--fields-text-danger-hover);
+}
+
+.input--danger.input--filled:hover .input {
+    background-color: var(--fields-backs-danger-hover);
+}
+
+.input--danger.input--filled:active {
+    color: var(--fields-text-danger-pressed);
+}
+
+.input--danger.input--filled:active .input {
+    background-color: var(--fields-backs-danger-pressed);
+}
+
+:host(:focus-within) .input--danger.input--filled {
+    color: var(--fields-text-danger-default);
+}
+
+:host(:focus-within) .input--danger.input--filled .input {
+    background-color: var(--fields-backs-danger-focused);
+}
+
+:host([disabled]) .input--danger.input--filled {
+    color: var(--fields-text-danger-disabled);
+}
+
+:host([disabled]) .input--danger.input--filled .input {
+    background-color: var(--fields-backs-danger-disabled);
+}
+
+/* Outline - Primary */
+
+.input--primary.input--outline {
+    color: var(--fields-text-primary-default);
+}
+
+.input--primary.input--outline .input {
+    background-color: var(--fields-backs-primary-opaque-default);
+    border-color: var(--fields-borders-primary-default);
+}
+
+.input--primary.input--outline:hover {
+    color: var(--fields-text-primary-hover);
+}
+
+.input--primary.input--outline:hover .input {
+    background-color: var(--fields-backs-primary-opaque-hover);
+    border-color: var(--fields-borders-primary-default);
+}
+
+.input--primary.input--outline:active {
+    color: var(--fields-text-primary-pressed);
+}
+
+.input--primary.input--outline:active .input {
+    background-color: var(--fields-backs-primary-opaque-pressed);
+    border-color: var(--fields-borders-primary-default);
+}
+
+:host(:focus-within) .input--primary.input--outline {
+    color: var(--fields-text-primary-default);
+}
+
+:host(:focus-within) .input--primary.input--outline .input {
+    background-color: var(--fields-backs-primary-focused);
+    border-color: var(--fields-borders-primary-default);
+}
+
+:host([disabled]) .input--primary.input--outline {
+    color: var(--fields-text-primary-disabled);
+}
+
+:host([disabled]) .input--primary.input--outline .input {
+    background-color: var(--fields-backs-primary-opaque-disabled);
+    border-color: var(--fields-borders-primary-disabled);
+}
+
+/* Outline - Secondary */
+
+.input--secondary.input--outline {
+    color: var(--fields-text-secondary-default);
+}
+
+.input--secondary.input--outline .input {
+    background-color: var(--fields-backs-secondary-opaque-default);
+    border-color: var(--fields-borders-secondary-default);
+}
+
+.input--secondary.input--outline:hover {
+    color: var(--fields-text-secondary-hover);
+}
+
+.input--secondary.input--outline:hover .input {
+    background-color: var(--fields-backs-secondary-opaque-hover);
+    border-color: var(--fields-borders-secondary-default);
+}
+
+.input--secondary.input--outline:active {
+    color: var(--fields-text-secondary-pressed);
+}
+
+.input--secondary.input--outline:active .input {
+    background-color: var(--fields-backs-secondary-opaque-pressed);
+    border-color: var(--fields-borders-secondary-default);
+}
+
+:host(:focus-within) .input--secondary.input--outline {
+    color: var(--fields-text-secondary-default);
+}
+
+:host(:focus-within) .input--secondary.input--outline .input {
+    background-color: var(--fields-backs-secondary-focused);
+    border-color: var(--fields-borders-primary-default);
+}
+
+:host([disabled]) .input--secondary.input--outline {
+    color: var(--fields-text-secondary-disabled);
+}
+
+:host([disabled]) .input--secondary.input--outline .input {
+    background-color: var(--fields-backs-secondary-opaque-disabled);
+    border-color: var(--fields-borders-secondary-disabled);
+}
+
+/* Outline - Danger */
+
+.input--danger.input--outline {
+    color: var(--fields-text-danger-default);
+}
+
+.input--danger.input--outline .input {
+    background-color: var(--fields-backs-danger-opaque-default);
+    border-color: var(--fields-borders-danger-default);
+}
+
+.input--danger.input--outline:hover {
+    color: var(--fields-text-danger-hover);
+}
+
+.input--danger.input--outline:hover .input {
+    background-color: var(--fields-backs-danger-opaque-hover);
+    border-color: var(--fields-borders-danger-default);
+}
+
+.input--danger.input--outline:active {
+    color: var(--fields-text-danger-pressed);
+}
+
+.input--danger.input--outline:active .input {
+    background-color: var(--fields-backs-danger-opaque-pressed);
+    border-color: var(--fields-borders-danger-default);
+}
+
+:host(:focus-within) .input--danger.input--outline {
+    color: var(--fields-text-danger-default);
+}
+
+:host(:focus-within) .input--danger.input--outline .input {
+    background-color: var(--fields-backs-danger-focused);
+    border-color: var(--fields-borders-primary-default);
+}
+
+:host([disabled]) .input--danger.input--outline {
+    color: var(--fields-text-danger-disabled);
+}
+
+:host([disabled]) .input--danger.input--outline .input {
+    background-color: var(--fields-backs-danger-opaque-disabled);
+    border-color: var(--fields-borders-danger-disabled);
+}
+
+/* Ghost - Primary */
+
+.input--primary.input--ghost {
+    color: var(--fields-text-primary-default);
+}
+
+.input--primary.input--ghost .input {
+    background-color: var(--fields-backs-primary-opaque-default);
+}
+
+.input--primary.input--ghost:hover {
+    color: var(--fields-text-primary-hover);
+}
+
+.input--primary.input--ghost:hover .input {
+    background-color: var(--fields-backs-primary-opaque-hover);
+}
+
+.input--primary.input--ghost:active {
+    color: var(--fields-text-primary-pressed);
+}
+
+.input--primary.input--ghost:active .input {
+    background-color: var(--fields-backs-primary-opaque-pressed);
+}
+
+:host(:focus-within) .input--primary.input--ghost {
+    color: var(--fields-text-primary-default);
+}
+
+:host(:focus-within) .input--primary.input--ghost .input {
+    background-color: var(--fields-backs-primary-focused);
+}
+
+:host([disabled]) .input--primary.input--ghost {
+    color: var(--fields-text-primary-disabled);
+}
+
+:host([disabled]) .input--primary.input--ghost .input {
+    background-color: var(--fields-backs-primary-opaque-disabled);
+}
+
+/* Ghost - Secondary */
+
+.input--secondary.input--ghost {
+    color: var(--fields-text-secondary-default);
+}
+
+.input--secondary.input--ghost .input {
+    background-color: var(--fields-backs-secondary-opaque-default);
+}
+
+.input--secondary.input--ghost:hover {
+    color: var(--fields-text-secondary-hover);
+}
+
+.input--secondary.input--ghost:hover .input {
+    background-color: var(--fields-backs-secondary-opaque-hover);
+}
+
+.input--secondary.input--ghost:active {
+    color: var(--fields-text-secondary-pressed);
+}
+
+.input--secondary.input--ghost:active .input {
+    background-color: var(--fields-backs-secondary-opaque-pressed);
+}
+
+:host(:focus-within) .input--secondary.input--ghost {
+    color: var(--fields-text-secondary-default);
+}
+
+:host(:focus-within) .input--secondary.input--ghost .input {
+    background-color: var(--fields-backs-secondary-focused);
+}
+
+:host([disabled]) .input--secondary.input--ghost {
+    color: var(--fields-text-secondary-disabled);
+}
+
+:host([disabled]) .input--secondary.input--ghost .input {
+    background-color: var(--fields-backs-secondary-opaque-disabled);
+}
+
+/* Ghost - Danger */
+
+.input--danger.input--ghost {
+    color: var(--fields-text-danger-default);
+}
+
+.input--danger.input--ghost .input {
+    background-color: var(--fields-backs-danger-opaque-default);
+}
+
+.input--danger.input--ghost:hover {
+    color: var(--fields-text-danger-hover);
+}
+
+.input--danger.input--ghost:hover .input {
+    background-color: var(--fields-backs-danger-opaque-hover);
+}
+
+.input--danger.input--ghost:active {
+    color: var(--fields-text-danger-pressed);
+}
+
+.input--danger.input--ghost:active .input {
+    background-color: var(--fields-backs-danger-opaque-pressed);
+}
+
+:host(:focus-within) .input--danger.input--ghost {
+    color: var(--fields-text-danger-default);
+}
+
+:host(:focus-within) .input--danger.input--ghost .input {
+    background-color: var(--fields-backs-danger-focused);
+}
+:host([disabled]) .input--danger.input--ghost {
+    color: var(--fields-text-danger-disabled);
+}
+
+:host([disabled]) .input--danger.input--ghost .input {
+    background-color: var(--fields-backs-danger-opaque-disabled);
+}
+
+/* Text - Common */
+
+.input--text .input {
+    background-color: transparent;
+}
+
+/* Primary - Text */
+
+.input--primary.input--text {
+    color: var(--fields-text-primary-default);
+}
+
+.input--primary.input--text:hover {
+    color: var(--fields-text-primary-hover);
+}
+
+.input--primary.input--text:active {
+    color: var(--fields-text-primary-pressed);
+}
+
+:host(:focus-within) .input--primary.input--text {
+    color: var(--fields-text-primary-default);
+}
+
+:host([disabled]) .input--primary.input--text {
+    color: var(--fields-text-primary-disabled);
+}
+
+/* Secondary - Text */
+
+.input--secondary.input--text {
+    color: var(--fields-text-secondary-default);
+}
+
+.input--secondary.input--text:hover {
+    color: var(--fields-text-secondary-hover);
+}
+
+.input--secondary.input--text:active {
+    color: var(--fields-text-secondary-pressed);
+}
+
+:host(:focus-within) .input--secondary.input--text {
+    color: var(--fields-text-secondary-default);
+}
+
+:host([disabled]) .input--secondary.input--text {
+    color: var(--fields-text-secondary-disabled);
+}
+
+/* Danger - Text */
+
+.input--danger.input--text {
+    color: var(--fields-text-danger-default);
+}
+
+.input--danger.input--text:hover {
+    color: var(--fields-text-danger-hover);
+}
+
+.input--danger.input--text:active {
+    color: var(--fields-text-danger-pressed);
+}
+
+:host(:focus-within) .input--danger.input--text {
+    color: var(--fields-text-danger-default);
+}
+
+:host([disabled]) .input--danger.input--text {
+    color: var(--fields-text-danger-disabled);
+}

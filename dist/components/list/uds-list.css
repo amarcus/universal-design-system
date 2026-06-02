@@ -1,0 +1,35 @@
+:host {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+.list {
+    display: flex;
+    min-width: 220px;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 8px;
+    border-radius: 12px;
+    background: var(--general-backs-light);
+    box-shadow: 0 14px 20px 0 rgba(0, 0, 0, 0.20);
+}
+
+:host([mode="listbox"]) .list,
+:host([mode="listbox-classic"]) .list {
+    box-shadow: none;
+    border: 1px solid var(--list-borders-secondary-disabled);
+}
+
+:host([sublist]) {
+    position: absolute;
+    top: 0;
+    left: calc(100% + 4px);
+    z-index: 1000;
+    display: none;
+}
+
+:host([sublist][open]) {
+    display: block;
+}
