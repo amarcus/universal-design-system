@@ -18,18 +18,18 @@ https://amarcus.github.io/universal-design-system/
 
 | Component | Demo | Documentation |
 |---|---|---|
-| Button | [Demo](button.html) | [Docs](docs/button.md) |
-| Input | [Demo](input.html) | [Docs](docs/input.md) |
-| Checkbox | [Demo](checkbox.html) | [Docs](docs/checkbox.md) |
-| Radio button | [Demo](radiobutton.html) | [Docs](docs/radio.md) |
-| Toggle | [Demo](toggle.html) | [Docs](docs/toggle.md) |
-| Toggle button | [Demo](toggle-button.html) | [Docs](docs/toggle-button.md) |
-| Segmented button | [Demo](segment.html) | [Docs](docs/segment.md) |
-| Split button | [Demo](split-button.html) | [Docs](docs/split-button.md) |
-| Menu | [Demo](menu.html) | [Docs](docs/menu.md) |
-| List | [Demo](list.html) | [Docs](docs/list.md) |
-| Tabs | [Demo](tabs.html) | [Docs](docs/tabs.md) |
-| Form | [Demo](form.html) | [Docs](docs/form.md) |
+| Button | [Demo](https://amarcus.github.io/universal-design-system/button.html) | [Docs](docs/button.md) |
+| Input | [Demo](https://amarcus.github.io/universal-design-system/input.html) | [Docs](docs/input.md) |
+| Checkbox | [Demo](https://amarcus.github.io/universal-design-system/checkbox.html) | [Docs](docs/checkbox.md) |
+| Radio button | [Demo](https://amarcus.github.io/universal-design-system/radiobutton.html) | [Docs](docs/radio.md) |
+| Toggle | [Demo](https://amarcus.github.io/universal-design-system/toggle.html) | [Docs](docs/toggle.md) |
+| Toggle button | [Demo](https://amarcus.github.io/universal-design-system/toggle-button.html) | [Docs](docs/toggle-button.md) |
+| Segmented button | [Demo](https://amarcus.github.io/universal-design-system/segment.html) | [Docs](docs/segment.md) |
+| Split button | [Demo](https://amarcus.github.io/universal-design-system/split-button.html) | [Docs](docs/split-button.md) |
+| Menu | [Demo](https://amarcus.github.io/universal-design-system/menu.html) | [Docs](docs/menu.md) |
+| List | [Demo](https://amarcus.github.io/universal-design-system/list.html) | [Docs](docs/list.md) |
+| Tabs | [Demo](https://amarcus.github.io/universal-design-system/tabs.html) | [Docs](docs/tabs.md) |
+| Form | [Demo](https://amarcus.github.io/universal-design-system/form.html) | [Docs](docs/form.md) |
 
 ## Example
 
