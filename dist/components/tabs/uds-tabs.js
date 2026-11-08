@@ -107,9 +107,10 @@ class UdsTab extends HTMLElement {
     _topIconVisible = true;
     _buttonVisible = true;
     _counterVisible = true;
+
   
     static get observedAttributes() {
-        return ['level', 'active', 'disabled', 'counter', 'delimiters', 'fill'];
+        return ['level', 'active', 'disabled', 'counter', 'delimiters', 'fill', 'sliding'];
     }
 
     constructor() {
@@ -208,6 +209,7 @@ class UdsTab extends HTMLElement {
         
         this._tab.classList.remove('tab--l1', 'tab--l2', 'tab--l3', 'tab--l4');
         this._tab.classList.add(`tab--${this.level}`);
+        this._tab.classList.toggle('tab--sliding', this.sliding);
 
         if (this.level === 'l2') {
             if (this._iconTop && !this._iconTop.isConnected) {
@@ -319,6 +321,14 @@ class UdsTab extends HTMLElement {
 
     set fill(value) {
         this.toggleAttribute('fill', Boolean(value));
+    }
+
+    get sliding() {
+        return this.hasAttribute('sliding') && this.level == 'l2';
+    }
+
+    set sliding(value) {
+        this.toggleAttribute('sliding', Boolean(value));
     }
 
 
@@ -439,9 +449,15 @@ class UdsTabs extends HTMLElement {
     _tabBar = null;
     _slot = null;
     _tabs = [];
+    _indicator = null;
+    _resizeObserver = null;
+    _indicatorFrame = null;
+    _indicatorInitialized = false;
+    _indicatorInitTimer = null;
+    _indicatorTransitionTimeout = 0;
   
     static get observedAttributes() {
-        return ['level', 'value', 'delimiters', 'fill', 'width'];
+        return ['level', 'value', 'delimiters', 'fill', 'width', 'sliding'];
     }
 
     constructor() {
@@ -449,6 +465,7 @@ class UdsTabs extends HTMLElement {
 
         this._onClick = this._onClick.bind(this);
         this._onSlotChange = this._collectTabs.bind(this);
+        this._updateIndicator = this._updateIndicator.bind(this);
         this.attachShadow({ mode: 'open', delegatesFocus: true });
 
         this.ready = new Promise(resolve => {
@@ -470,6 +487,17 @@ class UdsTabs extends HTMLElement {
     disconnectedCallback() {
         this.removeEventListener('click', this._onClick);
         this._slot?.removeEventListener('slotchange', this._onSlotChange);
+        this._resizeObserver?.disconnect();
+
+        if (this._indicatorFrame) {
+            cancelAnimationFrame(this._indicatorFrame);
+            this._indicatorFrame = null;
+        }
+
+        if (this._indicatorInitTimer) {
+            clearTimeout(this._indicatorInitTimer);
+            this._indicatorInitTimer = null;
+        }
     }
 
     attributeChangedCallback() {
@@ -501,9 +529,15 @@ class UdsTabs extends HTMLElement {
             
         this._tabBar = this.shadowRoot.querySelector('.tabs');
         this._slot = this.shadowRoot.querySelector('slot');
+        this._indicator = this.shadowRoot.querySelector('.tabs__indicator');
 
         if (this._slot) {
             this._slot.addEventListener('slotchange', this._onSlotChange);
+        }
+
+        if ('ResizeObserver' in window) {
+            this._resizeObserver = new ResizeObserver(this._updateIndicator);
+            this._resizeObserver.observe(this);
         }
 
         this._collectTabs();
@@ -518,6 +552,23 @@ class UdsTabs extends HTMLElement {
         this._tabBar.classList.add(`tabs--${this.level}`);
         this._tabBar.classList.toggle('tabs--delimiters', this.delimiters);
         this._tabBar.classList.toggle('tabs--fill', this.fill);
+        this._tabBar.classList.toggle('tabs--sliding', this.sliding);
+
+        if (this.sliding && !this._indicatorInitialized && this._indicator) {
+            this._indicatorTransitionTimeout = this._getIndicatorTransitionTimeout();
+            this._indicator.style.setProperty('transition', 'none');
+        }
+
+        if (!this.sliding) {
+            this._indicatorInitialized = false;
+            this._indicator?.style.removeProperty('transition');
+
+            if (this._indicatorInitTimer) {
+                clearTimeout(this._indicatorInitTimer);
+                this._indicatorInitTimer = null;
+            }
+        }
+
         this.style.width = this.width || (this.fill ? '100%' : '');
 
         if (!this.value && this._tabs.length > 0) {
@@ -540,7 +591,10 @@ class UdsTabs extends HTMLElement {
             tab.active = isActive;
             tab.delimiters = showDelimiter;
             tab.fill = this.fill;
+            tab.sliding = this.sliding;
         });
+
+        this._queueIndicatorUpdate();
     }
 
     _collectTabs() {
@@ -553,11 +607,89 @@ class UdsTabs extends HTMLElement {
         this._updateState();
     }
 
+    _queueIndicatorUpdate() {
+        if (!this.sliding || !this._tabBar || !this._indicator) return;
+
+        if (this._indicatorFrame) {
+            cancelAnimationFrame(this._indicatorFrame);
+        }
+
+        this._indicatorFrame = requestAnimationFrame(() => {
+            this._indicatorFrame = null;
+            this._updateIndicator();
+        });
+    }
+
+    _getIndicatorTransitionTimeout() {
+        const styles = getComputedStyle(this._indicator);
+        const durations = styles.transitionDuration.split(',').map(value => this._cssTimeToMs(value));
+        const delays = styles.transitionDelay.split(',').map(value => this._cssTimeToMs(value));
+        const count = Math.max(durations.length, delays.length);
+        let max = 0;
+
+        for (let i = 0; i < count; i++) {
+            const duration = durations[i] ?? durations[durations.length - 1] ?? 0;
+            const delay = delays[i] ?? delays[delays.length - 1] ?? 0;
+            max = Math.max(max, duration + delay);
+        }
+
+        return max;
+    }
+
+    _cssTimeToMs(value) {
+        const time = String(value).trim();
+
+        if (time.endsWith('ms')) return parseFloat(time) || 0;
+        if (time.endsWith('s')) return (parseFloat(time) || 0) * 1000;
+
+        return parseFloat(time) || 0;
+    }
+
+    _updateIndicator() {
+        if (!this.sliding || !this._tabBar || !this._indicator) return;
+
+        const activeTab = this._tabs.find(tab => tab.active);
+
+        if (!activeTab || !activeTab.isConnected) {
+            this._indicator.style.opacity = '0';
+            return;
+        }
+
+        const tabRect = activeTab.getBoundingClientRect();
+        const barRect = this._tabBar.getBoundingClientRect();
+        const topOffset = parseFloat(getComputedStyle(this._indicator).top) || 0;
+        const scaleX = barRect.width && this._tabBar.offsetWidth ? barRect.width / this._tabBar.offsetWidth : 1;
+        const scaleY = barRect.height && this._tabBar.offsetHeight ? barRect.height / this._tabBar.offsetHeight : 1;
+        const indicatorWidth = activeTab.offsetWidth || tabRect.width / scaleX;
+        const indicatorHeight = activeTab.offsetHeight || tabRect.height / scaleY;
+        const indicatorX = scaleX ? (tabRect.left - barRect.left) / scaleX : 0;
+        const indicatorY = scaleY ? (tabRect.top - barRect.top) / scaleY : 0;
+
+        this._indicator.style.width = `${indicatorWidth}px`;
+        this._indicator.style.height = `${Math.max(0, indicatorHeight - topOffset)}px`;
+        this._indicator.style.transform = `translate3d(${indicatorX}px, ${indicatorY - topOffset}px, 0)`;
+        this._indicator.style.opacity = '1';
+
+        if (!this._indicatorInitialized) {
+            this._indicatorInitialized = true;
+
+            if (this._indicatorInitTimer) {
+                clearTimeout(this._indicatorInitTimer);
+            }
+
+            this._indicatorInitTimer = setTimeout(() => {
+                this._indicator?.style.removeProperty('transition');
+                this._indicatorInitTimer = null;
+            }, this._indicatorTransitionTimeout + 50);
+        }
+    }
+
     _onClick(event) {
         const path = event.composedPath();
         const clickedTab = this._tabs.find(tab => path.includes(tab));
 
         if (!clickedTab) return;
+        if (clickedTab.disabled) return;
 
         const nextValue =
             clickedTab.getAttribute('value') ??
@@ -598,13 +730,20 @@ class UdsTabs extends HTMLElement {
         this.toggleAttribute('delimiters', Boolean(value));
     }
 
-
     get fill() {
         return this.hasAttribute('fill');
     }
 
     set fill(value) {
         this.toggleAttribute('fill', Boolean(value));
+    }
+
+    get sliding() {
+        return this.hasAttribute('sliding');
+    }
+
+    set sliding(value) {
+        this.toggleAttribute('sliding', Boolean(value));
     }
 
     get width() {

@@ -9,6 +9,8 @@
 .tabs {
     display: flex;
     box-sizing: border-box;
+    position: relative;
+    isolation: isolate;
 }
 
 .tabs--fill {
@@ -51,4 +53,62 @@
 
 .tabs--l4 {
     gap: 0;
+}
+
+
+/* Sliding mode */
+
+.tabs__indicator {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+    background-color: var(--semantics-backs-white-default, #fff);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--shadow-small, 0 1px 2px rgba(0, 0, 0, 0.08));
+    transform: translate3d(0, 0, 0);
+    transition:
+        transform 360ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        width 360ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        height 360ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        opacity 120ms ease;
+}
+
+.tabs--sliding .tabs__indicator {
+    opacity: 1;
+}
+
+.tabs:not(.tabs--sliding) .tabs__indicator {
+    display: none;
+}
+
+.tabs--sliding ::slotted(uds-tab) {
+    position: relative;
+    z-index: 1;
+}
+
+.tabs--l1.tabs--sliding .tabs__indicator {
+    top: 6px;
+    border-radius: var(--radius-large) var(--radius-large) 0 0;
+    box-shadow: none;
+}
+
+.tabs--l2.tabs--sliding .tabs__indicator {
+    border-radius: calc(var(--radius-large) - 2px);
+    box-shadow: none;
+}
+
+.tabs--l3.tabs--sliding .tabs__indicator,
+.tabs--l4.tabs--sliding .tabs__indicator {
+    box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tabs__indicator {
+        transition: none;
+    }
 }

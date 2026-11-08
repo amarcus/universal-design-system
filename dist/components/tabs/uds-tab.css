@@ -466,3 +466,17 @@
 .tab--l4:not(.active)[disabled] {
     color: var(--tabs-text-secondary-disabled);
 }
+
+
+/* Sliding mode */
+
+:host([sliding]) .tab.active .wrapper {
+    background-color: transparent;
+    box-shadow: none;
+    transition: transform 0.12s, opacity 0.2s;
+}
+
+:host([sliding]) .tab--l1.active::before,
+:host([sliding]) .tab--l1.active::after {
+    display: none;
+}

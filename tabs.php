@@ -125,7 +125,7 @@
 
                 <div class="group" data-group="default">
                     <div class="cell">
-                        <uds-tabs level="body" value="overview">
+                        <uds-tabs level="body" value="overview" sliding>
                             <uds-tab value="overview" counter="3">
                                 <i slot="icon-top" data-lucide="star"></i>
                                 <i slot="icon" data-lucide="star"></i>
